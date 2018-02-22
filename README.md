@@ -15,6 +15,7 @@ the following cli options are supported
 -w, --width=<int> 
 -h, --height=<int>
 -f, --format=[png, pdf, ps, svg] 
+-u, --base-uri
 ```
 the following cli options are **NOT** implemented  
 ```
@@ -23,5 +24,4 @@ the following cli options are **NOT** implemented
 -f, --format=[eps, xml, recording]
 --keep-image-data
 --no-keep-image-data
---base-uri
 ```
