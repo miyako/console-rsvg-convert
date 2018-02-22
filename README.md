@@ -20,7 +20,8 @@ the following cli options are **NOT** implemented
 ```
 -b, --background-color
 -u, --unlimited
+-f, --format=[eps, xml, recording]
 --keep-image-data
 --no-keep-image-data
--f, --format=[eps, xml, recording]
+--base-uri
 ```
