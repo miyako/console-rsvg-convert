@@ -54,6 +54,13 @@ DOCUMENT TO BLOB(System folder(Desktop)+"sample.svg";$SVG)
 LAUNCH EXTERNAL PROCESS($CMD;$SVG;$PDF;$ERR)
 BLOB TO DOCUMENT(System folder(Desktop)+"sample.pdf";$PDF)
 ```
+## Build Information
+
+Windows DLL were compiled using MinGW ``--host=x86_64-w64-mingw32``
+
+``pango`` was compiles with flags ``--with-included-modules=arabic-lang,basic-fc,basic-win32,basic-coretext,indic-lang``
+
+``gdk-pixbuf`` was compiles with flags ``--with-included-loaders=ani,icns,pcx,ras,tga,png,pnm,wbmp,xbm,xpm,qtif,bmp,gif,ico,jpeg,tiff --disable-glibtest ``
 
 ## Credits 
 
