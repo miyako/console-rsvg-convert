@@ -27,3 +27,11 @@ the following cli options are **NOT** implemented
 --keep-image-data
 --no-keep-image-data
 ```
+
+## Examples
+
+multiple file input, single file output 
+
+```
+rsvg-convert page-1.svg page-2.svg page-3.svg --format=pdf --output=sample.pdf
+```
