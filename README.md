@@ -47,10 +47,10 @@ rsvg-convert page-1.svg page-2.svg page-3.svg -f pdf -o sample.pdf
 ```
 SET ENVIRONMENT VARIABLE("_4D_OPTION_CURRENT_DIRECTORY";$RSVG_DIR)
 
-cmd:="rsvg-convert -f pdf"
+$CMD:="rsvg-convert -f pdf"
 
 C_BLOB($SVG;$PDF;$ERR)
 DOCUMENT TO BLOB(System folder(Desktop)+"sample.svg";$SVG)
-LAUNCH EXTERNAL PROCESS(cmd;$SVG;$PDF;$ERR)
+LAUNCH EXTERNAL PROCESS($CMD;$SVG;$PDF;$ERR)
 BLOB TO DOCUMENT(System folder(Desktop)+"sample.pdf";$PDF)
 ```
