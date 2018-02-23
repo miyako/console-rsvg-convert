@@ -3,7 +3,23 @@
 
 ### Usage
 
-the following cli options are supported  
+```
+-d, --dpi-x=<float> pixels per inch [optional; defaults to 90dpi]
+-p, --dpi-y=<float> pixels per inch [optional; defaults to 90dpi]
+-x, --x-zoom=<float> x zoom factor [optional; defaults to 1.0]
+-y, --y-zoom=<float> y zoom factor [optional; defaults to 1.0]
+-z, --zoom=<float> zoom factor [optional; defaults to 1.0]
+-w, --width=<int> width [optional; defaults to the SVG's width]
+-h, --height=<int> height [optional; defaults to the SVG's height]
+-f, --format=[png, pdf, ps, svg] [optional; defaults to 'png']
+-o, --output=<path> output filename [optional; defaults to stdout]
+-a, --keep-aspect-ratio whether to preserve the aspect ratio [optional; defaults to FALSE]
+-b, --background-color=[black, white, #abccee, #aaa...] set the background color [optional; defaults to None]
+-u, --base-uri=<uri>
+-v, --version show version information
+```
+
+compared to GNU ``rsvg-convert`` ollowing cli options are supported  
 ```
 -?, --help
 -v, --version
