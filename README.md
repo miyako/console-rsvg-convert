@@ -54,3 +54,7 @@ DOCUMENT TO BLOB(System folder(Desktop)+"sample.svg";$SVG)
 LAUNCH EXTERNAL PROCESS($CMD;$SVG;$PDF;$ERR)
 BLOB TO DOCUMENT(System folder(Desktop)+"sample.pdf";$PDF)
 ```
+
+## Credits 
+
+Windows port of ``getopt_long`` by [takamin](https://github.com/takamin/win-c)
