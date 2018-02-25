@@ -13,7 +13,6 @@
 -h, --height=<int> height [optional; defaults to the SVG's height]
 -f, --format=[png, pdf, ps, svg] [optional; defaults to 'png']
 -o, --output=<path> output filename [optional; defaults to stdout]
--a, --keep-aspect-ratio whether to preserve the aspect ratio [optional; defaults to FALSE]
 -b, --background-color=[black, white, #abccee, #aaa...] set the background color [optional; defaults to None]
 -u, --base-uri=<uri>
 -v, --version show version information
@@ -24,9 +23,12 @@ the following cli options are **NOT** implemented
 ```
 -u, --unlimited
 -f, --format=[eps, xml, recording]
+-a, --keep-aspect-ratio whether to preserve the aspect ratio [optional; defaults to FALSE]
 --keep-image-data
 --no-keep-image-data
 ```
+
+**Note**: it seems ``-a`` is not even implemented in the original ``rsvg-convert`` either...
 
 ## Examples
 
