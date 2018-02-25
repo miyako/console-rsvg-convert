@@ -82,5 +82,5 @@ but the results are the same.
 
 with MINGW projects, the ``rsvg`` package contains:  
 ``croco, ffi, gdk-pixbuf, gio, glib, gmodule, gobject, harfbuzz, iconv, intl, pangocairo, pangoft2, pangowin32``  
-but the results are the same. also ``text`` element with not ``tspan`` seem to cause critical error.
+but the results are the same. also direct ``text`` content (not ``tspan``) seem to cause critical error.
 
