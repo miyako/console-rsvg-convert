@@ -82,9 +82,5 @@ but the results are the same.
 
 with MINGW projects, the ``rsvg`` package contains:  
 ``croco, ffi, gdk-pixbuf, gio, glib, gmodule, gobject, harfbuzz, iconv, intl, pangocairo, pangoft2, pangowin32``  
-but the results are the same. also upper-case "UTF-8" raises critical GLIB error.
-
-```xml
-<?xml version="1.0" encoding="utf-8" standalone="no" ?>
-```
+but the results are the same. also element values seem to cause error.
 
