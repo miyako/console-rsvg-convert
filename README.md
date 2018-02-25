@@ -72,6 +72,6 @@ Windows port of ``getopt_long`` by [takamin](https://github.com/takamin/win-c)
 
 ## Notes
 
-with MSVC projects from ImageMagick, the package contains ``rsvg, xml2, jp2, tiff, pango, cairo, jpeg, png16, glib, z``  
-
+with MSVC projects from ImageMagick, the package contains:  
+``rsvg, xml2, jp2, tiff, pango, cairo, jpeg, png16, glib, z``  
 PDF is created but the paint server does not seem to be doing anything (all black).
