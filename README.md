@@ -87,3 +87,5 @@ but the results are the same. also direct ``text`` content (not ``tspan``) seem 
 siliencing the assertion errors in ``g_utf8_to_utf16`` and ``g_once_init_leave`` does not solve the problem.  
 
 seem like a problem in the MINGW ``rsvg`` or one of the libraries linked to it (except ``glib``)  
+
+evidently not ``iconv`` referenced from ``rsvg, xml2``  
