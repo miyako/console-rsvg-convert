@@ -72,6 +72,15 @@ Windows port of ``getopt_long`` by [takamin](https://github.com/takamin/win-c)
 
 ## Notes
 
-with MSVC projects from ImageMagick, the package contains:  
+with MSVC projects from ImageMagick, the ``rsvg`` package contains:  
 ``rsvg, xml2, jp2, tiff, pango, cairo, jpeg, png16, glib, z``  
 PDF is created but the paint server does not seem to be doing anything (all black).
+
+with MSVC projects from ImageMagick, the ``cairo`` package contains:  
+``pixman, freetype, fontconfig``  
+but the results are the same.
+
+with MINGW projects, the ``rsvg`` package contains:  
+``croco, ffi, gdk-pixbuf, gio, glib, gmodule, gobject, harfbuzz, iconv, intl, pangocairo, pangoft2, pangowin32``  
+but the results are the same and UTF- BOM crashes GLIB.  
+
