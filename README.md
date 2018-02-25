@@ -84,3 +84,4 @@ with MINGW projects, the ``rsvg`` package contains:
 ``croco, ffi, gdk-pixbuf, gio, glib, gmodule, gobject, harfbuzz, iconv, intl, pangocairo, pangoft2, pangowin32``  
 but the results are the same. also direct ``text`` content (not ``tspan``) seem to cause critical error. (maybe ``rsvg-text.c``?)
 
+silience the assertion error ``g_utf8_to_utf16`` in ``gutf8.c``
