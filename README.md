@@ -91,3 +91,15 @@ seem like a problem in the MINGW ``rsvg`` or one of the libraries linked to it (
 evidently not ``iconv`` referenced from ``rsvg, xml2``  
 
 need to study ``gdk-pixbuf, pangocairo, croco``
+
+
+---
+
+add ``RSVG_EXPORT`` to the following:  
+
+```
+rsvg_cleanup
+rsvg_css_parse_color
+rsvg_handle_new_from_data
+rsvg_handle_new_from_free
+```
