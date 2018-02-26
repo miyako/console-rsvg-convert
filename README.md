@@ -72,6 +72,17 @@ Windows port of ``getopt_long`` by [takamin](https://github.com/takamin/win-c)
 
 Based on libraries from ``ImageMagick-7.0.7-24``  
 
+``libcairo-2.dll``
+``libglib-2.0-0.dll``
+``libjp2-1.dll``
+``libjpeg-9.dll``
+``libpango-1.0-0.dll``
+``libpng16-16.dll``
+``librsvg-2-2.dll``
+``libtiff-5.dll``
+``libxml2-2.dll``
+``zlib1.dll``
+
 add ``RSVG_EXPORT`` to the following:  
 
 ``rsvg_cleanup``
