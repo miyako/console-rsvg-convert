@@ -95,6 +95,8 @@ need to study ``gdk-pixbuf, pangocairo, croco``
 
 ---
 
+Based on libraries from ``ImageMagick-7.0.7-24``  
+
 add ``RSVG_EXPORT`` to the following:  
 
 ```
