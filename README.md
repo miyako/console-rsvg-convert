@@ -30,6 +30,14 @@ the following cli options are **NOT** implemented
 
 **Note**: it seems ``-a`` is not even implemented in the original ``rsvg-convert`` either...
 
+### Enhancements
+
+* ``UTF-8`` path support on Windows. (you might need to change the ``cmd.exe`` charset)
+
+* Intermediate folders are automatically created.
+
+* base64 data-uri images are rendered.
+
 ## Examples
 
 multiple file input, single file output 
