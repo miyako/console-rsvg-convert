@@ -70,31 +70,6 @@ Windows port of ``getopt_long`` by [takamin](https://github.com/takamin/win-c)
 
 ---
 
-## Notes
-
-with MSVC projects from ImageMagick, the ``rsvg`` package contains:  
-``rsvg, xml2, jp2, tiff, pango, cairo, jpeg, png16, glib, z``  
-PDF is created but the paint server does not seem to be doing anything (all black).
-
-with MSVC projects from ImageMagick, the ``cairo`` package contains:  
-``pixman, freetype, fontconfig``  
-but the results are the same.
-
-with MINGW projects, the ``rsvg`` package contains:  
-``croco, ffi, gdk-pixbuf, gio, glib, gmodule, gobject, harfbuzz, iconv, intl, pangocairo, pangoft2, pangowin32``  
-but the results are the same. also direct ``text`` content (not ``tspan``) seem to cause critical error. (maybe ``rsvg-text.c``?)
-
-siliencing the assertion errors in ``g_utf8_to_utf16`` and ``g_once_init_leave`` does not solve the problem.  
-
-seem like a problem in the MINGW ``rsvg`` or one of the libraries linked to it (except ``glib``)  
-
-evidently not ``iconv`` referenced from ``rsvg, xml2``  
-
-need to study ``gdk-pixbuf, pangocairo, croco``
-
-
----
-
 Based on libraries from ``ImageMagick-7.0.7-24``  
 
 add ``RSVG_EXPORT`` to the following:  
@@ -105,3 +80,5 @@ rsvg_css_parse_color
 rsvg_handle_new_from_data
 rsvg_handle_new_from_free
 ```
+
+Modified ``rsvg-io`` to support base64 embedded ``png`` or ``jpeg`` images (data-uri)
