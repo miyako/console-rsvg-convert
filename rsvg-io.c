@@ -72,56 +72,38 @@ rsvg_acquire_data_data (const char *uri,
                         gsize *out_len,
                         GError **error)
 {
-    const char *comma, *start, *end;
-    char *mime_type;
-    char *data;
-    gsize data_len;
-    gboolean base64 = FALSE;
-
-    g_assert (out_len != NULL);
-    g_assert (strncmp (uri, "data:", 5) == 0);
-
-    mime_type = NULL;
-    start = uri + 5;
-    comma = strchr (start, ',');
-
-    if (comma && comma != start) {
-        /* Deal with MIME type / params */
-        if (comma > start + BASE64_INDICATOR_LEN && 
-            !g_ascii_strncasecmp (comma - BASE64_INDICATOR_LEN, BASE64_INDICATOR, BASE64_INDICATOR_LEN)) {
-            end = comma - BASE64_INDICATOR_LEN;
-            base64 = TRUE;
-        } else {
-            end = comma;
-        }
-
-        if (end != start) {
-            mime_type = uri_decoded_copy (start, end - start);
-        }
-    }
-
-    if (comma)
-        start = comma + 1;
-
-    if (*start) {
-	data = uri_decoded_copy (start, strlen (start));
-
-        if (base64)
-            data = (char *) g_base64_decode_inplace (data, &data_len);
-        else
-            data_len = strlen (data);
-    } else {
-        data = NULL;
-        data_len = 0;
-    }
-
-    if (out_mime_type)
-        *out_mime_type = mime_type;
-    else
-        g_free (mime_type);
-
-    *out_len = data_len;
-    return data;
+	
+	gpointer data = NULL;
+	gsize data_len = 0;
+	const char *found, *start, *comma;
+	const char *mimeData;
+	
+	g_assert (out_len != NULL);
+	g_assert (g_str_has_prefix (uri, "data:"));
+	
+	start = uri + 5;
+	found = strchr (start, ';');
+	comma = strchr (found, ',');
+	
+	if ((found) && (comma)){
+		
+		if(!g_ascii_strncasecmp (comma - 6, "base64,", 7)){
+			
+			mimeData = comma + 1;
+			data = g_base64_decode((const gchar *)mimeData, &data_len);
+			
+			if(found != start){
+				*out_mime_type = g_strndup (start, found - start);
+			}else{
+				*out_mime_type = NULL;
+			}
+			
+		}
+		
+	}
+	
+	*out_len = data_len;
+	return (guint8 *)data;
 }
 
 gchar *
