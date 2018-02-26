@@ -68,17 +68,15 @@ Windows DLL were compiled using MinGW ``--host=x86_64-w64-mingw32``
 
 Windows port of ``getopt_long`` by [takamin](https://github.com/takamin/win-c)
 
----
+## Build Information
 
 Based on libraries from ``ImageMagick-7.0.7-24``  
 
 add ``RSVG_EXPORT`` to the following:  
 
-```
-rsvg_cleanup
-rsvg_css_parse_color
-rsvg_handle_new_from_data
-rsvg_handle_new_from_free
-```
+``rsvg_cleanup``
+``rsvg_css_parse_color``
+``rsvg_handle_new_from_data``
+``rsvg_handle_new_from_free``
 
 Modified ``rsvg-io`` to support base64 embedded ``png`` or ``jpeg`` images (data-uri)
