@@ -91,4 +91,4 @@ add ``RSVG_EXPORT`` to the following:
 ``rsvg_handle_new_from_data``  
 ``rsvg_handle_new_from_free``  
 
-Modified ``rsvg-io`` to support base64 embedded ``png`` or ``jpeg`` images (data-uri)
+Modified [``rsvg-io``](https://github.com/miyako/console-rsvg-convert/commit/472833462091dcff6a767d2447baadef34cc996a) to support base64 embedded ``png`` or ``jpeg`` images (data-uri)
