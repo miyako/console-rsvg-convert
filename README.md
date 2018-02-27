@@ -78,7 +78,7 @@ Windows port of ``getopt_long`` by [takamin](https://github.com/takamin/win-c)
 
 ## Build Information  
 
-add ``RSVG_EXPORT`` to the following:  
+added ``RSVG_EXPORT`` to the following:  
 
 ``rsvg_cleanup``  
 ``rsvg_css_parse_color``  
