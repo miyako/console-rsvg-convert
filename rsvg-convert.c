@@ -44,7 +44,21 @@ static void usage(void){
 }
 
 
- #ifdef __WINDOWS__
+#ifdef __APPLE__
+#include <Foundation/Foundation.h>
+void create_parent_folder(const char *utf8_path){
+	
+	NSString *filePath = (NSString *)CFBridgingRelease(CFStringCreateWithFileSystemRepresentation(kCFAllocatorDefault, utf8_path));
+	NSString *path = (NSString *)CFBridgingRelease(CFStringCreateWithFileSystemRepresentation(kCFAllocatorDefault, [[filePath stringByDeletingLastPathComponent]fileSystemRepresentation]));
+	NSFileManager *fm = [[NSFileManager alloc]init];
+	[fm createDirectoryAtPath:path
+withIntermediateDirectories:YES
+								 attributes:nil
+											error:NULL];
+}
+#endif
+
+#ifdef __WINDOWS__
 void create_parent_folder(const char *utf8_path){
     wchar_t fDrive[_MAX_DRIVE], fDir[_MAX_DIR], fName[_MAX_FNAME], fExt[_MAX_EXT];
     wchar_t utf16_path[_MAX_PATH] = {0};
@@ -276,7 +290,8 @@ int rsvg_convert(int argc, char *argv[])
 #ifdef __WINDOWS__
 		 out = ufopen(output, L"wb");
 #else
-        out = fopen(output, "wb");
+			create_parent_folder(output);
+			out = fopen(output, "wb");
 #endif
         if(!out)
         {
@@ -401,15 +416,6 @@ int rsvg_convert(int argc, char *argv[])
                          
                          create_page(rsvg, cr, surface, format, out, multiple_pages);
 
- /*
-cairo_set_source_rgb(cr, 0, 0, 0);
-cairo_select_font_face(cr, "Sans", CAIRO_FONT_SLANT_NORMAL,
-CAIRO_FONT_WEIGHT_NORMAL);
-cairo_set_font_size(cr, 40.0);
-cairo_move_to(cr, 10.0, 50.0);
-cairo_show_text(cr, "Disziplin ist Macht.");
-cairo_surface_write_to_png(surface, "image.png");
-*/
                      }//cr
 
                      rsvg_handle_close(rsvg, &error);

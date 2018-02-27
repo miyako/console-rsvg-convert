@@ -21,6 +21,8 @@
 #include <cairo-pdf.h>
 #include <cairo-svg.h>
 
+ #define _CONSOLE_
+
 struct option longopts[] = {
     {"help", no_argument, NULL, '?'},
     {"dpi-x", required_argument, NULL, 'd'},
