@@ -38,7 +38,7 @@ the following cli options are **NOT** implemented
 
 * base64 data-uri images are rendered.
 
-## Download
+## Downloads
 
 [Windows 64-bit](https://github.com/miyako/console-rsvg-convert/releases/tag/1.0.windows-msvc-static)  
 
