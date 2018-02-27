@@ -28,7 +28,7 @@ the following cli options are **NOT** implemented
 --no-keep-image-data
 ```
 
-**Note**: it seems ``-a`` is not even implemented in the original ``rsvg-convert`` either...
+**Note**: it seems ``-a`` is not even implemented in the original ``rsvg-convert``...
 
 ### Enhancements
 
