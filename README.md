@@ -44,7 +44,7 @@ the following cli options are **NOT** implemented
 
 [Windows 32-bit](https://github.com/miyako/console-rsvg-convert/releases/tag/1.0.windows-msvc-static-32)  
 
-[Mac 64-bit](https://github.com/miyako/console-rsvg-convert/releases/tag/1.0-mac)
+[Mac 64-bit](https://github.com/miyako/console-rsvg-convert/releases/tag/1.0.1-mac)
 
 ## Examples
 
