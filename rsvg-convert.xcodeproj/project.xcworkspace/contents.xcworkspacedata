@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/miyako/Downloads/rsv-convert/rsvg-convert.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
