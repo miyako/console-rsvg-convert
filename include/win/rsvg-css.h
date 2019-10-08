@@ -47,7 +47,7 @@ G_BEGIN_DECLS
 G_GNUC_INTERNAL
 int	    rsvg_css_parse_aspect_ratio	    (const char *str);
 /* for some reason this one's public... */
-__declspec(dllimport)  guint32   rsvg_css_parse_color        (const char *str, gboolean * inherit);
+guint32	    rsvg_css_parse_color        (const char *str, gboolean * inherit);
 G_GNUC_INTERNAL
 guint       rsvg_css_parse_opacity	    (const char *str);
 G_GNUC_INTERNAL

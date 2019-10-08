@@ -179,7 +179,7 @@
       <EntryPointSymbol>
       </EntryPointSymbol>
       <AdditionalLibraryDirectories>lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Shlwapi.lib;legacy_stdio_definitions.lib;CORE_RL_pixman_.lib;CORE_RL_cairo_.lib;CORE_RL_croco_.lib;CORE_RL_ffi_.lib;CORE_RL_glib_.lib;CORE_RL_jp2_.lib;CORE_RL_jpeg_.lib;CORE_RL_librsvg_.lib;CORE_RL_libxml_.lib;CORE_RL_pango_.lib;CORE_RL_png_.lib;CORE_RL_tiff_.lib;CORE_RL_zlib_.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Shlwapi.lib;legacy_stdio_definitions.lib;CORE_RL_cairo_.lib;CORE_RL_croco_.lib;CORE_RL_ffi_.lib;CORE_RL_glib_.lib;CORE_RL_jp2_.lib;CORE_RL_jpeg_.lib;CORE_RL_librsvg_.lib;CORE_RL_libxml_.lib;CORE_RL_pango_.lib;CORE_RL_pixman_.lib;CORE_RL_png_.lib;CORE_RL_tiff_.lib;CORE_RL_zlib_.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -207,7 +207,7 @@
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <AdditionalDependencies>Shlwapi.lib;legacy_stdio_definitions.lib;CORE_RL_pixman_.lib;CORE_RL_cairo_.lib;CORE_RL_croco_.lib;CORE_RL_ffi_.lib;CORE_RL_glib_.lib;CORE_RL_jp2_.lib;CORE_RL_jpeg_.lib;CORE_RL_librsvg_.lib;CORE_RL_libxml_.lib;CORE_RL_pango_.lib;CORE_RL_png_.lib;CORE_RL_tiff_.lib;CORE_RL_zlib_.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Shlwapi.lib;legacy_stdio_definitions.lib;CORE_RL_cairo_.lib;CORE_RL_croco_.lib;CORE_RL_ffi_.lib;CORE_RL_glib_.lib;CORE_RL_jp2_.lib;CORE_RL_jpeg_.lib;CORE_RL_librsvg_.lib;CORE_RL_libxml_.lib;CORE_RL_pango_.lib;CORE_RL_pixman_.lib;CORE_RL_png_.lib;CORE_RL_tiff_.lib;CORE_RL_zlib_.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>

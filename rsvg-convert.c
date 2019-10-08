@@ -128,6 +128,37 @@ void create_page(RsvgHandle *rsvg,
     
 }
 
+void cairo_modify_surface(cairo_surface_t *surface,
+                          int width,
+                          int height,
+                          double x_zoom,
+                          double y_zoom,
+                          int keep_aspect_ratio,
+                          RsvgOutputType format) {
+    
+    if((width != 0) && (width != -1))
+        width = width * x_zoom;
+    
+    if((height != 0) && (height != -1))
+        height = height * y_zoom;
+    
+    if((height == 0) || (width == 0))
+        height = width = DEFAULT_SIZE;
+    
+    //TODO:keep_aspect_ratio not implemented
+    
+    if(surface) {
+        switch(format)
+        {
+             case RSVG_OUT_PDF:
+                cairo_pdf_surface_set_size(surface, width, height);
+                break;
+                default:
+                break;
+        }
+    }
+}
+
 cairo_surface_t *create_surface(RsvgHandle *rsvg,
                                 int width,
                                 int height,
@@ -187,6 +218,10 @@ int rsvg_convert(int argc, char *argv[])
     double dpi_y = -1.0;
     int width = -1;
     int height = -1;
+    
+    std::map<int, int>widths;
+    std::map<int, int>heights;
+    
     double x_zoom = 1.0;
     double y_zoom = 1.0;
     double zoom = 0;
@@ -226,10 +261,33 @@ int rsvg_convert(int argc, char *argv[])
                 if(optarg) x_zoom = y_zoom = zoom = atoi(optarg);
                 break;
             case 'w':
-                width = atoi(optarg);
+            {
+                std::string ww = (optarg);
+                size_t f = ww.find(':');
+                if(f != std::string::npos)
+                {
+                    int p  = atoi(ww.substr(0, f).c_str());
+                    int v = atoi(ww.substr(f+1).c_str());
+                    widths.insert(std::map<int, int>::value_type(p, v));
+                }else{
+                  width = atoi(optarg);
+                }
+                
+            }
                 break;
             case 'h':
-                height = atoi(optarg);
+            {
+                std::string hh = (optarg);
+                size_t f = hh.find(':');
+                if(f != std::string::npos)
+                {
+                    int p  = atoi(hh.substr(0, f).c_str());
+                    int v = atoi(hh.substr(f+1).c_str());
+                    heights.insert(std::map<int, int>::value_type(p, v));
+                }else{
+                    height = atoi(optarg);
+                }
+            }
                 break;
             case 'f':
                 if (optarg)
@@ -254,8 +312,16 @@ int rsvg_convert(int argc, char *argv[])
                 {
                     if (strcmp(optarg, "none"))
                     {
-                        background_color_str = optarg;
-                        background_color = rsvg_css_parse_color(background_color_str, FALSE);
+						background_color_str = optarg;
+//#if WIN32
+						background_color = rsvg_css_parse_color(background_color_str, FALSE);
+//#else
+//                        RsvgCssColorSpec background_color_ = rsvg_css_parse_color_(background_color_str);
+//                        if (background_color_.kind == RSVG_CSS_COLOR_SPEC_ARGB)
+//                        {
+//                            background_color = background_color_.argb;
+//                        }
+//#endif
                         add_background = 1;
                     }
                 }
@@ -397,14 +463,32 @@ int rsvg_convert(int argc, char *argv[])
                  {
                      if(uri) rsvg_handle_set_base_uri(rsvg, uri);
                      
-                     /* create surface only for page 1 */
+                     int page_width = width;
+                     int page_height = height;
+                     
+                     std::map<int, int>::iterator pos;
+                     
+                     pos = widths.find(i+1);
+                     if(pos != widths.end()) {
+                         page_width = pos->second;
+                     }
+                     
+                     pos = heights.find(i+1);
+                     if(pos != heights.end()) {
+                         page_height = pos->second;
+                     }
+
                      if(!surface)
                      {
-                         surface = create_surface(rsvg, width, height, x_zoom, y_zoom, keep_aspect_ratio, format, out, multiple_pages);
+                         surface = create_surface(rsvg, page_width, page_height,
+                                                  x_zoom, y_zoom, keep_aspect_ratio,
+                                                  format, out, multiple_pages);
                          if(surface)
                          {
                              cr = cairo_create(surface);
                          }
+                     }else {
+                         cairo_modify_surface(surface, page_width, page_height, x_zoom, y_zoom, keep_aspect_ratio, format);
                      }
                      
                      if(cr)
@@ -420,6 +504,7 @@ int rsvg_convert(int argc, char *argv[])
 
                      rsvg_handle_close(rsvg, &error);
                      rsvg_handle_free(rsvg);
+                     
                  }//rsvg
                  free(buf);
              }//fp

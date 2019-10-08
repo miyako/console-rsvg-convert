@@ -16,10 +16,12 @@
 #include <string.h>
 #include <locale.h>
 #include <rsvg.h>
-#include <rsvg-css.h>
+#include "rsvg-css.h"
 #include <cairo-ps.h>
 #include <cairo-pdf.h>
 #include <cairo-svg.h>
+#include <string>
+#include <map>
 
  #define _CONSOLE_
 

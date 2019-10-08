@@ -10,9 +10,34 @@
 		D10CA3542044581E0075B5C3 /* rsvg-convert.c in Sources */ = {isa = PBXBuildFile; fileRef = D10CA3522044581E0075B5C3 /* rsvg-convert.c */; };
 		D1A3F5652045B85E005E972D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A3F5642045B85E005E972D /* CoreGraphics.framework */; };
 		D1A3F5672045B866005E972D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A3F5662045B866005E972D /* CoreText.framework */; };
-		D1A3F5992045BC60005E972D /* libcairo.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A3F5822045BC60005E972D /* libcairo.2.dylib */; };
-		D1A3F5AC2045BC60005E972D /* librsvg-2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A3F5952045BC60005E972D /* librsvg-2.2.dylib */; };
 		D1A3F5B32045BECB005E972D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A3F5B22045BECB005E972D /* Foundation.framework */; };
+		D1C9E71522CF328F0061B7CD /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C9E71422CF328F0061B7CD /* libbz2.tbd */; };
+		D1C9E71722CF32990061B7CD /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C9E71622CF32990061B7CD /* libiconv.tbd */; };
+		D1C9E71922CF32A30061B7CD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C9E71822CF32A30061B7CD /* libz.tbd */; };
+		D1CEC611234C660D009EA9F1 /* libgmodule-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC5F8234C660C009EA9F1 /* libgmodule-2.0.0.dylib */; };
+		D1CEC612234C660D009EA9F1 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC5F9234C660C009EA9F1 /* libfreetype.6.dylib */; };
+		D1CEC613234C660D009EA9F1 /* libffi.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC5FA234C660C009EA9F1 /* libffi.6.dylib */; };
+		D1CEC614234C660D009EA9F1 /* librsvg-2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC5FB234C660C009EA9F1 /* librsvg-2.2.dylib */; };
+		D1CEC615234C660D009EA9F1 /* libgobject-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC5FC234C660C009EA9F1 /* libgobject-2.0.0.dylib */; };
+		D1CEC617234C660D009EA9F1 /* libjpeg.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC5FE234C660C009EA9F1 /* libjpeg.9.dylib */; };
+		D1CEC618234C660D009EA9F1 /* libpng16.16.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC5FF234C660C009EA9F1 /* libpng16.16.dylib */; };
+		D1CEC619234C660D009EA9F1 /* libglib-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC600234C660C009EA9F1 /* libglib-2.0.0.dylib */; };
+		D1CEC61A234C660D009EA9F1 /* libfontconfig.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC601234C660D009EA9F1 /* libfontconfig.1.dylib */; };
+		D1CEC61B234C660D009EA9F1 /* libgdk_pixbuf-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC602234C660D009EA9F1 /* libgdk_pixbuf-2.0.0.dylib */; };
+		D1CEC61C234C660D009EA9F1 /* libintl.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC603234C660D009EA9F1 /* libintl.8.dylib */; };
+		D1CEC61D234C660D009EA9F1 /* libpango-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC604234C660D009EA9F1 /* libpango-1.0.0.dylib */; };
+		D1CEC61E234C660D009EA9F1 /* libpangocairo-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC605234C660D009EA9F1 /* libpangocairo-1.0.0.dylib */; };
+		D1CEC61F234C660D009EA9F1 /* libpcre.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC606234C660D009EA9F1 /* libpcre.1.dylib */; };
+		D1CEC620234C660D009EA9F1 /* libcairo.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC607234C660D009EA9F1 /* libcairo.2.dylib */; };
+		D1CEC621234C660D009EA9F1 /* libgthread-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC608234C660D009EA9F1 /* libgthread-2.0.0.dylib */; };
+		D1CEC622234C660D009EA9F1 /* liblzma.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC609234C660D009EA9F1 /* liblzma.5.dylib */; };
+		D1CEC623234C660D009EA9F1 /* libgio-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC60A234C660D009EA9F1 /* libgio-2.0.0.dylib */; };
+		D1CEC624234C660D009EA9F1 /* libtiff.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC60B234C660D009EA9F1 /* libtiff.5.dylib */; };
+		D1CEC625234C660D009EA9F1 /* libpixman-1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC60C234C660D009EA9F1 /* libpixman-1.0.dylib */; };
+		D1CEC626234C660D009EA9F1 /* libpangoft2-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC60D234C660D009EA9F1 /* libpangoft2-1.0.0.dylib */; };
+		D1CEC627234C660D009EA9F1 /* libcroco-0.6.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC60E234C660D009EA9F1 /* libcroco-0.6.3.dylib */; };
+		D1CEC628234C660D009EA9F1 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC60F234C660D009EA9F1 /* libxml2.2.dylib */; };
+		D1CEC629234C660D009EA9F1 /* libharfbuzz.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC610234C660D009EA9F1 /* libharfbuzz.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,14 +55,41 @@
 /* Begin PBXFileReference section */
 		D10CA3522044581E0075B5C3 /* rsvg-convert.c */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = "rsvg-convert.c"; sourceTree = SOURCE_ROOT; };
 		D10CA3532044581E0075B5C3 /* rsvg-convert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "rsvg-convert.h"; sourceTree = SOURCE_ROOT; };
-		D1482DBD1A67F4D00020E7AF /* wasvgtopdf */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = wasvgtopdf; path = "rsvg-convert"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D1A3F5622045B858005E972D /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		D1482DBD1A67F4D00020E7AF /* rsvg-convert */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "rsvg-convert"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1A3F5642045B85E005E972D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D1A3F5662045B866005E972D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		D1A3F5682045B875005E972D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		D1A3F5822045BC60005E972D /* libcairo.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcairo.2.dylib; path = dylib/libcairo.2.dylib; sourceTree = "<group>"; };
-		D1A3F5952045BC60005E972D /* librsvg-2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "librsvg-2.2.dylib"; path = "dylib/librsvg-2.2.dylib"; sourceTree = "<group>"; };
 		D1A3F5B22045BECB005E972D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D1C9E70B22CF2FD70061B7CD /* rsvg-css.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "rsvg-css.h"; path = "include/librsvg-2.0/librsvg/rsvg-css.h"; sourceTree = SOURCE_ROOT; };
+		D1C9E71422CF328F0061B7CD /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		D1C9E71622CF32990061B7CD /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		D1C9E71822CF32A30061B7CD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		D1C9E71A22CF32A60061B7CD /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		D1C9E71B22CF32A60061B7CD /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		D1C9E71C22CF32A60061B7CD /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		D1CEC5F8234C660C009EA9F1 /* libgmodule-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgmodule-2.0.0.dylib"; path = "dylib/libgmodule-2.0.0.dylib"; sourceTree = "<group>"; };
+		D1CEC5F9234C660C009EA9F1 /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = dylib/libfreetype.6.dylib; sourceTree = "<group>"; };
+		D1CEC5FA234C660C009EA9F1 /* libffi.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libffi.6.dylib; path = dylib/libffi.6.dylib; sourceTree = "<group>"; };
+		D1CEC5FB234C660C009EA9F1 /* librsvg-2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "librsvg-2.2.dylib"; path = "dylib/librsvg-2.2.dylib"; sourceTree = "<group>"; };
+		D1CEC5FC234C660C009EA9F1 /* libgobject-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgobject-2.0.0.dylib"; path = "dylib/libgobject-2.0.0.dylib"; sourceTree = "<group>"; };
+		D1CEC5FE234C660C009EA9F1 /* libjpeg.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjpeg.9.dylib; path = dylib/libjpeg.9.dylib; sourceTree = "<group>"; };
+		D1CEC5FF234C660C009EA9F1 /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = dylib/libpng16.16.dylib; sourceTree = "<group>"; };
+		D1CEC600234C660C009EA9F1 /* libglib-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libglib-2.0.0.dylib"; path = "dylib/libglib-2.0.0.dylib"; sourceTree = "<group>"; };
+		D1CEC601234C660D009EA9F1 /* libfontconfig.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfontconfig.1.dylib; path = dylib/libfontconfig.1.dylib; sourceTree = "<group>"; };
+		D1CEC602234C660D009EA9F1 /* libgdk_pixbuf-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgdk_pixbuf-2.0.0.dylib"; path = "dylib/libgdk_pixbuf-2.0.0.dylib"; sourceTree = "<group>"; };
+		D1CEC603234C660D009EA9F1 /* libintl.8.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libintl.8.dylib; path = dylib/libintl.8.dylib; sourceTree = "<group>"; };
+		D1CEC604234C660D009EA9F1 /* libpango-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libpango-1.0.0.dylib"; path = "dylib/libpango-1.0.0.dylib"; sourceTree = "<group>"; };
+		D1CEC605234C660D009EA9F1 /* libpangocairo-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libpangocairo-1.0.0.dylib"; path = "dylib/libpangocairo-1.0.0.dylib"; sourceTree = "<group>"; };
+		D1CEC606234C660D009EA9F1 /* libpcre.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpcre.1.dylib; path = dylib/libpcre.1.dylib; sourceTree = "<group>"; };
+		D1CEC607234C660D009EA9F1 /* libcairo.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcairo.2.dylib; path = dylib/libcairo.2.dylib; sourceTree = "<group>"; };
+		D1CEC608234C660D009EA9F1 /* libgthread-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgthread-2.0.0.dylib"; path = "dylib/libgthread-2.0.0.dylib"; sourceTree = "<group>"; };
+		D1CEC609234C660D009EA9F1 /* liblzma.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblzma.5.dylib; path = dylib/liblzma.5.dylib; sourceTree = "<group>"; };
+		D1CEC60A234C660D009EA9F1 /* libgio-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgio-2.0.0.dylib"; path = "dylib/libgio-2.0.0.dylib"; sourceTree = "<group>"; };
+		D1CEC60B234C660D009EA9F1 /* libtiff.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtiff.5.dylib; path = dylib/libtiff.5.dylib; sourceTree = "<group>"; };
+		D1CEC60C234C660D009EA9F1 /* libpixman-1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libpixman-1.0.dylib"; path = "dylib/libpixman-1.0.dylib"; sourceTree = "<group>"; };
+		D1CEC60D234C660D009EA9F1 /* libpangoft2-1.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libpangoft2-1.0.0.dylib"; path = "dylib/libpangoft2-1.0.0.dylib"; sourceTree = "<group>"; };
+		D1CEC60E234C660D009EA9F1 /* libcroco-0.6.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libcroco-0.6.3.dylib"; path = "dylib/libcroco-0.6.3.dylib"; sourceTree = "<group>"; };
+		D1CEC60F234C660D009EA9F1 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = dylib/libxml2.2.dylib; sourceTree = "<group>"; };
+		D1CEC610234C660D009EA9F1 /* libharfbuzz.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libharfbuzz.0.dylib; path = dylib/libharfbuzz.0.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,11 +97,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1CEC611234C660D009EA9F1 /* libgmodule-2.0.0.dylib in Frameworks */,
+				D1CEC612234C660D009EA9F1 /* libfreetype.6.dylib in Frameworks */,
+				D1CEC613234C660D009EA9F1 /* libffi.6.dylib in Frameworks */,
+				D1CEC614234C660D009EA9F1 /* librsvg-2.2.dylib in Frameworks */,
+				D1CEC615234C660D009EA9F1 /* libgobject-2.0.0.dylib in Frameworks */,
+				D1CEC617234C660D009EA9F1 /* libjpeg.9.dylib in Frameworks */,
+				D1CEC618234C660D009EA9F1 /* libpng16.16.dylib in Frameworks */,
+				D1CEC619234C660D009EA9F1 /* libglib-2.0.0.dylib in Frameworks */,
+				D1CEC61A234C660D009EA9F1 /* libfontconfig.1.dylib in Frameworks */,
+				D1CEC61B234C660D009EA9F1 /* libgdk_pixbuf-2.0.0.dylib in Frameworks */,
+				D1CEC61C234C660D009EA9F1 /* libintl.8.dylib in Frameworks */,
+				D1CEC61D234C660D009EA9F1 /* libpango-1.0.0.dylib in Frameworks */,
+				D1CEC61E234C660D009EA9F1 /* libpangocairo-1.0.0.dylib in Frameworks */,
+				D1CEC61F234C660D009EA9F1 /* libpcre.1.dylib in Frameworks */,
+				D1CEC620234C660D009EA9F1 /* libcairo.2.dylib in Frameworks */,
+				D1CEC621234C660D009EA9F1 /* libgthread-2.0.0.dylib in Frameworks */,
+				D1CEC622234C660D009EA9F1 /* liblzma.5.dylib in Frameworks */,
+				D1CEC623234C660D009EA9F1 /* libgio-2.0.0.dylib in Frameworks */,
+				D1CEC624234C660D009EA9F1 /* libtiff.5.dylib in Frameworks */,
+				D1CEC625234C660D009EA9F1 /* libpixman-1.0.dylib in Frameworks */,
+				D1CEC626234C660D009EA9F1 /* libpangoft2-1.0.0.dylib in Frameworks */,
+				D1CEC627234C660D009EA9F1 /* libcroco-0.6.3.dylib in Frameworks */,
+				D1CEC628234C660D009EA9F1 /* libxml2.2.dylib in Frameworks */,
+				D1CEC629234C660D009EA9F1 /* libharfbuzz.0.dylib in Frameworks */,
+				D1C9E71922CF32A30061B7CD /* libz.tbd in Frameworks */,
+				D1C9E71722CF32990061B7CD /* libiconv.tbd in Frameworks */,
+				D1C9E71522CF328F0061B7CD /* libbz2.tbd in Frameworks */,
 				D1A3F5B32045BECB005E972D /* Foundation.framework in Frameworks */,
 				D1A3F5652045B85E005E972D /* CoreGraphics.framework in Frameworks */,
 				D1A3F5672045B866005E972D /* CoreText.framework in Frameworks */,
-				D1A3F5AC2045BC60005E972D /* librsvg-2.2.dylib in Frameworks */,
-				D1A3F5992045BC60005E972D /* libcairo.2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +138,7 @@
 			children = (
 				D10CA3522044581E0075B5C3 /* rsvg-convert.c */,
 				D10CA3532044581E0075B5C3 /* rsvg-convert.h */,
+				D1C9E70B22CF2FD70061B7CD /* rsvg-css.h */,
 			);
 			name = "rsvg-convert";
 			path = "New Group";
@@ -69,7 +147,7 @@
 		D1482DB41A67F4D00020E7AF = {
 			isa = PBXGroup;
 			children = (
-				D1A3F53B2045B7AE005E972D /* a */,
+				D1C9E71022CF32390061B7CD /* usr */,
 				D10CA322203FEEE90075B5C3 /* rsvg-convert */,
 				D1482E021A6805250020E7AF /* dylib */,
 				D1482DBE1A67F4D00020E7AF /* Products */,
@@ -80,7 +158,7 @@
 		D1482DBE1A67F4D00020E7AF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D1482DBD1A67F4D00020E7AF /* wasvgtopdf */,
+				D1482DBD1A67F4D00020E7AF /* rsvg-convert */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,8 +166,30 @@
 		D1482E021A6805250020E7AF /* dylib */ = {
 			isa = PBXGroup;
 			children = (
-				D1A3F5822045BC60005E972D /* libcairo.2.dylib */,
-				D1A3F5952045BC60005E972D /* librsvg-2.2.dylib */,
+				D1CEC607234C660D009EA9F1 /* libcairo.2.dylib */,
+				D1CEC60E234C660D009EA9F1 /* libcroco-0.6.3.dylib */,
+				D1CEC5FA234C660C009EA9F1 /* libffi.6.dylib */,
+				D1CEC601234C660D009EA9F1 /* libfontconfig.1.dylib */,
+				D1CEC5F9234C660C009EA9F1 /* libfreetype.6.dylib */,
+				D1CEC602234C660D009EA9F1 /* libgdk_pixbuf-2.0.0.dylib */,
+				D1CEC60A234C660D009EA9F1 /* libgio-2.0.0.dylib */,
+				D1CEC600234C660C009EA9F1 /* libglib-2.0.0.dylib */,
+				D1CEC5F8234C660C009EA9F1 /* libgmodule-2.0.0.dylib */,
+				D1CEC5FC234C660C009EA9F1 /* libgobject-2.0.0.dylib */,
+				D1CEC608234C660D009EA9F1 /* libgthread-2.0.0.dylib */,
+				D1CEC610234C660D009EA9F1 /* libharfbuzz.0.dylib */,
+				D1CEC603234C660D009EA9F1 /* libintl.8.dylib */,
+				D1CEC5FE234C660C009EA9F1 /* libjpeg.9.dylib */,
+				D1CEC609234C660D009EA9F1 /* liblzma.5.dylib */,
+				D1CEC604234C660D009EA9F1 /* libpango-1.0.0.dylib */,
+				D1CEC605234C660D009EA9F1 /* libpangocairo-1.0.0.dylib */,
+				D1CEC60D234C660D009EA9F1 /* libpangoft2-1.0.0.dylib */,
+				D1CEC606234C660D009EA9F1 /* libpcre.1.dylib */,
+				D1CEC60C234C660D009EA9F1 /* libpixman-1.0.dylib */,
+				D1CEC5FF234C660C009EA9F1 /* libpng16.16.dylib */,
+				D1CEC5FB234C660C009EA9F1 /* librsvg-2.2.dylib */,
+				D1CEC60B234C660D009EA9F1 /* libtiff.5.dylib */,
+				D1CEC60F234C660D009EA9F1 /* libxml2.2.dylib */,
 			);
 			name = dylib;
 			sourceTree = "<group>";
@@ -97,20 +197,24 @@
 		D1A3F52520454C70005E972D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D1C9E71822CF32A30061B7CD /* libz.tbd */,
+				D1C9E71622CF32990061B7CD /* libiconv.tbd */,
+				D1C9E71422CF328F0061B7CD /* libbz2.tbd */,
 				D1A3F5B22045BECB005E972D /* Foundation.framework */,
-				D1A3F5622045B858005E972D /* libbz2.tbd */,
-				D1A3F5682045B875005E972D /* libz.tbd */,
 				D1A3F5662045B866005E972D /* CoreText.framework */,
 				D1A3F5642045B85E005E972D /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D1A3F53B2045B7AE005E972D /* a */ = {
+		D1C9E71022CF32390061B7CD /* usr */ = {
 			isa = PBXGroup;
 			children = (
+				D1C9E71B22CF32A60061B7CD /* libz.tbd */,
+				D1C9E71C22CF32A60061B7CD /* libiconv.tbd */,
+				D1C9E71A22CF32A60061B7CD /* libbz2.tbd */,
 			);
-			path = a;
+			name = usr;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,7 +234,7 @@
 			);
 			name = "rsvg-convert";
 			productName = wasvgtopdf;
-			productReference = D1482DBD1A67F4D00020E7AF /* wasvgtopdf */;
+			productReference = D1482DBD1A67F4D00020E7AF /* rsvg-convert */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -154,6 +258,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = D1482DB41A67F4D00020E7AF;
@@ -205,6 +310,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -212,18 +318,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${PROJECT_DIR}/include/cairo",
-					"${PROJECT_DIR}/include/librsvg-2.0/librsvg",
-					"${PROJECT_DIR}/include/glib-2.0",
-					"${PROJECT_DIR}/include/gdk-pixbuf-2.0",
-					/usr/local/include,
-					"${PROJECT_DIR}/include/pango-1.0",
-					"${PROJECT_DIR}/include/libxml2",
-					"${PROJECT_DIR}/include",
-				);
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/include/mac/**";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/dylib",
@@ -234,7 +329,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SYMROOT = "$(PROJECT_DIR)";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/include/cairo ${PROJECT_DIR}/include/librsvg-2.0/librsvg ${PROJECT_DIR}/include/glib-2.0 ${PROJECT_DIR}/include/gdk-pixbuf-2.0 ${PROJECT_DIR}/include";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/include/mac/**";
 			};
 			name = Debug;
 		};
@@ -260,24 +355,14 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${PROJECT_DIR}/include/cairo",
-					"${PROJECT_DIR}/include/librsvg-2.0/librsvg",
-					"${PROJECT_DIR}/include/glib-2.0",
-					"${PROJECT_DIR}/include/gdk-pixbuf-2.0",
-					/usr/local/include,
-					"${PROJECT_DIR}/include/pango-1.0",
-					"${PROJECT_DIR}/include/libxml2",
-					"${PROJECT_DIR}/include",
-				);
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/include/mac/**";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/dylib",
@@ -288,7 +373,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SYMROOT = "$(PROJECT_DIR)";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/include/cairo ${PROJECT_DIR}/include/librsvg-2.0/librsvg ${PROJECT_DIR}/include/glib-2.0 ${PROJECT_DIR}/include/gdk-pixbuf-2.0 ${PROJECT_DIR}/include";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/include/mac/**";
 			};
 			name = Release;
 		};
@@ -300,17 +385,7 @@
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/dylib";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Y69CWUC25B;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${PROJECT_DIR}/include/cairo",
-					"${PROJECT_DIR}/include/librsvg-2.0/librsvg",
-					"${PROJECT_DIR}/include/glib-2.0",
-					"${PROJECT_DIR}/include/gdk-pixbuf-2.0",
-					/usr/local/include,
-					"${PROJECT_DIR}/include/pango-1.0",
-					"${PROJECT_DIR}/include/libxml2",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/dylib",
@@ -319,7 +394,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "rsvg-convert";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/include/cairo ${PROJECT_DIR}/include/librsvg-2.0/librsvg ${PROJECT_DIR}/include/glib-2.0 ${PROJECT_DIR}/include/gdk-pixbuf-2.0";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/include/mac/**";
 			};
 			name = Debug;
 		};
@@ -331,17 +406,7 @@
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/dylib";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y69CWUC25B;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${PROJECT_DIR}/include/cairo",
-					"${PROJECT_DIR}/include/librsvg-2.0/librsvg",
-					"${PROJECT_DIR}/include/glib-2.0",
-					"${PROJECT_DIR}/include/gdk-pixbuf-2.0",
-					/usr/local/include,
-					"${PROJECT_DIR}/include/pango-1.0",
-					"${PROJECT_DIR}/include/libxml2",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS_NOT_USED_IN_PRECOMPS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/dylib",
@@ -350,7 +415,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "rsvg-convert";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/include/cairo ${PROJECT_DIR}/include/librsvg-2.0/librsvg ${PROJECT_DIR}/include/glib-2.0 ${PROJECT_DIR}/include/gdk-pixbuf-2.0";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/include/mac/**";
 			};
 			name = Release;
 		};
