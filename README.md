@@ -38,6 +38,14 @@ the following cli options are **NOT** implemented
 
 * base64 data-uri images are rendered.
 
+## Downloads
+
+[Windows 64-bit](https://github.com/miyako/console-rsvg-convert/releases/tag/1.0.windows-msvc-static)  
+
+[Windows 32-bit](https://github.com/miyako/console-rsvg-convert/releases/tag/1.0.windows-msvc-static-32)  
+
+[Mac 64-bit](https://github.com/miyako/console-rsvg-convert/releases/tag/1.0.1-mac)
+
 ## Examples
 
 multiple file input, single file output 
