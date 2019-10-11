@@ -128,7 +128,8 @@ void create_page(RsvgHandle *rsvg,
     
 }
 
-void cairo_modify_surface(cairo_surface_t *surface,
+void cairo_modify_surface(RsvgHandle *rsvg,
+                          cairo_surface_t *surface,
                           int width,
                           int height,
                           double x_zoom,
@@ -136,22 +137,26 @@ void cairo_modify_surface(cairo_surface_t *surface,
                           int keep_aspect_ratio,
                           RsvgOutputType format) {
     
-    if((width != 0) && (width != -1))
-        width = width * x_zoom;
+    RsvgDimensionData dimensions = {0};
     
-    if((height != 0) && (height != -1))
-        height = height * y_zoom;
+    rsvg_handle_get_dimensions (rsvg, &dimensions);
     
-    if((height == 0) || (width == 0))
-        height = width = DEFAULT_SIZE;
+    if((dimensions.width != 0) && (width != -1))
+    dimensions.width = width * x_zoom;
+    
+    if((dimensions.height != 0) && (height != -1))
+    dimensions.height = height * y_zoom;
     
     //TODO:keep_aspect_ratio not implemented
+    
+    if((dimensions.height == 0) || (dimensions.width == 0))
+    dimensions.height = dimensions.width = DEFAULT_SIZE;
     
     if(surface) {
         switch(format)
         {
              case RSVG_OUT_PDF:
-                cairo_pdf_surface_set_size(surface, width, height);
+                cairo_pdf_surface_set_size(surface, dimensions.width, dimensions.height);
                 break;
                 default:
                 break;
@@ -488,7 +493,7 @@ int rsvg_convert(int argc, char *argv[])
                              cr = cairo_create(surface);
                          }
                      }else {
-                         cairo_modify_surface(surface, page_width, page_height, x_zoom, y_zoom, keep_aspect_ratio, format);
+                         cairo_modify_surface(rsvg, surface, page_width, page_height, x_zoom, y_zoom, keep_aspect_ratio, format);
                      }
                      
                      if(cr)
