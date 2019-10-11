@@ -79,3 +79,11 @@ added ``RSVG_EXPORT`` to the following:
 ``rsvg_handle_new_from_free``  
 
 Modified [``rsvg-io``](https://github.com/miyako/console-rsvg-convert/commit/472833462091dcff6a767d2447baadef34cc996a) to support base64 embedded ``png`` or ``jpeg`` images (data-uri)
+
+You can create static library versions of ``glib`` with
+
+```sh
+meson build --default-library=both
+```
+
+However, static ``gdk_pixbuf`` will not work.
