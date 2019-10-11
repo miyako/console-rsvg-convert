@@ -63,36 +63,60 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "-w 1:600"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
             argument = "-f pdf"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-o /Users/miyako/Desktop/safari-pinned-tab.pdf"
-            isEnabled = "NO">
+            argument = "-h 2:580"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/miyako/Desktop/safari-pinned-tab.svg "
-            isEnabled = "NO">
+            argument = "-w 580"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = " -h 1:800"
-            isEnabled = "NO">
+            argument = "-h 740"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-w 2:800"
-            isEnabled = "NO">
+            argument = "-h 3:518"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-h 2:600"
-            isEnabled = "NO">
+            argument = "-w 2:740"
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/miyako/Desktop/pinterest.svg "
-            isEnabled = "NO">
+            argument = "-w 3:406"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-h 4:406"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-w 4:518"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-o /Users/miyako/Desktop/test.pdf"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/Users/miyako/Desktop/SA.svg"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/Users/miyako/Desktop/SB.svg"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/Users/miyako/Desktop/SC.svg"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/Users/miyako/Desktop/SD.svg"
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <EnvironmentVariables>
