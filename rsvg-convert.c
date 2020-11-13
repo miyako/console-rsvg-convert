@@ -49,12 +49,23 @@ static void usage(void){
 void create_parent_folder(const char *utf8_path){
 	
 	NSString *filePath = (NSString *)CFBridgingRelease(CFStringCreateWithFileSystemRepresentation(kCFAllocatorDefault, utf8_path));
-	NSString *path = (NSString *)CFBridgingRelease(CFStringCreateWithFileSystemRepresentation(kCFAllocatorDefault, [[filePath stringByDeletingLastPathComponent]fileSystemRepresentation]));
-	NSFileManager *fm = [[NSFileManager alloc]init];
-	[fm createDirectoryAtPath:path
-withIntermediateDirectories:YES
-								 attributes:nil
-											error:NULL];
+    
+    switch ([[filePath pathComponents]count]) {
+        case 0:
+        case 1:
+ 
+            break;
+        default:
+        {
+            NSString *path = (NSString *)CFBridgingRelease(CFStringCreateWithFileSystemRepresentation(kCFAllocatorDefault, [[filePath stringByDeletingLastPathComponent]fileSystemRepresentation]));
+            [[NSFileManager defaultManager] createDirectoryAtPath:path
+                                       withIntermediateDirectories:YES
+                                                        attributes:nil
+                                                             error:NULL];
+        }
+            break;
+    }
+
 }
 #endif
 
