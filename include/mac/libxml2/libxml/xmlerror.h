@@ -86,7 +86,7 @@ struct _xmlError {
     char       *str2;	/* extra string information */
     char       *str3;	/* extra string information */
     int		int1;	/* extra number information */
-    int		int2;	/* column number of the error or 0 if N/A (todo: rename this field when we would break ABI) */
+    int		int2;	/* error column # or 0 if N/A (todo: rename field when we would brk ABI) */
     void       *ctxt;   /* the parser context if available */
     void       *node;   /* the node in the tree */
 };
@@ -837,7 +837,7 @@ typedef enum {
  * xmlGenericErrorFunc:
  * @ctx:  a parsing context
  * @msg:  the message
- * @...:  the extra arguments of the varags to format the message
+ * @...:  the extra arguments of the varargs to format the message
  *
  * Signature of the function to use when there is an error and
  * no parsing or validity context available .
@@ -937,7 +937,7 @@ XMLPUBFUN void XMLCALL
 				 int code,
 				 xmlNodePtr node,
 				 const char *msg,
-				 const char *extra);
+				 const char *extra) LIBXML_ATTR_FORMAT(4,0);
 #endif
 #ifdef __cplusplus
 }

@@ -18,9 +18,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef GDK_PIXBUF_LOADER_H
@@ -45,18 +43,12 @@ G_BEGIN_DECLS
 #define GDK_IS_PIXBUF_LOADER_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), GDK_TYPE_PIXBUF_LOADER))
 #define GDK_PIXBUF_LOADER_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), GDK_TYPE_PIXBUF_LOADER, GdkPixbufLoaderClass))
 
-/**
- * GdkPixbufLoader:
- * 
- * The <structname>GdkPixbufLoader</structname> struct contains only private
- * fields. 
- */
 typedef struct _GdkPixbufLoader GdkPixbufLoader;
 struct _GdkPixbufLoader
 {
+  /*< private >*/
   GObject parent_instance;
   
-  /*< private >*/
   gpointer priv;
 };
 
@@ -81,23 +73,37 @@ struct _GdkPixbufLoaderClass
   void (*closed)             (GdkPixbufLoader *loader);
 };
 
+GDK_PIXBUF_AVAILABLE_IN_ALL
 GType                gdk_pixbuf_loader_get_type      (void) G_GNUC_CONST;
+GDK_PIXBUF_AVAILABLE_IN_ALL
 GdkPixbufLoader *    gdk_pixbuf_loader_new           (void);
+GDK_PIXBUF_AVAILABLE_IN_ALL
 GdkPixbufLoader *    gdk_pixbuf_loader_new_with_type (const char *image_type,
                                                       GError    **error);
+GDK_PIXBUF_AVAILABLE_IN_2_4
 GdkPixbufLoader *    gdk_pixbuf_loader_new_with_mime_type (const char *mime_type,
 							   GError    **error);
+GDK_PIXBUF_AVAILABLE_IN_2_2
 void                 gdk_pixbuf_loader_set_size (GdkPixbufLoader  *loader,
                                                  int               width,
 						 int               height);
+GDK_PIXBUF_AVAILABLE_IN_ALL
 gboolean             gdk_pixbuf_loader_write         (GdkPixbufLoader *loader,
 						      const guchar    *buf,
 						      gsize            count,
                                                       GError         **error);
+GDK_PIXBUF_AVAILABLE_IN_2_30
+gboolean             gdk_pixbuf_loader_write_bytes   (GdkPixbufLoader *loader,
+                                                      GBytes          *buffer,
+                                                      GError         **error);
+GDK_PIXBUF_AVAILABLE_IN_ALL
 GdkPixbuf *          gdk_pixbuf_loader_get_pixbuf    (GdkPixbufLoader *loader);
+GDK_PIXBUF_AVAILABLE_IN_ALL
 GdkPixbufAnimation * gdk_pixbuf_loader_get_animation (GdkPixbufLoader *loader);
+GDK_PIXBUF_AVAILABLE_IN_ALL
 gboolean             gdk_pixbuf_loader_close         (GdkPixbufLoader *loader,
                                                       GError         **error);
+GDK_PIXBUF_AVAILABLE_IN_2_2
 GdkPixbufFormat     *gdk_pixbuf_loader_get_format    (GdkPixbufLoader *loader);
 
 G_END_DECLS

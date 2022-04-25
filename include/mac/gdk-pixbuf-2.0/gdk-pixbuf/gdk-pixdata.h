@@ -12,13 +12,12 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 #ifndef __GDK_PIXDATA_H__
 #define __GDK_PIXDATA_H__
 
+#ifndef GDK_PIXBUF_DISABLE_DEPRECATED
 #include        <gdk-pixbuf/gdk-pixbuf.h>
 
 G_BEGIN_DECLS
@@ -48,7 +47,9 @@ G_BEGIN_DECLS
  *
  * An enumeration containing three sets of flags for a #GdkPixdata struct: 
  * one for the used colorspace, one for the width of the samples and one 
- * for the encoding of the pixel data.  
+ * for the encoding of the pixel data.
+ *
+ * Deprecated: 2.32
  **/
 typedef enum
 {
@@ -65,23 +66,6 @@ typedef enum
   GDK_PIXDATA_ENCODING_MASK     = 0x0f << 24
 } GdkPixdataType;
 
-/**
- * GdkPixdata:
- * @magic: magic number. A valid #GdkPixdata structure must have 
- *    #GDK_PIXBUF_MAGIC_NUMBER here.
- * @length: less than 1 to disable length checks, otherwise 
- *    #GDK_PIXDATA_HEADER_LENGTH + length of @pixel_data. 
- * @pixdata_type: information about colorspace, sample width and 
- *    encoding, in a #GdkPixdataType. 
- * @rowstride: Distance in bytes between rows.
- * @width: Width of the image in pixels.
- * @height: Height of the image in pixels.
- * @pixel_data: (array) (element-type guint8): @width x @height pixels, encoded according to @pixdata_type
- *   and @rowstride.
- *
- * A #GdkPixdata contains pixbuf information in a form suitable for 
- * serialization and streaming.
- **/
 typedef struct _GdkPixdata GdkPixdata;
 struct _GdkPixdata
 {
@@ -100,19 +84,25 @@ struct _GdkPixdata
  * GDK_PIXDATA_HEADER_LENGTH:
  *
  * The length of a #GdkPixdata structure without the @pixel_data pointer.
+ *
+ * Deprecated: 2.32
  **/
 #define	GDK_PIXDATA_HEADER_LENGTH	(4 + 4 + 4 + 4 + 4 + 4)
 
 /* the returned stream is plain htonl of GdkPixdata members + pixel_data */
+GDK_PIXBUF_DEPRECATED_IN_2_32
 guint8*		gdk_pixdata_serialize	(const GdkPixdata	*pixdata,
 					 guint			*stream_length_p);
+GDK_PIXBUF_DEPRECATED_IN_2_32
 gboolean	gdk_pixdata_deserialize	(GdkPixdata		*pixdata,
 					 guint			 stream_length,
 					 const guint8		*stream,
 					 GError		       **error);
+GDK_PIXBUF_DEPRECATED_IN_2_32
 gpointer	gdk_pixdata_from_pixbuf	(GdkPixdata		*pixdata,
 					 const GdkPixbuf	*pixbuf,
 					 gboolean		 use_rle);
+GDK_PIXBUF_DEPRECATED_IN_2_32
 GdkPixbuf*	gdk_pixbuf_from_pixdata	(const GdkPixdata	*pixdata,
 					 gboolean		 copy_pixels,
 					 GError		       **error);
@@ -142,7 +132,9 @@ GdkPixbuf*	gdk_pixbuf_from_pixdata	(const GdkPixdata	*pixdata,
  * @GDK_PIXDATA_DUMP_PIXDATA_STREAM, @GDK_PIXDATA_DUMP_PIXDATA_STRUCT
  * and @GDK_PIXDATA_DUMP_MACROS are mutually exclusive, as are
  * @GDK_PIXBUF_DUMP_GTYPES and @GDK_PIXBUF_DUMP_CTYPES. The remaining
- * elements are optional flags that can be freely added. 
+ * elements are optional flags that can be freely added.
+ *
+ * Deprecated: 2.32
  **/
 typedef enum
 {
@@ -160,11 +152,14 @@ typedef enum
 } GdkPixdataDumpType;
   
 
+GDK_PIXBUF_DEPRECATED_IN_2_32
 GString*	gdk_pixdata_to_csource	(GdkPixdata		*pixdata,
 					 const gchar		*name,
 					 GdkPixdataDumpType	 dump_type);
 
 
 G_END_DECLS
+
+#endif /* GDK_PIXBUF_DISABLE_DEPRECATED */
 
 #endif /* __GDK_PIXDATA_H__ */

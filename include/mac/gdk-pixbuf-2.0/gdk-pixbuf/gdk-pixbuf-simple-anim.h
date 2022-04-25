@@ -16,9 +16,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef GDK_PIXBUF_SIMPLE_ANIM_H
@@ -48,16 +46,22 @@ typedef struct _GdkPixbufSimpleAnimClass GdkPixbufSimpleAnimClass;
 #define GDK_IS_PIXBUF_SIMPLE_ANIM_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), GDK_TYPE_PIXBUF_SIMPLE_ANIM))
 #define GDK_PIXBUF_SIMPLE_ANIM_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), GDK_TYPE_PIXBUF_SIMPLE_ANIM, GdkPixbufSimpleAnimClass))
 
+GDK_PIXBUF_AVAILABLE_IN_ALL
 GType gdk_pixbuf_simple_anim_get_type (void) G_GNUC_CONST;
+GDK_PIXBUF_AVAILABLE_IN_ALL
 GType gdk_pixbuf_simple_anim_iter_get_type (void) G_GNUC_CONST;
 
+GDK_PIXBUF_AVAILABLE_IN_2_8
 GdkPixbufSimpleAnim *gdk_pixbuf_simple_anim_new           (gint   width, 
                                                            gint   height,
                                                            gfloat rate);
+GDK_PIXBUF_AVAILABLE_IN_2_8
 void                 gdk_pixbuf_simple_anim_add_frame     (GdkPixbufSimpleAnim *animation,
                                                            GdkPixbuf           *pixbuf);
+GDK_PIXBUF_AVAILABLE_IN_ALL
 void                 gdk_pixbuf_simple_anim_set_loop      (GdkPixbufSimpleAnim *animation,
                                                            gboolean             loop);
+GDK_PIXBUF_AVAILABLE_IN_ALL
 gboolean             gdk_pixbuf_simple_anim_get_loop      (GdkPixbufSimpleAnim *animation);
 
 G_END_DECLS
