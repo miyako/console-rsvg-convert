@@ -91,5 +91,5 @@ However, static ``gdk_pixbuf`` will not work.
 don't use homebrew cairo; instead build from source
 
 ```
---enable-xlib-xrender=no --without-x --enable-xlib=no
+--enable-xlib-xrender=no --without-x --enable-xlib=no --enable-xcb=no
 ```
