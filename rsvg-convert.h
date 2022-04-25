@@ -2,6 +2,7 @@
 #define __WASVG_H__
 
 #define BUFFER_SIZE 8192
+#define MAX_LINE 2048
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -21,6 +22,7 @@
 #include <cairo-pdf.h>
 #include <cairo-svg.h>
 #include <string>
+#include <vector>
 #include <map>
 
  #define _CONSOLE_

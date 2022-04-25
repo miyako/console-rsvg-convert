@@ -1,16 +1,13 @@
 #include "rsvg-convert.h"
 
 #ifdef _CONSOLE_
-
-int main(int argc, char *argv[]){
-
+int main(int argc, char *argv[])
+{
 	return rsvg_convert(argc, argv);
 }
 #else
-
 INT WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT iCmdShow)
 {
-
 	return 0;
 }
 #endif
@@ -23,7 +20,22 @@ static void version(void){
     exit(1);
 }
 
+static bool is_not_svg(std::string path){
+    
+    bool is_svg = false;
+    
+    std::string extension = path.substr(path.find_last_of(".") + 1);
+    
+    std::transform(extension.begin(), extension.end(), extension.begin(),
+        [](unsigned char c){ return std::tolower(c); });
+    
+    is_svg = (extension == "svg");
+    
+    return !is_svg;
+}
+
 static void usage(void){
+    
     fprintf(stderr, "usage: rsvg-convert [options]\n");
 
     fprintf(stderr, "-d, --dpi-x=<float> pixels per inch [optional; defaults to 90dpi]\n");
@@ -36,13 +48,12 @@ static void usage(void){
     fprintf(stderr, "-f, --format=[png, pdf, ps, svg] [optional; defaults to 'png']\n");
     fprintf(stderr, "-o, --output=<path> output filename [optional; defaults to stdout]\n");
     fprintf(stderr, "-a, --keep-aspect-ratio whether to preserve the aspect ratio [optional; defaults to FALSE]\n");
-    fprintf(stderr, "-b, --background-color=[black, white, #abccee, #aaa...] set the background color [optional; defaults to None]\n");
+    fprintf(stderr, "-b, --background-color=[black, white, #abccee, #aaa...] set the background color [optional; defaults to none]\n");
     fprintf(stderr, "-u, --base-uri=<uri>\n");
     fprintf(stderr, "-v, --version show version information\n");
 
     exit(1);
 }
-
 
 #ifdef __APPLE__
 #include <Foundation/Foundation.h>
@@ -51,9 +62,10 @@ void create_parent_folder(const char *utf8_path){
 	NSString *filePath = (NSString *)CFBridgingRelease(CFStringCreateWithFileSystemRepresentation(kCFAllocatorDefault, utf8_path));
     
     switch ([[filePath pathComponents]count]) {
+            
         case 0:
         case 1:
- 
+
             break;
         default:
         {
@@ -440,17 +452,49 @@ int rsvg_convert(int argc, char *argv[])
      {
          multiple_pages = (argc > 1);
          
+         std::vector<std::string> paths;
+         
          for(i = 0;i < argc;++i)
          {
-			 input = argv[i];
+             input = argv[i];
+             
+             if(is_not_svg(input)){
+                 
 #ifdef __WINDOWS__
-		 FILE *fp = ufopen(input, L"rb");
+         FILE *fp = ufopen(input, L"rb");
 #else
         FILE *fp = fopen(input, "rb");
 #endif
+                 if(fp)
+                 {
+                     char line[MAX_LINE];
+                     while(fgets(line, MAX_LINE, fp)){
+                         line[strcspn(line, "\r\n")] = 0;
+                         paths.push_back(line);
+                     }
+                     fclose(fp);
+                 }
+                 
+             }else{
+                 paths.push_back(input);
+   
+             }
+             
+         }
+         
+         for (std::vector<std::string>::iterator it = paths.begin() ; it != paths.end(); ++it){
+             
+             input = (char *)it->data();
+             
+#ifdef __WINDOWS__
+         FILE *fp = ufopen(input, L"rb");
+#else
+        FILE *fp = fopen(input, "rb");
+#endif
+
              if(fp)
              {
-				 unsigned int ret, p = 0;
+                 unsigned int ret, p = 0;
 
                  unsigned int size = BUFFER_SIZE;
                  guint8 *buf = (guint8 *)calloc(size, sizeof(char));
@@ -472,8 +516,8 @@ int rsvg_convert(int argc, char *argv[])
                  }
                  
                  fclose(fp);
-                 
-				 rsvg = rsvg_handle_new_from_data((const guint8 *)buf, p, &error);
+
+                 rsvg = rsvg_handle_new_from_data((const guint8 *)buf, p, &error);
 
                  if(rsvg)
                  {
@@ -504,7 +548,10 @@ int rsvg_convert(int argc, char *argv[])
                              cr = cairo_create(surface);
                          }
                      }else {
-                         cairo_modify_surface(rsvg, surface, page_width, page_height, x_zoom, y_zoom, keep_aspect_ratio, format);
+                         cairo_modify_surface(rsvg, surface,
+                                              page_width, page_height,
+                                              x_zoom, y_zoom,
+                                              keep_aspect_ratio, format);
                      }
                      
                      if(cr)
@@ -524,9 +571,8 @@ int rsvg_convert(int argc, char *argv[])
                  }//rsvg
                  free(buf);
              }//fp
-   
-         }//for
-         
+         }
+
      }//!input_is_stream
     
     if(cr)
