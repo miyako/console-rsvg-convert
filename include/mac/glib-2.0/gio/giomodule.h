@@ -5,7 +5,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -13,9 +13,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  *
  * Author: Alexander Larsson <alexl@redhat.com>
  */
@@ -106,23 +104,42 @@ GTypeClass*        g_io_extension_ref_class                   (GIOExtension     
 /* API for the modules to implement */
 
 /**
- * g_io_module_load:
+ * g_io_module_load: (skip)
  * @module: a #GIOModule.
  *
  * Required API for GIO modules to implement.
- * This function is ran after the module has been loaded into GIO,
- * to initialize the module.
+ *
+ * This function is run after the module has been loaded into GIO,
+ * to initialize the module. Typically, this function will call
+ * g_io_extension_point_implement().
+ *
+ * Since 2.56, this function should be named `g_io_<modulename>_load`, where
+ * `modulename` is the plugin’s filename with the `lib` or `libgio` prefix and
+ * everything after the first dot removed, and with `-` replaced with `_`
+ * throughout. For example, `libgiognutls-helper.so` becomes `gnutls_helper`.
+ * Using the new symbol names avoids name clashes when building modules
+ * statically. The old symbol names continue to be supported, but cannot be used
+ * for static builds.
  **/
 GLIB_AVAILABLE_IN_ALL
 void   g_io_module_load   (GIOModule *module);
 
 /**
- * g_io_module_unload:
+ * g_io_module_unload: (skip)
  * @module: a #GIOModule.
  *
  * Required API for GIO modules to implement.
- * This function is ran when the module is being unloaded from GIO,
+ *
+ * This function is run when the module is being unloaded from GIO,
  * to finalize the module.
+ *
+ * Since 2.56, this function should be named `g_io_<modulename>_unload`, where
+ * `modulename` is the plugin’s filename with the `lib` or `libgio` prefix and
+ * everything after the first dot removed, and with `-` replaced with `_`
+ * throughout. For example, `libgiognutls-helper.so` becomes `gnutls_helper`.
+ * Using the new symbol names avoids name clashes when building modules
+ * statically. The old symbol names continue to be supported, but cannot be used
+ * for static builds.
  **/
 GLIB_AVAILABLE_IN_ALL
 void   g_io_module_unload (GIOModule *module);
@@ -138,24 +155,33 @@ void   g_io_module_unload (GIOModule *module);
  * This method will not be called in normal use, however it may be
  * called when probing existing modules and recording which extension
  * points that this model is used for. This means we won't have to
- * load and initialze this module unless its needed.
+ * load and initialize this module unless its needed.
  *
  * If this function is not implemented by the module the module will
- * always be loaded, initialized and then unloaded on application startup
- * so that it can register its extension points during init.
+ * always be loaded, initialized and then unloaded on application
+ * startup so that it can register its extension points during init.
  *
- * Note that a module need not actually implement all the extension points
- * that g_io_module_query returns, since the exact list of extension may
- * depend on runtime issues. However all extension points actually implemented
- * must be returned by g_io_module_query() (if defined).
+ * Note that a module need not actually implement all the extension
+ * points that g_io_module_query() returns, since the exact list of
+ * extension may depend on runtime issues. However all extension
+ * points actually implemented must be returned by g_io_module_query()
+ * (if defined).
  *
- * When installing a module that implements g_io_module_query you must
+ * When installing a module that implements g_io_module_query() you must
  * run gio-querymodules in order to build the cache files required for
  * lazy loading.
  *
- * Returns: (transfer full): A %NULL-terminated array of strings, listing the supported
- *     extension points of the module. The array must be suitable for
- *     freeing with g_strfreev().
+ * Since 2.56, this function should be named `g_io_<modulename>_query`, where
+ * `modulename` is the plugin’s filename with the `lib` or `libgio` prefix and
+ * everything after the first dot removed, and with `-` replaced with `_`
+ * throughout. For example, `libgiognutls-helper.so` becomes `gnutls_helper`.
+ * Using the new symbol names avoids name clashes when building modules
+ * statically. The old symbol names continue to be supported, but cannot be used
+ * for static builds.
+ *
+ * Returns: (transfer full): A %NULL-terminated array of strings,
+ *     listing the supported extension points of the module. The array
+ *     must be suitable for freeing with g_strfreev().
  *
  * Since: 2.24
  **/

@@ -4,7 +4,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,9 +12,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 #ifndef __GLIB_TYPES_H__
 #define __GLIB_TYPES_H__
@@ -46,7 +44,7 @@ typedef gsize GType;
  * The #GType for a boxed type holding a %NULL-terminated array of strings.
  *
  * The code fragments in the following example show the use of a property of
- * type #G_TYPE_STRV with g_object_class_install_property(), g_object_set()
+ * type %G_TYPE_STRV with g_object_class_install_property(), g_object_set()
  * and g_object_get().
  *
  * |[
@@ -201,6 +199,15 @@ typedef gsize GType;
 #define G_TYPE_VARIANT_BUILDER (g_variant_builder_get_type ())
 
 /**
+ * G_TYPE_VARIANT_DICT:
+ *
+ * The #GType for a boxed type holding a #GVariantDict.
+ *
+ * Since: 2.40
+ */
+#define G_TYPE_VARIANT_DICT (g_variant_dict_get_type ())
+
+/**
  * G_TYPE_MAIN_LOOP:
  *
  * The #GType for a boxed type holding a #GMainLoop.
@@ -255,6 +262,15 @@ typedef gsize GType;
 #define G_TYPE_KEY_FILE (g_key_file_get_type ())
 
 /**
+ * G_TYPE_MAPPED_FILE:
+ *
+ * The #GType for a boxed type holding a #GMappedFile.
+ *
+ * Since: 2.40
+ */
+#define G_TYPE_MAPPED_FILE (g_mapped_file_get_type ())
+
+/**
  * G_TYPE_THREAD:
  *
  * The #GType for a boxed type holding a #GThread.
@@ -271,6 +287,42 @@ typedef gsize GType;
  * Since: 2.36
  */
 #define G_TYPE_CHECKSUM (g_checksum_get_type ())
+
+/**
+ * G_TYPE_OPTION_GROUP:
+ *
+ * The #GType for a boxed type holding a #GOptionGroup.
+ *
+ * Since: 2.44
+ */
+#define G_TYPE_OPTION_GROUP (g_option_group_get_type ())
+
+/**
+ * G_TYPE_URI:
+ *
+ * The #GType for a boxed type holding a #GUri.
+ *
+ * Since: 2.66
+ */
+#define G_TYPE_URI (g_uri_get_type ())
+
+/**
+ * G_TYPE_TREE:
+ *
+ * The #GType for #GTree.
+ *
+ * Since: 2.68
+ */
+#define G_TYPE_TREE (g_tree_get_type ())
+
+/**
+ * G_TYPE_PATTERN_SPEC:
+ *
+ * The #GType for #GPatternSpec.
+ *
+ * Since: 2.70
+ */
+#define G_TYPE_PATTERN_SPEC (g_pattern_spec_get_type ())
 
 GLIB_AVAILABLE_IN_ALL
 GType   g_date_get_type            (void) G_GNUC_CONST;
@@ -306,6 +358,8 @@ GLIB_AVAILABLE_IN_ALL
 GType   g_io_condition_get_type    (void) G_GNUC_CONST;
 GLIB_AVAILABLE_IN_ALL
 GType   g_variant_builder_get_type (void) G_GNUC_CONST;
+GLIB_AVAILABLE_IN_2_40
+GType   g_variant_dict_get_type    (void) G_GNUC_CONST;
 GLIB_AVAILABLE_IN_ALL
 GType   g_key_file_get_type        (void) G_GNUC_CONST;
 GLIB_AVAILABLE_IN_2_30
@@ -322,16 +376,19 @@ GLIB_AVAILABLE_IN_2_36
 GType   g_checksum_get_type        (void) G_GNUC_CONST;
 GLIB_AVAILABLE_IN_2_36
 GType   g_markup_parse_context_get_type (void) G_GNUC_CONST;
+GLIB_AVAILABLE_IN_2_40
+GType   g_mapped_file_get_type (void) G_GNUC_CONST;
+GLIB_AVAILABLE_IN_2_44
+GType   g_option_group_get_type    (void) G_GNUC_CONST;
+GLIB_AVAILABLE_IN_2_66
+GType   g_uri_get_type             (void) G_GNUC_CONST;
+GLIB_AVAILABLE_IN_2_68
+GType   g_tree_get_type            (void) G_GNUC_CONST;
+GLIB_AVAILABLE_IN_2_70
+GType g_pattern_spec_get_type (void) G_GNUC_CONST;
 
 GLIB_DEPRECATED_FOR('G_TYPE_VARIANT')
 GType   g_variant_get_gtype        (void) G_GNUC_CONST;
-
-/**
- * GStrv:
- *
- * A C representable type name for #G_TYPE_STRV.
- */
-typedef gchar** GStrv;
 
 G_END_DECLS
 

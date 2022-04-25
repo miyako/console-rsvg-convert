@@ -4,7 +4,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,9 +12,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
 /*
@@ -32,6 +30,7 @@
 #endif
 
 #include <glib/gtypes.h>
+#include <string.h>
 
 #if defined(__BIONIC__) && defined (GLIB_HAVE_ALLOCA_H)
 # include <alloca.h>
@@ -67,37 +66,51 @@ G_END_DECLS
  * stack frame is cleaned up. This macro essentially just wraps the alloca()
  * function present on most UNIX variants.
  * Thus it provides the same advantages and pitfalls as alloca():
- * <variablelist>
- *   <varlistentry><term></term><listitem><para>
- *     + alloca() is very fast, as on most systems it's implemented by just adjusting
- *     the stack pointer register.
- *   </para></listitem></varlistentry>
- *   <varlistentry><term></term><listitem><para>
- *     + It doesn't cause any memory fragmentation, within its scope, separate alloca()
- *     blocks just build up and are released together at function end.
- *   </para></listitem></varlistentry>
- *   <varlistentry><term></term><listitem><para>
- *     - Allocation sizes have to fit into the current stack frame. For instance in a
- *       threaded environment on Linux, the per-thread stack size is limited to 2 Megabytes,
- *       so be sparse with alloca() uses.
- *   </para></listitem></varlistentry>
- *   <varlistentry><term></term><listitem><para>
- *     - Allocation failure due to insufficient stack space is not indicated with a %NULL
- *       return like e.g. with malloc(). Instead, most systems probably handle it the same
- *       way as out of stack space situations from infinite function recursion, i.e.
- *       with a segmentation fault.
- *   </para></listitem></varlistentry>
- *   <varlistentry><term></term><listitem><para>
- *     - Special care has to be taken when mixing alloca() with GNU C variable sized arrays.
- *       Stack space allocated with alloca() in the same scope as a variable sized array
- *       will be freed together with the variable sized array upon exit of that scope, and
- *       not upon exit of the enclosing function scope.
- *   </para></listitem></varlistentry>
- * </variablelist>
+ *
+ * - alloca() is very fast, as on most systems it's implemented by just adjusting
+ *   the stack pointer register.
+ *
+ * - It doesn't cause any memory fragmentation, within its scope, separate alloca()
+ *   blocks just build up and are released together at function end.
+ *
+ * - Allocation sizes have to fit into the current stack frame. For instance in a
+ *   threaded environment on Linux, the per-thread stack size is limited to 2 Megabytes,
+ *   so be sparse with alloca() uses.
+ *
+ * - Allocation failure due to insufficient stack space is not indicated with a %NULL
+ *   return like e.g. with malloc(). Instead, most systems probably handle it the same
+ *   way as out of stack space situations from infinite function recursion, i.e.
+ *   with a segmentation fault.
+ *
+ * - Allowing @size to be specified by an untrusted party would allow for them
+ *   to trigger a segmentation fault by specifying a large size, leading to a
+ *   denial of service vulnerability. @size must always be entirely under the
+ *   control of the program.
+ *
+ * - Special care has to be taken when mixing alloca() with GNU C variable sized arrays.
+ *   Stack space allocated with alloca() in the same scope as a variable sized array
+ *   will be freed together with the variable sized array upon exit of that scope, and
+ *   not upon exit of the enclosing function scope.
  * 
  * Returns: space for @size bytes, allocated on the stack
  */
 #define g_alloca(size)		 alloca (size)
+
+/**
+ * g_alloca0:
+ * @size: number of bytes to allocate.
+ *
+ * Wraps g_alloca() and initializes allocated memory to zeroes.
+ * If @size is `0` it returns %NULL.
+ *
+ * Note that the @size argument will be evaluated multiple times.
+ *
+ * Returns: (nullable) (transfer full): space for @size bytes, allocated on the stack
+ *
+ * Since: 2.72
+ */
+#define g_alloca0(size)  ((size) == 0 ? NULL : memset (g_alloca (size), 0, (size)))
+
 /**
  * g_newa:
  * @struct_type: Type of memory chunks to be allocated
@@ -105,8 +118,28 @@ G_END_DECLS
  * 
  * Wraps g_alloca() in a more typesafe manner.
  * 
+ * As mentioned in the documentation for g_alloca(), @n_structs must always be
+ * entirely under the control of the program, or you may introduce a denial of
+ * service vulnerability. In addition, the multiplication of @struct_type by
+ * @n_structs is not checked, so an overflow may lead to a remote code execution
+ * vulnerability.
+ *
  * Returns: Pointer to stack space for @n_structs chunks of type @struct_type
  */
 #define g_newa(struct_type, n_structs)	((struct_type*) g_alloca (sizeof (struct_type) * (gsize) (n_structs)))
+
+/**
+ * g_newa0:
+ * @struct_type: the type of the elements to allocate.
+ * @n_structs: the number of elements to allocate.
+ *
+ * Wraps g_alloca0() in a more typesafe manner.
+ *
+ * Returns: (nullable) (transfer full): Pointer to stack space for @n_structs
+ *   chunks of type @struct_type
+ *
+ * Since: 2.72
+ */
+#define g_newa0(struct_type, n_structs)  ((struct_type*) g_alloca0 (sizeof (struct_type) * (gsize) (n_structs)))
 
 #endif /* __G_ALLOCA_H__ */

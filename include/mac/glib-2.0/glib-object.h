@@ -4,7 +4,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,30 +12,32 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 #ifndef __GLIB_GOBJECT_H__
 #define __GLIB_GOBJECT_H__
 
 #define __GLIB_GOBJECT_H_INSIDE__
 
-/* topmost include file for GObject header files */
 #include <gobject/gbinding.h>
+#include <gobject/gbindinggroup.h>
 #include <gobject/gboxed.h>
 #include <gobject/genums.h>
+#include <gobject/glib-enumtypes.h>
 #include <gobject/gobject.h>
 #include <gobject/gparam.h>
 #include <gobject/gparamspecs.h>
 #include <gobject/gsignal.h>
+#include <gobject/gsignalgroup.h>
 #include <gobject/gsourceclosure.h>
 #include <gobject/gtype.h>
 #include <gobject/gtypemodule.h>
 #include <gobject/gtypeplugin.h>
-#include <gobject/gvalue.h>
 #include <gobject/gvaluearray.h>
+#include <gobject/gvalue.h>
 #include <gobject/gvaluetypes.h>
+
+#include <gobject/gobject-autocleanups.h>
 
 #undef __GLIB_GOBJECT_H_INSIDE__
 

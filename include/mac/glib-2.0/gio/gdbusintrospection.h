@@ -5,7 +5,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -13,9 +13,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  *
  * Author: David Zeuthen <davidz@redhat.com>
  */
@@ -45,7 +43,7 @@ G_BEGIN_DECLS
 struct _GDBusAnnotationInfo
 {
   /*< public >*/
-  volatile gint         ref_count;
+  gint                  ref_count;  /* (atomic) */
   gchar                *key;
   gchar                *value;
   GDBusAnnotationInfo **annotations;
@@ -65,7 +63,7 @@ struct _GDBusAnnotationInfo
 struct _GDBusArgInfo
 {
   /*< public >*/
-  volatile gint         ref_count;
+  gint                  ref_count;  /* (atomic) */
   gchar                *name;
   gchar                *signature;
   GDBusAnnotationInfo **annotations;
@@ -86,7 +84,7 @@ struct _GDBusArgInfo
 struct _GDBusMethodInfo
 {
   /*< public >*/
-  volatile gint         ref_count;
+  gint                  ref_count;  /* (atomic) */
   gchar                *name;
   GDBusArgInfo        **in_args;
   GDBusArgInfo        **out_args;
@@ -107,7 +105,7 @@ struct _GDBusMethodInfo
 struct _GDBusSignalInfo
 {
   /*< public >*/
-  volatile gint         ref_count;
+  gint                  ref_count;  /* (atomic) */
   gchar                *name;
   GDBusArgInfo        **args;
   GDBusAnnotationInfo **annotations;
@@ -128,7 +126,7 @@ struct _GDBusSignalInfo
 struct _GDBusPropertyInfo
 {
   /*< public >*/
-  volatile gint             ref_count;
+  gint                      ref_count;  /* (atomic) */
   gchar                    *name;
   gchar                    *signature;
   GDBusPropertyInfoFlags    flags;
@@ -151,7 +149,7 @@ struct _GDBusPropertyInfo
 struct _GDBusInterfaceInfo
 {
   /*< public >*/
-  volatile gint         ref_count;
+  gint                  ref_count;  /* (atomic) */
   gchar                *name;
   GDBusMethodInfo     **methods;
   GDBusSignalInfo     **signals;
@@ -174,7 +172,7 @@ struct _GDBusInterfaceInfo
 struct _GDBusNodeInfo
 {
   /*< public >*/
-  volatile gint         ref_count;
+  gint                  ref_count;  /* (atomic) */
   gchar                *path;
   GDBusInterfaceInfo  **interfaces;
   GDBusNodeInfo       **nodes;

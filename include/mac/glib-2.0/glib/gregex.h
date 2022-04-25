@@ -14,9 +14,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef __G_REGEX_H__
@@ -56,7 +55,7 @@ G_BEGIN_DECLS
  *     Since 2.16
  * @G_REGEX_ERROR_NOTHING_TO_REPEAT: Nothing to repeat. Since 2.16
  * @G_REGEX_ERROR_UNRECOGNIZED_CHARACTER: Unrecognized character after "(?",
- *     "(?&lt;" or "(?P". Since 2.16
+ *     "(?<" or "(?P". Since 2.16
  * @G_REGEX_ERROR_POSIX_NAMED_CLASS_OUTSIDE_CLASS: POSIX named classes are
  *     supported only within a class. Since 2.16
  * @G_REGEX_ERROR_UNMATCHED_PARENTHESIS: Missing terminating ")" or ")"
@@ -225,13 +224,13 @@ GQuark g_regex_error_quark (void);
  *     newlines). The "start of line" metacharacter ("^") matches only
  *     at the start of the string, while the "end of line" metacharacter
  *     ("$") matches only at the end of the string, or before a terminating
- *     newline (unless #G_REGEX_DOLLAR_ENDONLY is set). When
- *     #G_REGEX_MULTILINE is set, the "start of line" and "end of line"
+ *     newline (unless %G_REGEX_DOLLAR_ENDONLY is set). When
+ *     %G_REGEX_MULTILINE is set, the "start of line" and "end of line"
  *     constructs match immediately following or immediately before any
  *     newline in the string, respectively, as well as at the very start
  *     and end. This can be changed within a pattern by a "(?m)" option
  *     setting.
- * @G_REGEX_DOTALL: A dot metacharater (".") in the pattern matches all
+ * @G_REGEX_DOTALL: A dot metacharacter (".") in the pattern matches all
  *     characters, including newlines. Without it, newlines are excluded.
  *     This option can be changed within a pattern by a ("?s") option setting.
  * @G_REGEX_EXTENDED: Whitespace data characters in the pattern are
@@ -244,12 +243,12 @@ GQuark g_regex_error_quark (void);
  *     it is constrained to match only at the first matching point in the
  *     string that is being searched. This effect can also be achieved by
  *     appropriate constructs in the pattern itself such as the "^"
- *     metacharater.
+ *     metacharacter.
  * @G_REGEX_DOLLAR_ENDONLY: A dollar metacharacter ("$") in the pattern
  *     matches only at the end of the string. Without this option, a
  *     dollar also matches immediately before the final character if
  *     it is a newline (but not before any other newlines). This option
- *     is ignored if #G_REGEX_MULTILINE is set.
+ *     is ignored if %G_REGEX_MULTILINE is set.
  * @G_REGEX_UNGREEDY: Inverts the "greediness" of the quantifiers so that
  *     they are not greedy by default, but become greedy if followed by "?".
  *     It can also be set by a "(?U)" option setting within the pattern.
@@ -292,7 +291,8 @@ GQuark g_regex_error_quark (void);
  * Since: 2.14
  */
 /* Remember to update G_REGEX_COMPILE_MASK in gregex.c after
- * adding a new flag. */
+ * adding a new flag.
+ */
 typedef enum
 {
   G_REGEX_CASELESS          = 1 << 0,
@@ -321,17 +321,17 @@ typedef enum
  *     it is constrained to match only at the first matching point in the
  *     string that is being searched. This effect can also be achieved by
  *     appropriate constructs in the pattern itself such as the "^"
- *     metacharater.
+ *     metacharacter.
  * @G_REGEX_MATCH_NOTBOL: Specifies that first character of the string is
  *     not the beginning of a line, so the circumflex metacharacter should
- *     not match before it. Setting this without #G_REGEX_MULTILINE (at
+ *     not match before it. Setting this without %G_REGEX_MULTILINE (at
  *     compile time) causes circumflex never to match. This option affects
  *     only the behaviour of the circumflex metacharacter, it does not
  *     affect "\A".
  * @G_REGEX_MATCH_NOTEOL: Specifies that the end of the subject string is
  *     not the end of a line, so the dollar metacharacter should not match
  *     it nor (except in multiline mode) a newline immediately before it.
- *     Setting this without #G_REGEX_MULTILINE (at compile time) causes
+ *     Setting this without %G_REGEX_MULTILINE (at compile time) causes
  *     dollar never to match. This option affects only the behaviour of
  *     the dollar metacharacter, it does not affect "\Z" or "\z".
  * @G_REGEX_MATCH_NOTEMPTY: An empty string is not considered to be a valid
@@ -368,12 +368,12 @@ typedef enum
  *     single characters U+000B LINE TABULATION, U+000C FORM FEED (FF),
  *     U+0085 NEXT LINE (NEL), U+2028 LINE SEPARATOR and
  *     U+2029 PARAGRAPH SEPARATOR. Since: 2.34
- * @G_REGEX_MATCH_PARTIAL_SOFT: An alias for #G_REGEX_MATCH_PARTIAL. Since: 2.34
+ * @G_REGEX_MATCH_PARTIAL_SOFT: An alias for %G_REGEX_MATCH_PARTIAL. Since: 2.34
  * @G_REGEX_MATCH_PARTIAL_HARD: Turns on the partial matching feature. In contrast to
- *     to #G_REGEX_MATCH_PARTIAL_SOFT, this stops matching as soon as a partial match
+ *     to %G_REGEX_MATCH_PARTIAL_SOFT, this stops matching as soon as a partial match
  *     is found, without continuing to search for a possible complete match. See
  *     g_match_info_is_partial_match() for more information. Since: 2.34
- * @G_REGEX_MATCH_NOTEMPTY_ATSTART: Like #G_REGEX_MATCH_NOTEMPTY, but only applied to
+ * @G_REGEX_MATCH_NOTEMPTY_ATSTART: Like %G_REGEX_MATCH_NOTEMPTY, but only applied to
  *     the start of the matched string. For anchored
  *     patterns this can only happen for pattern containing "\K". Since: 2.34
  *
@@ -405,14 +405,20 @@ typedef enum
 /**
  * GRegex:
  *
- * A GRegex is the "compiled" form of a regular expression pattern. This
- * structure is opaque and its fields cannot be accessed directly.
+ * A GRegex is the "compiled" form of a regular expression pattern.
+ * This structure is opaque and its fields cannot be accessed directly.
  *
  * Since: 2.14
  */
 typedef struct _GRegex		GRegex;
 
 
+/**
+ * GMatchInfo:
+ *
+ * A GMatchInfo is an opaque struct used to return information about
+ * matches.
+ */
 typedef struct _GMatchInfo	GMatchInfo;
 
 /**

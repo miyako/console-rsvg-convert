@@ -5,7 +5,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -13,9 +13,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  *
  * Author: David Zeuthen <davidz@redhat.com>
  */
@@ -44,6 +42,8 @@ GLIB_AVAILABLE_IN_ALL
 gboolean g_dbus_is_member_name (const gchar *string);
 GLIB_AVAILABLE_IN_ALL
 gboolean g_dbus_is_interface_name (const gchar *string);
+GLIB_AVAILABLE_IN_2_70
+gboolean g_dbus_is_error_name (const gchar *string);
 
 GLIB_AVAILABLE_IN_ALL
 void g_dbus_gvariant_to_gvalue (GVariant  *value,
@@ -51,6 +51,12 @@ void g_dbus_gvariant_to_gvalue (GVariant  *value,
 GLIB_AVAILABLE_IN_ALL
 GVariant *g_dbus_gvalue_to_gvariant (const GValue         *gvalue,
                                      const GVariantType   *type);
+GLIB_AVAILABLE_IN_2_68
+gchar *g_dbus_escape_object_path_bytestring (const guint8 *bytes);
+GLIB_AVAILABLE_IN_2_68
+gchar *g_dbus_escape_object_path (const gchar *s);
+GLIB_AVAILABLE_IN_2_68
+guint8 *g_dbus_unescape_object_path (const gchar *s);
 
 G_END_DECLS
 

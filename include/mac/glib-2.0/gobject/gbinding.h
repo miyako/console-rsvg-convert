@@ -5,7 +5,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -13,9 +13,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  *
  * Author: Emmanuele Bassi <ebassi@linux.intel.com>
  */
@@ -41,7 +39,7 @@ G_BEGIN_DECLS
 /**
  * GBinding:
  *
- * <structname>GBinding</structname> is an opaque structure whose members
+ * GBinding is an opaque structure whose members
  * cannot be accessed directly.
  *
  * Since: 2.26
@@ -51,22 +49,26 @@ typedef struct _GBinding        GBinding;
 /**
  * GBindingTransformFunc:
  * @binding: a #GBinding
- * @source_value: the value of the source property
- * @target_value: the value of the target property
+ * @from_value: the #GValue containing the value to transform
+ * @to_value: the #GValue in which to store the transformed value
  * @user_data: data passed to the transform function
  *
- * A function to be called to transform the source property of @source
- * from @source_value into the target property of @target
- * using @target_value.
+ * A function to be called to transform @from_value to @to_value.
  *
- * Return value: %TRUE if the transformation was successful, and %FALSE
+ * If this is the @transform_to function of a binding, then @from_value
+ * is the @source_property on the @source object, and @to_value is the
+ * @target_property on the @target object. If this is the
+ * @transform_from function of a %G_BINDING_BIDIRECTIONAL binding,
+ * then those roles are reversed.
+ *
+ * Returns: %TRUE if the transformation was successful, and %FALSE
  *   otherwise
  *
  * Since: 2.26
  */
 typedef gboolean (* GBindingTransformFunc) (GBinding     *binding,
-                                            const GValue *source_value,
-                                            GValue       *target_value,
+                                            const GValue *from_value,
+                                            GValue       *to_value,
                                             gpointer      user_data);
 
 /**
@@ -107,10 +109,14 @@ GType                 g_binding_get_type            (void) G_GNUC_CONST;
 
 GLIB_AVAILABLE_IN_ALL
 GBindingFlags         g_binding_get_flags           (GBinding *binding);
-GLIB_AVAILABLE_IN_ALL
+GLIB_DEPRECATED_IN_2_68_FOR(g_binding_dup_source)
 GObject *             g_binding_get_source          (GBinding *binding);
-GLIB_AVAILABLE_IN_ALL
+GLIB_AVAILABLE_IN_2_68
+GObject *             g_binding_dup_source          (GBinding *binding);
+GLIB_DEPRECATED_IN_2_68_FOR(g_binding_dup_target)
 GObject *             g_binding_get_target          (GBinding *binding);
+GLIB_AVAILABLE_IN_2_68
+GObject *             g_binding_dup_target          (GBinding *binding);
 GLIB_AVAILABLE_IN_ALL
 const gchar *         g_binding_get_source_property (GBinding *binding);
 GLIB_AVAILABLE_IN_ALL

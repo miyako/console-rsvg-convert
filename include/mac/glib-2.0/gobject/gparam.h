@@ -4,7 +4,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,9 +12,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  *
  * gparam.h: GParamSpec base class implementation
  */
@@ -52,7 +50,11 @@ G_BEGIN_DECLS
  * Checks whether @pspec "is a" valid #GParamSpec structure of type %G_TYPE_PARAM
  * or derived.
  */
+#if GLIB_VERSION_MAX_ALLOWED >= GLIB_VERSION_2_42
+#define G_IS_PARAM_SPEC(pspec)		(G_TYPE_CHECK_INSTANCE_FUNDAMENTAL_TYPE ((pspec), G_TYPE_PARAM))
+#else
 #define G_IS_PARAM_SPEC(pspec)		(G_TYPE_CHECK_INSTANCE_TYPE ((pspec), G_TYPE_PARAM))
+#endif
 /**
  * G_PARAM_SPEC_CLASS:
  * @pclass: a valid #GParamSpecClass
@@ -115,8 +117,9 @@ G_BEGIN_DECLS
  * GParamFlags:
  * @G_PARAM_READABLE: the parameter is readable
  * @G_PARAM_WRITABLE: the parameter is writable
+ * @G_PARAM_READWRITE: alias for %G_PARAM_READABLE | %G_PARAM_WRITABLE
  * @G_PARAM_CONSTRUCT: the parameter will be set upon object construction
- * @G_PARAM_CONSTRUCT_ONLY: the parameter will only be set upon object construction
+ * @G_PARAM_CONSTRUCT_ONLY: the parameter can only be set upon object construction
  * @G_PARAM_LAX_VALIDATION: upon parameter conversion (see g_param_value_convert())
  *  strict validation is not required
  * @G_PARAM_STATIC_NAME: the string used as name when constructing the 
@@ -131,6 +134,10 @@ G_BEGIN_DECLS
  *  parameter is guaranteed to remain valid and 
  *  unmodified for the lifetime of the parameter. 
  *  Since 2.8
+ * @G_PARAM_EXPLICIT_NOTIFY: calls to g_object_set_property() for this
+ *   property will not automatically result in a "notify" signal being
+ *   emitted: the implementation must call g_object_notify() themselves
+ *   in case the property actually changes.  Since: 2.42.
  * @G_PARAM_PRIVATE: internal
  * @G_PARAM_DEPRECATED: the parameter is deprecated and will be removed
  *  in a future version. A warning will be generated if it is used
@@ -138,30 +145,28 @@ G_BEGIN_DECLS
  *  Since 2.26
  * 
  * Through the #GParamFlags flag values, certain aspects of parameters
- * can be configured. See also #G_PARAM_READWRITE and #G_PARAM_STATIC_STRINGS.
+ * can be configured.
+ *
+ * See also: %G_PARAM_STATIC_STRINGS
  */
 typedef enum
 {
   G_PARAM_READABLE            = 1 << 0,
   G_PARAM_WRITABLE            = 1 << 1,
+  G_PARAM_READWRITE           = (G_PARAM_READABLE | G_PARAM_WRITABLE),
   G_PARAM_CONSTRUCT	      = 1 << 2,
   G_PARAM_CONSTRUCT_ONLY      = 1 << 3,
   G_PARAM_LAX_VALIDATION      = 1 << 4,
   G_PARAM_STATIC_NAME	      = 1 << 5,
-#ifndef G_DISABLE_DEPRECATED
-  G_PARAM_PRIVATE	      = G_PARAM_STATIC_NAME,
-#endif
+  G_PARAM_PRIVATE GLIB_DEPRECATED_ENUMERATOR_IN_2_26 = G_PARAM_STATIC_NAME,
   G_PARAM_STATIC_NICK	      = 1 << 6,
   G_PARAM_STATIC_BLURB	      = 1 << 7,
-  /* User defined flags go up to 30 */
-  G_PARAM_DEPRECATED          = 1 << 31
+  /* User defined flags go here */
+  G_PARAM_EXPLICIT_NOTIFY     = 1 << 30,
+  /* Avoid warning with -Wpedantic for gcc6 */
+  G_PARAM_DEPRECATED          = (gint)(1u << 31)
 } GParamFlags;
-/**
- * G_PARAM_READWRITE:
- * 
- * #GParamFlags value alias for %G_PARAM_READABLE | %G_PARAM_WRITABLE.
- */
-#define	G_PARAM_READWRITE	(G_PARAM_READABLE | G_PARAM_WRITABLE)
+
 /**
  * G_PARAM_STATIC_STRINGS:
  * 
@@ -181,24 +186,24 @@ typedef enum
  * G_PARAM_USER_SHIFT:
  * 
  * Minimum shift count to be used for user defined flags, to be stored in
- * #GParamSpec.flags. The maximum allowed is 30 + G_PARAM_USER_SHIFT.
+ * #GParamSpec.flags. The maximum allowed is 10.
  */
 #define	G_PARAM_USER_SHIFT	(8)
 
 /* --- typedefs & structures --- */
 typedef struct _GParamSpec      GParamSpec;
 typedef struct _GParamSpecClass GParamSpecClass;
-typedef struct _GParameter	GParameter;
+typedef struct _GParameter	GParameter GLIB_DEPRECATED_TYPE_IN_2_54;
 typedef struct _GParamSpecPool  GParamSpecPool;
 /**
- * GParamSpec:
+ * GParamSpec: (ref-func g_param_spec_ref_sink) (unref-func g_param_spec_unref) (set-value-func g_value_set_param) (get-value-func g_value_get_param)
  * @g_type_instance: private #GTypeInstance portion
  * @name: name of this parameter: always an interned string
  * @flags: #GParamFlags flags for this parameter
  * @value_type: the #GValue type for this parameter
  * @owner_type: #GType type that uses (introduces) this parameter
  * 
- * All other fields of the <structname>GParamSpec</structname> struct are private and
+ * All other fields of the GParamSpec struct are private and
  * should not be used directly.
  */
 struct _GParamSpec
@@ -232,8 +237,8 @@ struct _GParamSpec
  * @values_cmp: Compares @value1 with @value2 according to this type
  *  (recommended, the default is memcmp()), see g_param_values_cmp().
  * 
- * The class structure for the <structname>GParamSpec</structname> type.
- * Normally, <structname>GParamSpec</structname> classes are filled by
+ * The class structure for the GParamSpec type.
+ * Normally, GParamSpec classes are filled by
  * g_param_type_register_static().
  */
 struct _GParamSpecClass
@@ -260,14 +265,16 @@ struct _GParamSpecClass
  * @name: the parameter name
  * @value: the parameter value
  * 
- * The <structname>GParameter</structname> struct is an auxiliary structure used
+ * The GParameter struct is an auxiliary structure used
  * to hand parameter name/value pairs to g_object_newv().
+ *
+ * Deprecated: 2.54: This type is not introspectable.
  */
 struct _GParameter /* auxiliary structure for _setv() variants */
 {
   const gchar *name;
   GValue       value;
-};
+} GLIB_DEPRECATED_TYPE_IN_2_54;
 
 
 /* --- prototypes --- */
@@ -302,7 +309,7 @@ void		g_param_value_set_default	(GParamSpec    *pspec,
 						 GValue	       *value);
 GLIB_AVAILABLE_IN_ALL
 gboolean	g_param_value_defaults		(GParamSpec    *pspec,
-						 GValue	       *value);
+						 const GValue  *value);
 GLIB_AVAILABLE_IN_ALL
 gboolean	g_param_value_validate		(GParamSpec    *pspec,
 						 GValue	       *value);
@@ -337,14 +344,17 @@ GLIB_DEPRECATED_FOR(g_value_take_param)
 void           g_value_set_param_take_ownership (GValue        *value,
                                                  GParamSpec    *param);
 GLIB_AVAILABLE_IN_2_36
-const GValue *  g_param_spec_get_default_value  (GParamSpec     *param);
+const GValue *  g_param_spec_get_default_value  (GParamSpec    *pspec);
+
+GLIB_AVAILABLE_IN_2_46
+GQuark          g_param_spec_get_name_quark     (GParamSpec    *pspec);
 
 /* --- convenience functions --- */
 typedef struct _GParamSpecTypeInfo GParamSpecTypeInfo;
 /**
  * GParamSpecTypeInfo:
  * @instance_size: Size of the instance (object) structure.
- * @n_preallocs: Prior to GLib 2.10, it specified the number of pre-allocated (cached) instances to reserve memory for (0 indicates no caching). Since GLib 2.10, it is ignored, since instances are allocated with the <link linkend="glib-Memory-Slices">slice allocator</link> now.
+ * @n_preallocs: Prior to GLib 2.10, it specified the number of pre-allocated (cached) instances to reserve memory for (0 indicates no caching). Since GLib 2.10, it is ignored, since instances are allocated with the [slice allocator][glib-Memory-Slices] now.
  * @instance_init: Location of the instance initialization function (optional).
  * @value_type: The #GType of values conforming to this #GParamSpec
  * @finalize: The instance finalization function (optional).
@@ -360,6 +370,7 @@ typedef struct _GParamSpecTypeInfo GParamSpecTypeInfo;
  * This structure is used to provide the type system with the information
  * required to initialize and destruct (finalize) a parameter's class and
  * instances thereof.
+ *
  * The initialized structure is passed to the g_param_type_register_static() 
  * The type system will perform a deep copy of this structure, so its memory 
  * does not need to be persistent across invocation of 
@@ -386,6 +397,9 @@ struct _GParamSpecTypeInfo
 GLIB_AVAILABLE_IN_ALL
 GType	g_param_type_register_static	(const gchar		  *name,
 					 const GParamSpecTypeInfo *pspec_info);
+
+GLIB_AVAILABLE_IN_2_66
+gboolean g_param_spec_is_valid_name    (const gchar              *name);
 
 /* For registering builting types */
 GType  _g_param_type_register_static_constant (const gchar              *name,

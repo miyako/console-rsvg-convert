@@ -4,7 +4,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,9 +12,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  *
  * gvaluecollector.h: GValue varargs stubs
  */
@@ -25,6 +23,7 @@
  * 
  * The macros in this section provide the varargs parsing support needed
  * in variadic GObject functions such as g_object_new() or g_object_set().
+ *
  * They currently support the collection of integral types, floating point 
  * types and pointers.
  */
@@ -81,51 +80,52 @@ union _GTypeCValue
  * @__error: a #gchar** variable that will be modified to hold a g_new()
  *  allocated error messages if something fails
  * 
- * Collects a variable argument value from a va_list. We have to
- * implement the varargs collection as a macro, because on some systems
- * va_list variables cannot be passed by reference.
+ * Collects a variable argument value from a `va_list`.
+ *
+ * We have to implement the varargs collection as a macro, because on some
+ * systems `va_list` variables cannot be passed by reference.
  *
  * Since: 2.24
  */
 #define G_VALUE_COLLECT_INIT(value, _value_type, var_args, flags, __error)		\
 G_STMT_START {										\
-  GValue *_val = (value);								\
-  guint _flags = (flags);								\
-  GTypeValueTable *_vtab = g_type_value_table_peek (_value_type);			\
-  const gchar *_collect_format = _vtab->collect_format;					\
-  GTypeCValue _cvalues[G_VALUE_COLLECT_FORMAT_MAX_LENGTH] = { { 0, }, };		\
-  guint _n_values = 0;									\
+  GValue *g_vci_val = (value);								\
+  guint g_vci_flags = (flags);								\
+  GTypeValueTable *g_vci_vtab = g_type_value_table_peek (_value_type);			\
+  const gchar *g_vci_collect_format = g_vci_vtab->collect_format;					\
+  GTypeCValue g_vci_cvalues[G_VALUE_COLLECT_FORMAT_MAX_LENGTH] = { { 0, }, };		\
+  guint g_vci_n_values = 0;									\
                                                                                         \
-  _val->g_type = _value_type;		/* value_meminit() from gvalue.c */		\
-  while (*_collect_format)								\
+  g_vci_val->g_type = _value_type;		/* value_meminit() from gvalue.c */		\
+  while (*g_vci_collect_format)								\
     {											\
-      GTypeCValue *_cvalue = _cvalues + _n_values++;					\
+      GTypeCValue *g_vci_cvalue = g_vci_cvalues + g_vci_n_values++;					\
                                                                                         \
-      switch (*_collect_format++)							\
+      switch (*g_vci_collect_format++)							\
 	{										\
 	case G_VALUE_COLLECT_INT:							\
-	  _cvalue->v_int = va_arg ((var_args), gint);					\
+	  g_vci_cvalue->v_int = va_arg ((var_args), gint);					\
 	  break;									\
 	case G_VALUE_COLLECT_LONG:							\
-	  _cvalue->v_long = va_arg ((var_args), glong);					\
+	  g_vci_cvalue->v_long = va_arg ((var_args), glong);					\
 	  break;									\
 	case G_VALUE_COLLECT_INT64:							\
-	  _cvalue->v_int64 = va_arg ((var_args), gint64);				\
+	  g_vci_cvalue->v_int64 = va_arg ((var_args), gint64);				\
 	  break;									\
 	case G_VALUE_COLLECT_DOUBLE:							\
-	  _cvalue->v_double = va_arg ((var_args), gdouble);				\
+	  g_vci_cvalue->v_double = va_arg ((var_args), gdouble);				\
 	  break;									\
 	case G_VALUE_COLLECT_POINTER:							\
-	  _cvalue->v_pointer = va_arg ((var_args), gpointer);				\
+	  g_vci_cvalue->v_pointer = va_arg ((var_args), gpointer);				\
 	  break;									\
 	default:									\
 	  g_assert_not_reached ();							\
 	}										\
     }											\
-  *(__error) = _vtab->collect_value (_val,						\
-				       _n_values,					\
-				       _cvalues,					\
-				       _flags);						\
+  *(__error) = g_vci_vtab->collect_value (g_vci_val,						\
+				       g_vci_n_values,					\
+				       g_vci_cvalues,					\
+				       g_vci_flags);						\
 } G_STMT_END
 
 /**
@@ -138,34 +138,42 @@ G_STMT_START {										\
  * @__error: a #gchar** variable that will be modified to hold a g_new()
  *  allocated error messages if something fails
  *
- * Collects a variable argument value from a va_list. We have to
- * implement the varargs collection as a macro, because on some systems
- * va_list variables cannot be passed by reference.
+ * Collects a variable argument value from a `va_list`.
+ *
+ * We have to implement the varargs collection as a macro, because on some systems
+ * `va_list` variables cannot be passed by reference.
  *
  * Note: If you are creating the @value argument just before calling this macro,
- * you should use the #G_VALUE_COLLECT_INIT variant and pass the unitialized
- * #GValue. That variant is faster than #G_VALUE_COLLECT.
+ * you should use the G_VALUE_COLLECT_INIT() variant and pass the uninitialized
+ * #GValue. That variant is faster than G_VALUE_COLLECT().
  */
 #define G_VALUE_COLLECT(value, var_args, flags, __error) G_STMT_START {			\
-  GValue *_value = (value);								\
-  GType _value_type = G_VALUE_TYPE (_value);						\
-  GTypeValueTable *_vtable = g_type_value_table_peek (_value_type);			\
+  GValue *g_vc_value = (value);								\
+  GType g_vc_value_type = G_VALUE_TYPE (g_vc_value);						\
+  GTypeValueTable *g_vc_vtable = g_type_value_table_peek (g_vc_value_type);			\
 											\
-  if (_vtable->value_free)								\
-    _vtable->value_free (_value);							\
-  memset (_value->data, 0, sizeof (_value->data));					\
+  if (g_vc_vtable->value_free)								\
+    g_vc_vtable->value_free (g_vc_value);							\
+  memset (g_vc_value->data, 0, sizeof (g_vc_value->data));					\
 											\
-  G_VALUE_COLLECT_INIT(value, _value_type, var_args, flags, __error);			\
+  G_VALUE_COLLECT_INIT(value, g_vc_value_type, var_args, flags, __error);			\
 } G_STMT_END
 
+/**
+ * G_VALUE_COLLECT_SKIP:
+ * @_value_type: the #GType of the value to skip
+ * @var_args: the va_list variable; it may be evaluated multiple times
+ *
+ * Skip an argument of type @_value_type from @var_args.
+ */
 #define G_VALUE_COLLECT_SKIP(_value_type, var_args)					\
 G_STMT_START {										\
-  GTypeValueTable *_vtable = g_type_value_table_peek (_value_type);			\
-  const gchar *_collect_format = _vtable->collect_format;				\
+  GTypeValueTable *g_vcs_vtable = g_type_value_table_peek (_value_type);			\
+  const gchar *g_vcs_collect_format = g_vcs_vtable->collect_format;				\
                                                                                         \
-  while (*_collect_format)								\
+  while (*g_vcs_collect_format)								\
     {											\
-      switch (*_collect_format++)							\
+      switch (*g_vcs_collect_format++)							\
 	{										\
 	case G_VALUE_COLLECT_INT:							\
 	  va_arg ((var_args), gint);							\
@@ -190,63 +198,64 @@ G_STMT_START {										\
 
 /**
  * G_VALUE_LCOPY:
- * @value: a #GValue return location. @value is supposed to be initialized 
- *  according to the value type to be collected
+ * @value: a #GValue to store into the @var_args; this must be initialized
+ *  and set
  * @var_args: the va_list variable; it may be evaluated multiple times
  * @flags: flags which are passed on to the lcopy_value() function of
  *  the #GTypeValueTable of @value.
  * @__error: a #gchar** variable that will be modified to hold a g_new()
- *  allocated error messages if something fails
- * 
- * Collects a value's variable argument locations from a va_list. Usage is
- * analogous to G_VALUE_COLLECT().
+ *  allocated error message if something fails
+ *
+ * Stores a value’s value into one or more argument locations from a `va_list`.
+ *
+ * This is the inverse of G_VALUE_COLLECT().
  */
 #define G_VALUE_LCOPY(value, var_args, flags, __error)					\
 G_STMT_START {										\
-  const GValue *_value = (value);							\
-  guint _flags = (flags);								\
-  GType _value_type = G_VALUE_TYPE (_value);						\
-  GTypeValueTable *_vtable = g_type_value_table_peek (_value_type);			\
-  const gchar *_lcopy_format = _vtable->lcopy_format;					\
-  GTypeCValue _cvalues[G_VALUE_COLLECT_FORMAT_MAX_LENGTH] = { { 0, }, };		\
-  guint _n_values = 0;									\
+  const GValue *g_vl_value = (value);							\
+  guint g_vl_flags = (flags);								\
+  GType g_vl_value_type = G_VALUE_TYPE (g_vl_value);						\
+  GTypeValueTable *g_vl_vtable = g_type_value_table_peek (g_vl_value_type);			\
+  const gchar *g_vl_lcopy_format = g_vl_vtable->lcopy_format;					\
+  GTypeCValue g_vl_cvalues[G_VALUE_COLLECT_FORMAT_MAX_LENGTH] = { { 0, }, };		\
+  guint g_vl_n_values = 0;									\
                                                                                         \
-  while (*_lcopy_format)								\
+  while (*g_vl_lcopy_format)								\
     {											\
-      GTypeCValue *_cvalue = _cvalues + _n_values++;					\
+      GTypeCValue *g_vl_cvalue = g_vl_cvalues + g_vl_n_values++;					\
                                                                                         \
-      switch (*_lcopy_format++)								\
+      switch (*g_vl_lcopy_format++)								\
 	{										\
 	case G_VALUE_COLLECT_INT:							\
-	  _cvalue->v_int = va_arg ((var_args), gint);					\
+	  g_vl_cvalue->v_int = va_arg ((var_args), gint);					\
 	  break;									\
 	case G_VALUE_COLLECT_LONG:							\
-	  _cvalue->v_long = va_arg ((var_args), glong);					\
+	  g_vl_cvalue->v_long = va_arg ((var_args), glong);					\
 	  break;									\
 	case G_VALUE_COLLECT_INT64:							\
-	  _cvalue->v_int64 = va_arg ((var_args), gint64);				\
+	  g_vl_cvalue->v_int64 = va_arg ((var_args), gint64);				\
 	  break;									\
 	case G_VALUE_COLLECT_DOUBLE:							\
-	  _cvalue->v_double = va_arg ((var_args), gdouble);				\
+	  g_vl_cvalue->v_double = va_arg ((var_args), gdouble);				\
 	  break;									\
 	case G_VALUE_COLLECT_POINTER:							\
-	  _cvalue->v_pointer = va_arg ((var_args), gpointer);				\
+	  g_vl_cvalue->v_pointer = va_arg ((var_args), gpointer);				\
 	  break;									\
 	default:									\
 	  g_assert_not_reached ();							\
 	}										\
     }											\
-  *(__error) = _vtable->lcopy_value (_value,						\
-				     _n_values,						\
-				     _cvalues,						\
-				     _flags);						\
+  *(__error) = g_vl_vtable->lcopy_value (g_vl_value,						\
+				     g_vl_n_values,						\
+				     g_vl_cvalues,						\
+				     g_vl_flags);						\
 } G_STMT_END
 
 
 /**
  * G_VALUE_COLLECT_FORMAT_MAX_LENGTH:
  * 
- * The maximal number of #GTypeCValue<!-- -->s which can be collected for a 
+ * The maximal number of #GTypeCValues which can be collected for a 
  * single #GValue.
  */
 #define	G_VALUE_COLLECT_FORMAT_MAX_LENGTH	(8)

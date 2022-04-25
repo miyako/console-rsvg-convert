@@ -2,19 +2,17 @@
  * Copyright (C) 2008 Red Hat, Inc.
  *
  * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
+ * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the GNU
- * Library General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
  *
- * You should have received a copy of the GNU Library General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef __G_POLL_H__
@@ -24,6 +22,7 @@
 #error "Only <glib.h> can be included directly."
 #endif
 
+#include <glibconfig.h>
 #include <glib/gtypes.h>
 
 G_BEGIN_DECLS
@@ -39,7 +38,6 @@ G_BEGIN_DECLS
  * Note that on systems with a working poll(2), that function is used
  * in place of g_poll(). Thus g_poll() must have the same signature as
  * poll(), meaning GPollFD must have the same layout as struct pollfd.
- *
  *
  * On Win32, the fd in a GPollFD should be Win32 HANDLE (*not* a file
  * descriptor as provided by the C runtime) that can be used by
@@ -79,7 +77,7 @@ typedef gint    (*GPollFunc)    (GPollFD *ufds,
 
 /**
  * GPollFD:
- * @fd: the file descriptor to poll (or a <type>HANDLE</type> on Win32)
+ * @fd: the file descriptor to poll (or a HANDLE on Win32)
  * @events: a bitwise combination from #GIOCondition, specifying which
  *     events should be polled for. Typically for reading from a file
  *     descriptor you would use %G_IO_IN | %G_IO_HUP | %G_IO_ERR, and
@@ -93,7 +91,9 @@ typedef gint    (*GPollFunc)    (GPollFD *ufds,
 struct _GPollFD
 {
 #if defined (G_OS_WIN32) && GLIB_SIZEOF_VOID_P == 8
+#ifndef __GTK_DOC_IGNORE__
   gint64	fd;
+#endif
 #else
   gint		fd;
 #endif
@@ -101,20 +101,19 @@ struct _GPollFD
   gushort 	revents;
 };
 
-#ifdef G_OS_WIN32
-#if GLIB_SIZEOF_VOID_P == 8
-#define G_POLLFD_FORMAT "%#I64x"
-#else
-#define G_POLLFD_FORMAT "%#x"
-#endif
-#else
-#define G_POLLFD_FORMAT "%d"
-#endif
+/**
+ * G_POLLFD_FORMAT:
+ *
+ * A format specifier that can be used in printf()-style format strings
+ * when printing the @fd member of a #GPollFD.
+ */
+/* defined in glibconfig.h */
 
 GLIB_AVAILABLE_IN_ALL
-gint g_poll (GPollFD *fds,
-	     guint    nfds,
-	     gint     timeout);
+gint
+g_poll (GPollFD *fds,
+	guint    nfds,
+	gint     timeout);
 
 G_END_DECLS
 

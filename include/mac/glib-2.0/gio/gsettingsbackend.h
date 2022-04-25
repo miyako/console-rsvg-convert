@@ -5,7 +5,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the licence, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -13,9 +13,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  *
  * Authors: Ryan Lortie <desrt@desrt.ca>
  *          Matthias Clasen <mclasen@redhat.com>
@@ -61,6 +59,21 @@ G_BEGIN_DECLS
 typedef struct _GSettingsBackendPrivate                     GSettingsBackendPrivate;
 typedef struct _GSettingsBackendClass                       GSettingsBackendClass;
 
+/**
+ * GSettingsBackendClass:
+ * @read: virtual method to read a key's value
+ * @get_writable: virtual method to get if a key is writable
+ * @write: virtual method to change key's value
+ * @write_tree: virtual method to change a tree of keys
+ * @reset: virtual method to reset state
+ * @subscribe: virtual method to subscribe to key changes
+ * @unsubscribe: virtual method to unsubscribe to key changes
+ * @sync: virtual method to sync state
+ * @get_permission: virtual method to get permission of a key
+ * @read_user_value: virtual method to read user's key value
+ *
+ * Class structure for #GSettingsBackend.
+ */
 struct _GSettingsBackendClass
 {
   GObjectClass parent_class;
@@ -93,7 +106,12 @@ struct _GSettingsBackendClass
   GPermission * (*get_permission)   (GSettingsBackend    *backend,
                                      const gchar         *path);
 
-  gpointer padding[24];
+  GVariant *    (*read_user_value)  (GSettingsBackend    *backend,
+                                     const gchar         *key,
+                                     const GVariantType  *expected_type);
+
+  /*< private >*/
+  gpointer padding[23];
 };
 
 struct _GSettingsBackend

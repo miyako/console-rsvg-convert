@@ -4,7 +4,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,9 +12,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
 /*
@@ -32,6 +30,9 @@
 #endif
 
 #include <glib/gtypes.h>
+#ifdef __sun__
+#include <sys/select.h>
+#endif
 #include <signal.h>
 
 G_BEGIN_DECLS
@@ -46,8 +47,11 @@ void g_on_error_stack_trace (const gchar *prg_name);
  *
  * Inserts a breakpoint instruction into the code.
  *
- * On x86 and alpha systems this is implemented as a soft interrupt
- * and on other architectures it raises a <literal>SIGTRAP</literal> signal.
+ * On architectures which support it, this is implemented as a soft interrupt
+ * and on other architectures it raises a `SIGTRAP` signal.
+ *
+ * `SIGTRAP` is used rather than abort() to allow breakpoints to be skipped past
+ * in a debugger if they are not the desired target of debugging.
  */
 #if (defined (__i386__) || defined (__x86_64__)) && defined (__GNUC__) && __GNUC__ >= 2
 #  define G_BREAKPOINT()        G_STMT_START{ __asm__ __volatile__ ("int $03"); }G_STMT_END
@@ -57,6 +61,8 @@ void g_on_error_stack_trace (const gchar *prg_name);
 #  define G_BREAKPOINT()        G_STMT_START{ __debugbreak(); }G_STMT_END
 #elif defined (__alpha__) && !defined(__osf__) && defined (__GNUC__) && __GNUC__ >= 2
 #  define G_BREAKPOINT()        G_STMT_START{ __asm__ __volatile__ ("bpt"); }G_STMT_END
+#elif defined (__APPLE__) || (defined(_WIN32) && (defined(__clang__) || defined(__GNUC__)))
+#  define G_BREAKPOINT()        G_STMT_START{ __builtin_trap(); }G_STMT_END
 #else   /* !__i386__ && !__alpha__ */
 #  define G_BREAKPOINT()        G_STMT_START{ raise (SIGTRAP); }G_STMT_END
 #endif  /* __i386__ */

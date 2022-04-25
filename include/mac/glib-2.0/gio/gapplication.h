@@ -1,10 +1,10 @@
 /*
  * Copyright © 2010 Codethink Limited
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published
- * by the Free Software Foundation; either version 2 of the licence or (at
- * your option) any later version.
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,9 +12,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  *
  * Authors: Ryan Lortie <desrt@desrt.ca>
  */
@@ -43,11 +41,6 @@ G_BEGIN_DECLS
 typedef struct _GApplicationPrivate                         GApplicationPrivate;
 typedef struct _GApplicationClass                           GApplicationClass;
 
-/**
- * GApplication:
- *
- * Since: 2.28
- */
 struct _GApplication
 {
   /*< private >*/
@@ -117,9 +110,12 @@ struct _GApplicationClass
   void                      (* dbus_unregister)     (GApplication              *application,
                                                      GDBusConnection           *connection,
                                                      const gchar               *object_path);
+  gint                      (* handle_local_options)(GApplication              *application,
+                                                     GVariantDict              *options);
+  gboolean                  (* name_lost)           (GApplication              *application);
 
   /*< private >*/
-  gpointer padding[9];
+  gpointer padding[7];
 };
 
 GLIB_AVAILABLE_IN_ALL
@@ -155,10 +151,40 @@ GLIB_AVAILABLE_IN_ALL
 void                    g_application_set_flags                         (GApplication             *application,
                                                                          GApplicationFlags         flags);
 
+GLIB_AVAILABLE_IN_2_42
+const gchar *           g_application_get_resource_base_path            (GApplication             *application);
+GLIB_AVAILABLE_IN_2_42
+void                    g_application_set_resource_base_path            (GApplication             *application,
+                                                                         const gchar              *resource_path);
+
 GLIB_DEPRECATED
 void                    g_application_set_action_group                  (GApplication             *application,
                                                                          GActionGroup             *action_group);
 
+GLIB_AVAILABLE_IN_2_40
+void                    g_application_add_main_option_entries           (GApplication             *application,
+                                                                         const GOptionEntry       *entries);
+
+GLIB_AVAILABLE_IN_2_42
+void                    g_application_add_main_option                   (GApplication             *application,
+                                                                         const char               *long_name,
+                                                                         char                      short_name,
+                                                                         GOptionFlags              flags,
+                                                                         GOptionArg                arg,
+                                                                         const char               *description,
+                                                                         const char               *arg_description);
+GLIB_AVAILABLE_IN_2_40
+void                    g_application_add_option_group                  (GApplication             *application,
+                                                                         GOptionGroup             *group);
+GLIB_AVAILABLE_IN_2_56
+void                    g_application_set_option_context_parameter_string (GApplication             *application,
+                                                                           const gchar              *parameter_string);
+GLIB_AVAILABLE_IN_2_56
+void                    g_application_set_option_context_summary        (GApplication             *application,
+                                                                         const gchar              *summary);
+GLIB_AVAILABLE_IN_2_56
+void                    g_application_set_option_context_description    (GApplication             *application,
+                                                                         const gchar              *description);
 GLIB_AVAILABLE_IN_ALL
 gboolean                g_application_get_is_registered                 (GApplication             *application);
 GLIB_AVAILABLE_IN_ALL
@@ -200,6 +226,26 @@ GLIB_AVAILABLE_IN_2_38
 void                    g_application_mark_busy                         (GApplication             *application);
 GLIB_AVAILABLE_IN_2_38
 void                    g_application_unmark_busy                       (GApplication             *application);
+GLIB_AVAILABLE_IN_2_44
+gboolean                g_application_get_is_busy                       (GApplication             *application);
+
+GLIB_AVAILABLE_IN_2_40
+void                    g_application_send_notification                 (GApplication             *application,
+                                                                         const gchar              *id,
+                                                                         GNotification            *notification);
+GLIB_AVAILABLE_IN_2_40
+void                    g_application_withdraw_notification             (GApplication             *application,
+                                                                         const gchar              *id);
+
+GLIB_AVAILABLE_IN_2_44
+void                    g_application_bind_busy_property                (GApplication             *application,
+                                                                         gpointer                  object,
+                                                                         const gchar              *property);
+
+GLIB_AVAILABLE_IN_2_44
+void                    g_application_unbind_busy_property              (GApplication             *application,
+                                                                         gpointer                  object,
+                                                                         const gchar              *property);
 
 G_END_DECLS
 

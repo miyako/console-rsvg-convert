@@ -5,7 +5,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -13,9 +13,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  *
  * Author: Alexander Larsson <alexl@redhat.com>
  *         David Zeuthen <davidz@redhat.com>
@@ -32,6 +30,15 @@
 
 G_BEGIN_DECLS
 
+/**
+ * G_DRIVE_IDENTIFIER_KIND_UNIX_DEVICE:
+ *
+ * The string used to obtain a Unix device path with g_drive_get_identifier().
+ *
+ * Since: 2.58
+ */
+#define G_DRIVE_IDENTIFIER_KIND_UNIX_DEVICE "unix-device"
+
 #define G_TYPE_DRIVE           (g_drive_get_type ())
 #define G_DRIVE(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), G_TYPE_DRIVE, GDrive))
 #define G_IS_DRIVE(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), G_TYPE_DRIVE))
@@ -47,9 +54,10 @@ G_BEGIN_DECLS
  * @get_icon: Returns a #GIcon for the given #GDrive.
  * @has_volumes: Returns %TRUE if the #GDrive has mountable volumes.
  * @get_volumes: Returns a list #GList of #GVolume for the #GDrive.
+ * @is_removable: Returns %TRUE if the #GDrive and/or its media is considered removable by the user. Since 2.50.
  * @is_media_removable: Returns %TRUE if the #GDrive supports removal and insertion of media.
  * @has_media: Returns %TRUE if the #GDrive has media inserted.
- * @is_media_check_automatic: Returns %TRUE if the #GDrive is capabable of automatically detecting media changes.
+ * @is_media_check_automatic: Returns %TRUE if the #GDrive is capable of automatically detecting media changes.
  * @can_poll_for_media: Returns %TRUE if the #GDrive is capable of manually polling for media change.
  * @can_eject: Returns %TRUE if the #GDrive can eject media.
  * @eject: Ejects a #GDrive.
@@ -156,6 +164,7 @@ struct _GDriveIface
 
   const gchar * (* get_sort_key)        (GDrive              *drive);
   GIcon *       (* get_symbolic_icon)   (GDrive              *drive);
+  gboolean      (* is_removable)        (GDrive              *drive);
 
 };
 
@@ -172,6 +181,8 @@ GLIB_AVAILABLE_IN_ALL
 gboolean g_drive_has_volumes              (GDrive               *drive);
 GLIB_AVAILABLE_IN_ALL
 GList *  g_drive_get_volumes              (GDrive               *drive);
+GLIB_AVAILABLE_IN_2_50
+gboolean g_drive_is_removable             (GDrive               *drive);
 GLIB_AVAILABLE_IN_ALL
 gboolean g_drive_is_media_removable       (GDrive               *drive);
 GLIB_AVAILABLE_IN_ALL

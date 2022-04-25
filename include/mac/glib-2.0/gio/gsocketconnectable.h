@@ -5,7 +5,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -13,9 +13,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef __G_SOCKET_CONNECTABLE_H__
@@ -37,7 +35,7 @@ G_BEGIN_DECLS
 /**
  * GSocketConnectable:
  *
- * Interface for objects that contain or generate #GSocketAddress<!-- -->es.
+ * Interface for objects that contain or generate a #GSocketAddress.
  */
 typedef struct _GSocketConnectableIface GSocketConnectableIface;
 
@@ -46,6 +44,8 @@ typedef struct _GSocketConnectableIface GSocketConnectableIface;
  * @g_iface: The parent interface.
  * @enumerate: Creates a #GSocketAddressEnumerator
  * @proxy_enumerate: Creates a #GProxyAddressEnumerator
+ * @to_string: Format the connectable’s address as a string for debugging.
+ *    Implementing this is optional. (Since: 2.48)
  *
  * Provides an interface for returning a #GSocketAddressEnumerator
  * and #GProxyAddressEnumerator
@@ -60,6 +60,7 @@ struct _GSocketConnectableIface
 
   GSocketAddressEnumerator * (* proxy_enumerate) (GSocketConnectable *connectable);
 
+  gchar                    * (* to_string)       (GSocketConnectable *connectable);
 };
 
 GLIB_AVAILABLE_IN_ALL
@@ -70,6 +71,9 @@ GSocketAddressEnumerator *g_socket_connectable_enumerate (GSocketConnectable *co
 
 GLIB_AVAILABLE_IN_ALL
 GSocketAddressEnumerator *g_socket_connectable_proxy_enumerate (GSocketConnectable *connectable);
+
+GLIB_AVAILABLE_IN_2_48
+gchar                    *g_socket_connectable_to_string (GSocketConnectable *connectable);
 
 G_END_DECLS
 

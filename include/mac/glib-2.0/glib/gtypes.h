@@ -4,7 +4,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,9 +12,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
 /*
@@ -60,21 +58,47 @@ typedef float   gfloat;
 typedef double  gdouble;
 
 /* Define min and max constants for the fixed size numerical types */
-#define G_MININT8	((gint8)  0x80)
+/**
+ * G_MININT8: (value -128)
+ *
+ * The minimum value which can be held in a #gint8.
+ *
+ * Since: 2.4
+ */
+#define G_MININT8	((gint8) (-G_MAXINT8 - 1))
 #define G_MAXINT8	((gint8)  0x7f)
 #define G_MAXUINT8	((guint8) 0xff)
 
-#define G_MININT16	((gint16)  0x8000)
+/**
+ * G_MININT16: (value -32768)
+ *
+ * The minimum value which can be held in a #gint16.
+ *
+ * Since: 2.4
+ */
+#define G_MININT16	((gint16) (-G_MAXINT16 - 1))
 #define G_MAXINT16	((gint16)  0x7fff)
 #define G_MAXUINT16	((guint16) 0xffff)
 
-#define G_MININT32	((gint32)  0x80000000)
+/**
+ * G_MININT32: (value -2147483648)
+ *
+ * The minimum value which can be held in a #gint32.
+ *
+ * Since: 2.4
+ */
+#define G_MININT32	((gint32) (-G_MAXINT32 - 1))
 #define G_MAXINT32	((gint32)  0x7fffffff)
 #define G_MAXUINT32	((guint32) 0xffffffff)
 
-#define G_MININT64	((gint64) G_GINT64_CONSTANT(0x8000000000000000))
+/**
+ * G_MININT64: (value -9223372036854775808)
+ *
+ * The minimum value which can be held in a #gint64.
+ */
+#define G_MININT64	((gint64) (-G_MAXINT64 - G_GINT64_CONSTANT(1)))
 #define G_MAXINT64	G_GINT64_CONSTANT(0x7fffffffffffffff)
-#define G_MAXUINT64	G_GINT64_CONSTANT(0xffffffffffffffffU)
+#define G_MAXUINT64	G_GUINT64_CONSTANT(0xffffffffffffffff)
 
 typedef void* gpointer;
 typedef const void *gconstpointer;
@@ -94,6 +118,20 @@ typedef void            (*GHFunc)               (gpointer       key,
                                                  gpointer       value,
                                                  gpointer       user_data);
 
+/**
+ * GCopyFunc:
+ * @src: (not nullable): A pointer to the data which should be copied
+ * @data: Additional data
+ *
+ * A function of this signature is used to copy the node data
+ * when doing a deep-copy of a tree.
+ *
+ * Returns: (not nullable): A pointer to the copy
+ *
+ * Since: 2.4
+ */
+typedef gpointer	(*GCopyFunc)            (gconstpointer  src,
+                                                 gpointer       data);
 /**
  * GFreeFunc:
  * @data: a data pointer
@@ -183,14 +221,14 @@ typedef const gchar *   (*GTranslateFunc)       (const gchar   *str,
 #if defined (__GNUC__) && (__GNUC__ >= 2) && defined (__OPTIMIZE__)
 
 #  if __GNUC__ >= 4 && defined (__GNUC_MINOR__) && __GNUC_MINOR__ >= 3
-#    define GUINT32_SWAP_LE_BE(val) ((guint32) __builtin_bswap32 ((gint32) (val)))
-#    define GUINT64_SWAP_LE_BE(val) ((guint64) __builtin_bswap64 ((gint64) (val)))
+#    define GUINT32_SWAP_LE_BE(val) ((guint32) __builtin_bswap32 ((guint32) (val)))
+#    define GUINT64_SWAP_LE_BE(val) ((guint64) __builtin_bswap64 ((guint64) (val)))
 #  endif
 
 #  if defined (__i386__)
 #    define GUINT16_SWAP_LE_BE_IA32(val) \
        (G_GNUC_EXTENSION					\
-	({ register guint16 __v, __x = ((guint16) (val));	\
+	({ guint16 __v, __x = ((guint16) (val));		\
 	   if (__builtin_constant_p (__x))			\
 	     __v = GUINT16_SWAP_LE_BE_CONSTANT (__x);		\
 	   else							\
@@ -204,7 +242,7 @@ typedef const gchar *   (*GTranslateFunc)       (const gchar   *str,
 	&& !defined (__pentiumpro__) && !defined (__pentium4__)
 #       define GUINT32_SWAP_LE_BE_IA32(val) \
 	  (G_GNUC_EXTENSION					\
-	   ({ register guint32 __v, __x = ((guint32) (val));	\
+	   ({ guint32 __v, __x = ((guint32) (val));		\
 	      if (__builtin_constant_p (__x))			\
 		__v = GUINT32_SWAP_LE_BE_CONSTANT (__x);	\
 	      else						\
@@ -218,7 +256,7 @@ typedef const gchar *   (*GTranslateFunc)       (const gchar   *str,
 #    else /* 486 and higher has bswap */
 #       define GUINT32_SWAP_LE_BE_IA32(val) \
 	  (G_GNUC_EXTENSION					\
-	   ({ register guint32 __v, __x = ((guint32) (val));	\
+	   ({ guint32 __v, __x = ((guint32) (val));		\
 	      if (__builtin_constant_p (__x))			\
 		__v = GUINT32_SWAP_LE_BE_CONSTANT (__x);	\
 	      else						\
@@ -251,7 +289,7 @@ typedef const gchar *   (*GTranslateFunc)       (const gchar   *str,
 #  elif defined (__ia64__)
 #    define GUINT16_SWAP_LE_BE_IA64(val) \
        (G_GNUC_EXTENSION					\
-	({ register guint16 __v, __x = ((guint16) (val));	\
+	({ guint16 __v, __x = ((guint16) (val));		\
 	   if (__builtin_constant_p (__x))			\
 	     __v = GUINT16_SWAP_LE_BE_CONSTANT (__x);		\
 	   else							\
@@ -262,7 +300,7 @@ typedef const gchar *   (*GTranslateFunc)       (const gchar   *str,
 	    __v; }))
 #    define GUINT32_SWAP_LE_BE_IA64(val) \
        (G_GNUC_EXTENSION					\
-	 ({ register guint32 __v, __x = ((guint32) (val));	\
+	 ({ guint32 __v, __x = ((guint32) (val));		\
 	    if (__builtin_constant_p (__x))			\
 	      __v = GUINT32_SWAP_LE_BE_CONSTANT (__x);		\
 	    else						\
@@ -273,7 +311,7 @@ typedef const gchar *   (*GTranslateFunc)       (const gchar   *str,
 	    __v; }))
 #    define GUINT64_SWAP_LE_BE_IA64(val) \
        (G_GNUC_EXTENSION					\
-	({ register guint64 __v, __x = ((guint64) (val));	\
+	({ guint64 __v, __x = ((guint64) (val));		\
 	   if (__builtin_constant_p (__x))			\
 	     __v = GUINT64_SWAP_LE_BE_CONSTANT (__x);		\
 	   else							\
@@ -291,7 +329,7 @@ typedef const gchar *   (*GTranslateFunc)       (const gchar   *str,
 #  elif defined (__x86_64__)
 #    define GUINT32_SWAP_LE_BE_X86_64(val) \
        (G_GNUC_EXTENSION					\
-	 ({ register guint32 __v, __x = ((guint32) (val));	\
+	 ({ guint32 __v, __x = ((guint32) (val));		\
 	    if (__builtin_constant_p (__x))			\
 	      __v = GUINT32_SWAP_LE_BE_CONSTANT (__x);		\
 	    else						\
@@ -301,7 +339,7 @@ typedef const gchar *   (*GTranslateFunc)       (const gchar   *str,
 	    __v; }))
 #    define GUINT64_SWAP_LE_BE_X86_64(val) \
        (G_GNUC_EXTENSION					\
-	({ register guint64 __v, __x = ((guint64) (val));	\
+	({ guint64 __v, __x = ((guint64) (val));		\
 	   if (__builtin_constant_p (__x))			\
 	     __v = GUINT64_SWAP_LE_BE_CONSTANT (__x);		\
 	   else							\
@@ -373,13 +411,75 @@ typedef const gchar *   (*GTranslateFunc)       (const gchar   *str,
 #define GSIZE_FROM_BE(val)	(GSIZE_TO_BE (val))
 #define GSSIZE_FROM_BE(val)	(GSSIZE_TO_BE (val))
 
-
 /* Portable versions of host-network order stuff
  */
 #define g_ntohl(val) (GUINT32_FROM_BE (val))
 #define g_ntohs(val) (GUINT16_FROM_BE (val))
 #define g_htonl(val) (GUINT32_TO_BE (val))
 #define g_htons(val) (GUINT16_TO_BE (val))
+
+/* Overflow-checked unsigned integer arithmetic
+ */
+#ifndef _GLIB_TEST_OVERFLOW_FALLBACK
+/* https://bugzilla.gnome.org/show_bug.cgi?id=769104 */
+#if __GNUC__ >= 5 && !defined(__INTEL_COMPILER)
+#define _GLIB_HAVE_BUILTIN_OVERFLOW_CHECKS
+#elif g_macro__has_builtin(__builtin_add_overflow)
+#define _GLIB_HAVE_BUILTIN_OVERFLOW_CHECKS
+#endif
+#endif
+
+#ifdef _GLIB_HAVE_BUILTIN_OVERFLOW_CHECKS
+
+#define g_uint_checked_add(dest, a, b) \
+    (!__builtin_add_overflow(a, b, dest))
+#define g_uint_checked_mul(dest, a, b) \
+    (!__builtin_mul_overflow(a, b, dest))
+
+#define g_uint64_checked_add(dest, a, b) \
+    (!__builtin_add_overflow(a, b, dest))
+#define g_uint64_checked_mul(dest, a, b) \
+    (!__builtin_mul_overflow(a, b, dest))
+
+#define g_size_checked_add(dest, a, b) \
+    (!__builtin_add_overflow(a, b, dest))
+#define g_size_checked_mul(dest, a, b) \
+    (!__builtin_mul_overflow(a, b, dest))
+
+#else  /* !_GLIB_HAVE_BUILTIN_OVERFLOW_CHECKS */
+
+/* The names of the following inlines are private.  Use the macro
+ * definitions above.
+ */
+static inline gboolean _GLIB_CHECKED_ADD_UINT (guint *dest, guint a, guint b) {
+  *dest = a + b; return *dest >= a; }
+static inline gboolean _GLIB_CHECKED_MUL_UINT (guint *dest, guint a, guint b) {
+  *dest = a * b; return !a || *dest / a == b; }
+static inline gboolean _GLIB_CHECKED_ADD_UINT64 (guint64 *dest, guint64 a, guint64 b) {
+  *dest = a + b; return *dest >= a; }
+static inline gboolean _GLIB_CHECKED_MUL_UINT64 (guint64 *dest, guint64 a, guint64 b) {
+  *dest = a * b; return !a || *dest / a == b; }
+static inline gboolean _GLIB_CHECKED_ADD_SIZE (gsize *dest, gsize a, gsize b) {
+  *dest = a + b; return *dest >= a; }
+static inline gboolean _GLIB_CHECKED_MUL_SIZE (gsize *dest, gsize a, gsize b) {
+  *dest = a * b; return !a || *dest / a == b; }
+
+#define g_uint_checked_add(dest, a, b) \
+    _GLIB_CHECKED_ADD_UINT(dest, a, b)
+#define g_uint_checked_mul(dest, a, b) \
+    _GLIB_CHECKED_MUL_UINT(dest, a, b)
+
+#define g_uint64_checked_add(dest, a, b) \
+    _GLIB_CHECKED_ADD_UINT64(dest, a, b)
+#define g_uint64_checked_mul(dest, a, b) \
+    _GLIB_CHECKED_MUL_UINT64(dest, a, b)
+
+#define g_size_checked_add(dest, a, b) \
+    _GLIB_CHECKED_ADD_SIZE(dest, a, b)
+#define g_size_checked_mul(dest, a, b) \
+    _GLIB_CHECKED_MUL_SIZE(dest, a, b)
+
+#endif  /* !_GLIB_HAVE_BUILTIN_OVERFLOW_CHECKS */
 
 /* IEEE Standard 754 Single Precision Storage Format (gfloat):
  *
@@ -448,13 +548,16 @@ union _GDoubleIEEE754
 #error unknown ENDIAN type
 #endif /* !G_LITTLE_ENDIAN && !G_BIG_ENDIAN */
 
-typedef struct _GTimeVal                GTimeVal;
+typedef struct _GTimeVal GTimeVal GLIB_DEPRECATED_TYPE_IN_2_62_FOR(GDateTime);
 
 struct _GTimeVal
 {
   glong tv_sec;
   glong tv_usec;
-};
+} GLIB_DEPRECATED_TYPE_IN_2_62_FOR(GDateTime);
+
+typedef gint grefcount;
+typedef gint gatomicrefcount;  /* should be accessed only using atomics */
 
 G_END_DECLS
 
@@ -468,7 +571,7 @@ G_END_DECLS
 #    else /* !GLIB_STATIC_COMPILATION */
 #      ifdef GLIB_COMPILATION
 #        ifdef DLL_EXPORT
-#          define GLIB_VAR __declspec(dllexport)
+#          define GLIB_VAR extern __declspec(dllexport)
 #        else /* !DLL_EXPORT */
 #          define GLIB_VAR extern
 #        endif /* !DLL_EXPORT */

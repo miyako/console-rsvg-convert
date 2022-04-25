@@ -5,7 +5,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -13,9 +13,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  *
  * Author: Alexander Larsson <alexl@redhat.com>
  */
@@ -57,7 +55,7 @@ typedef struct _GAppLaunchContextPrivate GAppLaunchContextPrivate;
  * GAppInfoIface:
  * @g_iface: The parent interface.
  * @dup: Copies a #GAppInfo.
- * @equal: Checks two #GAppInfo<!-- -->s for equality.
+ * @equal: Checks two #GAppInfos for equality.
  * @get_id: Gets a string identifier for a #GAppInfo.
  * @get_name: Gets the name of the application for a #GAppInfo.
  * @get_description: Gets a short description for the application described by the #GAppInfo.
@@ -68,8 +66,7 @@ typedef struct _GAppLaunchContextPrivate GAppLaunchContextPrivate;
  * @supports_files: Indicates whether the application specified accepts filename arguments.
  * @launch_uris: Launches an application with a list of URIs.
  * @should_show: Returns whether an application should be shown (e.g. when getting a list of installed applications).
- * <ulink url="http://standards.freedesktop.org/startup-notification-spec/startup-notification-latest.txt">
- * <citetitle>FreeDesktop.Org Startup Notification Specification</citetitle></ulink>.
+ * [FreeDesktop.Org Startup Notification Specification](http://standards.freedesktop.org/startup-notification-spec/startup-notification-latest.txt).
  * @set_as_default_for_type: Sets an application as default for a given content type.
  * @set_as_default_for_extension: Sets an application as default for a given file extension.
  * @add_supports_type: Adds to the #GAppInfo information about supported file types.
@@ -80,7 +77,10 @@ typedef struct _GAppLaunchContextPrivate GAppLaunchContextPrivate;
  * @get_commandline: Gets the commandline for the #GAppInfo. Since 2.20
  * @get_display_name: Gets the display name for the #GAppInfo. Since 2.24
  * @set_as_last_used_for_type: Sets the application as the last used. See g_app_info_set_as_last_used_for_type().
- *
+ * @get_supported_types: Retrieves the list of content types that @app_info claims to support.
+ * @launch_uris_async: Asynchronously launches an application with a list of URIs. (Since: 2.60)
+ * @launch_uris_finish: Finishes an operation started with @launch_uris_async. (Since: 2.60)
+
  * Application Information interface, for operating system portability.
  */
 typedef struct _GAppInfoIface    GAppInfoIface;
@@ -101,13 +101,13 @@ struct _GAppInfoIface
   GIcon *      (* get_icon)                     (GAppInfo           *appinfo);
   gboolean     (* launch)                       (GAppInfo           *appinfo,
                                                  GList              *files,
-                                                 GAppLaunchContext  *launch_context,
+                                                 GAppLaunchContext  *context,
                                                  GError            **error);
   gboolean     (* supports_uris)                (GAppInfo           *appinfo);
   gboolean     (* supports_files)               (GAppInfo           *appinfo);
   gboolean     (* launch_uris)                  (GAppInfo           *appinfo,
                                                  GList              *uris,
-                                                 GAppLaunchContext  *launch_context,
+                                                 GAppLaunchContext  *context,
                                                  GError            **error);
   gboolean     (* should_show)                  (GAppInfo           *appinfo);
 
@@ -133,6 +133,15 @@ struct _GAppInfoIface
                                                  const char         *content_type,
                                                  GError            **error);
   const char ** (* get_supported_types)         (GAppInfo           *appinfo);
+  void         (* launch_uris_async)            (GAppInfo           *appinfo,
+                                                 GList              *uris,
+                                                 GAppLaunchContext  *context,
+                                                 GCancellable       *cancellable,
+                                                 GAsyncReadyCallback callback,
+                                                 gpointer            user_data);
+  gboolean     (* launch_uris_finish)           (GAppInfo           *appinfo,
+                                                 GAsyncResult       *result,
+                                                 GError            **error);
 };
 
 GLIB_AVAILABLE_IN_ALL
@@ -164,7 +173,7 @@ GIcon *     g_app_info_get_icon                     (GAppInfo             *appin
 GLIB_AVAILABLE_IN_ALL
 gboolean    g_app_info_launch                       (GAppInfo             *appinfo,
                                                      GList                *files,
-                                                     GAppLaunchContext    *launch_context,
+                                                     GAppLaunchContext    *context,
                                                      GError              **error);
 GLIB_AVAILABLE_IN_ALL
 gboolean    g_app_info_supports_uris                (GAppInfo             *appinfo);
@@ -173,8 +182,20 @@ gboolean    g_app_info_supports_files               (GAppInfo             *appin
 GLIB_AVAILABLE_IN_ALL
 gboolean    g_app_info_launch_uris                  (GAppInfo             *appinfo,
                                                      GList                *uris,
-                                                     GAppLaunchContext    *launch_context,
+                                                     GAppLaunchContext    *context,
                                                      GError              **error);
+GLIB_AVAILABLE_IN_2_60
+void        g_app_info_launch_uris_async            (GAppInfo             *appinfo,
+                                                     GList                *uris,
+                                                     GAppLaunchContext    *context,
+                                                     GCancellable         *cancellable,
+                                                     GAsyncReadyCallback   callback,
+                                                     gpointer              user_data);
+GLIB_AVAILABLE_IN_2_60
+gboolean    g_app_info_launch_uris_finish           (GAppInfo             *appinfo,
+                                                     GAsyncResult         *result,
+                                                     GError              **error);
+
 GLIB_AVAILABLE_IN_ALL
 gboolean    g_app_info_should_show                  (GAppInfo             *appinfo);
 
@@ -228,8 +249,19 @@ GAppInfo *g_app_info_get_default_for_uri_scheme  (const char  *uri_scheme);
 
 GLIB_AVAILABLE_IN_ALL
 gboolean  g_app_info_launch_default_for_uri      (const char              *uri,
-                                                  GAppLaunchContext       *launch_context,
+                                                  GAppLaunchContext       *context,
                                                   GError                 **error);
+
+GLIB_AVAILABLE_IN_2_50
+void      g_app_info_launch_default_for_uri_async  (const char           *uri,
+                                                    GAppLaunchContext    *context,
+                                                    GCancellable         *cancellable,
+                                                    GAsyncReadyCallback   callback,
+                                                    gpointer              user_data);
+GLIB_AVAILABLE_IN_2_50
+gboolean  g_app_info_launch_default_for_uri_finish (GAsyncResult         *result,
+                                                    GError              **error);
+
 
 /**
  * GAppLaunchContext:
@@ -261,12 +293,14 @@ struct _GAppLaunchContextClass
   void   (* launched)              (GAppLaunchContext *context,
                                     GAppInfo          *info,
                                     GVariant          *platform_data);
+  void   (* launch_started)        (GAppLaunchContext *context,
+                                    GAppInfo          *info,
+                                    GVariant          *platform_data);
 
   /* Padding for future expansion */
   void (*_g_reserved1) (void);
   void (*_g_reserved2) (void);
   void (*_g_reserved3) (void);
-  void (*_g_reserved4) (void);
 };
 
 GLIB_AVAILABLE_IN_ALL
@@ -295,6 +329,20 @@ char *             g_app_launch_context_get_startup_notify_id (GAppLaunchContext
 GLIB_AVAILABLE_IN_ALL
 void               g_app_launch_context_launch_failed         (GAppLaunchContext *context,
                                                                const char *       startup_notify_id);
+
+#define G_TYPE_APP_INFO_MONITOR                             (g_app_info_monitor_get_type ())
+#define G_APP_INFO_MONITOR(inst)                            (G_TYPE_CHECK_INSTANCE_CAST ((inst),                     \
+                                                             G_TYPE_APP_INFO_MONITOR, GAppInfoMonitor))
+#define G_IS_APP_INFO_MONITOR(inst)                         (G_TYPE_CHECK_INSTANCE_TYPE ((inst),                     \
+                                                             G_TYPE_APP_INFO_MONITOR))
+
+typedef struct _GAppInfoMonitor                             GAppInfoMonitor;
+
+GLIB_AVAILABLE_IN_2_40
+GType                   g_app_info_monitor_get_type                     (void);
+
+GLIB_AVAILABLE_IN_2_40
+GAppInfoMonitor *       g_app_info_monitor_get                          (void);
 
 G_END_DECLS
 

@@ -4,7 +4,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,9 +12,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
 /*
@@ -44,7 +42,7 @@ typedef struct _GQueue GQueue;
  * @length: the number of elements in the queue
  *
  * Contains the public fields of a
- * <link linkend="glib-Double-ended-Queues">Queue</link>.
+ * [Queue][glib-Double-ended-Queues].
  */
 struct _GQueue
 {
@@ -84,6 +82,9 @@ GLIB_AVAILABLE_IN_ALL
 void     g_queue_clear          (GQueue           *queue);
 GLIB_AVAILABLE_IN_ALL
 gboolean g_queue_is_empty       (GQueue           *queue);
+GLIB_AVAILABLE_IN_2_60
+void     g_queue_clear_full     (GQueue           *queue,
+                                 GDestroyNotify   free_func);
 GLIB_AVAILABLE_IN_ALL
 guint    g_queue_get_length     (GQueue           *queue);
 GLIB_AVAILABLE_IN_ALL
@@ -143,10 +144,20 @@ GLIB_AVAILABLE_IN_ALL
 void     g_queue_insert_before  (GQueue           *queue,
                                  GList            *sibling,
                                  gpointer          data);
+GLIB_AVAILABLE_IN_2_62
+void     g_queue_insert_before_link
+                                (GQueue           *queue,
+                                 GList            *sibling,
+                                 GList            *link_);
 GLIB_AVAILABLE_IN_ALL
 void     g_queue_insert_after   (GQueue           *queue,
                                  GList            *sibling,
                                  gpointer          data);
+GLIB_AVAILABLE_IN_2_62
+void     g_queue_insert_after_link
+                                (GQueue           *queue,
+                                 GList            *sibling,
+                                 GList            *link_);
 GLIB_AVAILABLE_IN_ALL
 void     g_queue_insert_sorted  (GQueue           *queue,
                                  gpointer          data,

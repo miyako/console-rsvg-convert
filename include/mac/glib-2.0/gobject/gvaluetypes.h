@@ -4,7 +4,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,9 +12,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  *
  * gvaluetypes.h: GLib default values
  */
@@ -139,6 +137,19 @@ G_BEGIN_DECLS
  */
 #define G_VALUE_HOLDS_STRING(value)	 (G_TYPE_CHECK_VALUE_TYPE ((value), G_TYPE_STRING))
 /**
+ * G_VALUE_IS_INTERNED_STRING:
+ * @value: a valid #GValue structure
+ *
+ * Checks whether @value contains a string which is canonical.
+ *
+ * Returns: %TRUE if the value contains a string in its canonical
+ * representation, as returned by g_intern_string(). See also
+ * g_value_set_interned_string().
+ *
+ * Since: 2.66
+ */
+#define G_VALUE_IS_INTERNED_STRING(value) (G_VALUE_HOLDS_STRING (value) && ((value)->data[1].v_uint & G_VALUE_INTERNED_STRING)) GLIB_AVAILABLE_MACRO_IN_2_66
+/**
  * G_VALUE_HOLDS_POINTER:
  * @value: a valid #GValue structure
  * 
@@ -243,6 +254,9 @@ void		      g_value_set_string	(GValue	      *value,
 GLIB_AVAILABLE_IN_ALL
 void		      g_value_set_static_string (GValue	      *value,
 						 const gchar  *v_string);
+GLIB_AVAILABLE_IN_2_66
+void		      g_value_set_interned_string (GValue      *value,
+						   const gchar  *v_string);
 GLIB_AVAILABLE_IN_ALL
 const gchar *         g_value_get_string	(const GValue *value);
 GLIB_AVAILABLE_IN_ALL
@@ -292,7 +306,7 @@ void g_value_set_string_take_ownership          (GValue            *value,
 /**
  * gchararray:
  * 
- * A C representable type name for #G_TYPE_STRING.
+ * A C representable type name for %G_TYPE_STRING.
  */
 typedef gchar* gchararray;
 

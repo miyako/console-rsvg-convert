@@ -4,7 +4,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,9 +12,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
 /*
@@ -72,11 +70,16 @@ GLIB_AVAILABLE_IN_ALL
 GArray* g_array_new               (gboolean          zero_terminated,
 				   gboolean          clear_,
 				   guint             element_size);
+GLIB_AVAILABLE_IN_2_64
+gpointer g_array_steal            (GArray           *array,
+                                   gsize            *len);
 GLIB_AVAILABLE_IN_ALL
 GArray* g_array_sized_new         (gboolean          zero_terminated,
 				   gboolean          clear_,
 				   guint             element_size,
 				   guint             reserved_size);
+GLIB_AVAILABLE_IN_2_62
+GArray* g_array_copy              (GArray           *array);
 GLIB_AVAILABLE_IN_ALL
 gchar*  g_array_free              (GArray           *array,
 				   gboolean          free_segment);
@@ -119,6 +122,11 @@ GLIB_AVAILABLE_IN_ALL
 void    g_array_sort_with_data    (GArray           *array,
 				   GCompareDataFunc  compare_func,
 				   gpointer          user_data);
+GLIB_AVAILABLE_IN_2_62
+gboolean g_array_binary_search    (GArray           *array,
+                                   gconstpointer     target,
+                                   GCompareFunc      compare_func,
+                                   guint            *out_match_index);
 GLIB_AVAILABLE_IN_ALL
 void    g_array_set_clear_func    (GArray           *array,
                                    GDestroyNotify    clear_func);
@@ -132,6 +140,13 @@ GLIB_AVAILABLE_IN_ALL
 GPtrArray* g_ptr_array_new                (void);
 GLIB_AVAILABLE_IN_ALL
 GPtrArray* g_ptr_array_new_with_free_func (GDestroyNotify    element_free_func);
+GLIB_AVAILABLE_IN_2_64
+gpointer*   g_ptr_array_steal              (GPtrArray        *array,
+                                            gsize            *len);
+GLIB_AVAILABLE_IN_2_62
+GPtrArray *g_ptr_array_copy               (GPtrArray        *array,
+                                           GCopyFunc         func,
+                                           gpointer          user_data);
 GLIB_AVAILABLE_IN_ALL
 GPtrArray* g_ptr_array_sized_new          (guint             reserved_size);
 GLIB_AVAILABLE_IN_ALL
@@ -156,6 +171,12 @@ gpointer   g_ptr_array_remove_index       (GPtrArray        *array,
 GLIB_AVAILABLE_IN_ALL
 gpointer   g_ptr_array_remove_index_fast  (GPtrArray        *array,
 					   guint             index_);
+GLIB_AVAILABLE_IN_2_58
+gpointer   g_ptr_array_steal_index        (GPtrArray        *array,
+                                           guint             index_);
+GLIB_AVAILABLE_IN_2_58
+gpointer   g_ptr_array_steal_index_fast   (GPtrArray        *array,
+                                           guint             index_);
 GLIB_AVAILABLE_IN_ALL
 gboolean   g_ptr_array_remove             (GPtrArray        *array,
 					   gpointer          data);
@@ -163,12 +184,24 @@ GLIB_AVAILABLE_IN_ALL
 gboolean   g_ptr_array_remove_fast        (GPtrArray        *array,
 					   gpointer          data);
 GLIB_AVAILABLE_IN_ALL
-void       g_ptr_array_remove_range       (GPtrArray        *array,
+GPtrArray *g_ptr_array_remove_range       (GPtrArray        *array,
 					   guint             index_,
 					   guint             length);
 GLIB_AVAILABLE_IN_ALL
 void       g_ptr_array_add                (GPtrArray        *array,
 					   gpointer          data);
+GLIB_AVAILABLE_IN_2_62
+void g_ptr_array_extend                   (GPtrArray        *array_to_extend,
+                                           GPtrArray        *array,
+                                           GCopyFunc         func,
+                                           gpointer          user_data);
+GLIB_AVAILABLE_IN_2_62
+void g_ptr_array_extend_and_steal         (GPtrArray        *array_to_extend,
+                                           GPtrArray        *array);
+GLIB_AVAILABLE_IN_2_40
+void       g_ptr_array_insert             (GPtrArray        *array,
+                                           gint              index_,
+                                           gpointer          data);
 GLIB_AVAILABLE_IN_ALL
 void       g_ptr_array_sort               (GPtrArray        *array,
 					   GCompareFunc      compare_func);
@@ -180,6 +213,15 @@ GLIB_AVAILABLE_IN_ALL
 void       g_ptr_array_foreach            (GPtrArray        *array,
 					   GFunc             func,
 					   gpointer          user_data);
+GLIB_AVAILABLE_IN_2_54
+gboolean   g_ptr_array_find               (GPtrArray        *haystack,
+                                           gconstpointer     needle,
+                                           guint            *index_);
+GLIB_AVAILABLE_IN_2_54
+gboolean   g_ptr_array_find_with_equal_func (GPtrArray     *haystack,
+                                             gconstpointer  needle,
+                                             GEqualFunc     equal_func,
+                                             guint         *index_);
 
 
 /* Byte arrays, an array of guint8.  Implemented as a GArray,
@@ -191,6 +233,9 @@ GByteArray* g_byte_array_new               (void);
 GLIB_AVAILABLE_IN_ALL
 GByteArray* g_byte_array_new_take          (guint8           *data,
                                             gsize             len);
+GLIB_AVAILABLE_IN_2_64
+guint8*     g_byte_array_steal             (GByteArray       *array,
+                                            gsize            *len);
 GLIB_AVAILABLE_IN_ALL
 GByteArray* g_byte_array_sized_new         (guint             reserved_size);
 GLIB_AVAILABLE_IN_ALL

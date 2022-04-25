@@ -5,7 +5,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -13,9 +13,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef __G_TASK_H__
@@ -76,6 +74,19 @@ void          g_task_set_check_cancellable (GTask               *task,
 GLIB_AVAILABLE_IN_2_36
 void          g_task_set_source_tag        (GTask               *task,
                                             gpointer             source_tag);
+GLIB_AVAILABLE_IN_2_60
+void          g_task_set_name              (GTask               *task,
+                                            const gchar         *name);
+
+/* Macro wrapper to set the task name when setting the source tag. */
+#if GLIB_VERSION_MIN_REQUIRED >= GLIB_VERSION_2_60
+#define g_task_set_source_tag(task, tag) G_STMT_START { \
+  GTask *_task = (task); \
+  (g_task_set_source_tag) (_task, tag); \
+  if (g_task_get_name (_task) == NULL) \
+    g_task_set_name (_task, G_STRINGIFY (tag)); \
+} G_STMT_END
+#endif
 
 GLIB_AVAILABLE_IN_2_36
 gpointer      g_task_get_source_object     (GTask               *task);
@@ -91,6 +102,8 @@ GLIB_AVAILABLE_IN_2_36
 gboolean      g_task_get_check_cancellable (GTask               *task);
 GLIB_AVAILABLE_IN_2_36
 gpointer      g_task_get_source_tag        (GTask               *task);
+GLIB_AVAILABLE_IN_2_60
+const gchar  *g_task_get_name              (GTask               *task);
 
 GLIB_AVAILABLE_IN_2_36
 gboolean      g_task_is_valid              (gpointer             result,
@@ -139,6 +152,9 @@ void          g_task_return_new_error          (GTask           *task,
                                                 gint             code,
                                                 const char      *format,
                                                 ...) G_GNUC_PRINTF (4, 5);
+GLIB_AVAILABLE_IN_2_64
+void          g_task_return_value              (GTask           *task,
+                                                GValue          *result);
 
 GLIB_AVAILABLE_IN_2_36
 gboolean      g_task_return_error_if_cancelled (GTask           *task);
@@ -152,8 +168,14 @@ gboolean      g_task_propagate_boolean         (GTask           *task,
 GLIB_AVAILABLE_IN_2_36
 gssize        g_task_propagate_int             (GTask           *task,
                                                 GError         **error);
+GLIB_AVAILABLE_IN_2_64
+gboolean      g_task_propagate_value           (GTask           *task,
+                                                GValue          *value,
+                                                GError         **error);
 GLIB_AVAILABLE_IN_2_36
 gboolean      g_task_had_error                 (GTask           *task);
+GLIB_AVAILABLE_IN_2_44
+gboolean      g_task_get_completed             (GTask           *task);
 
 G_END_DECLS
 

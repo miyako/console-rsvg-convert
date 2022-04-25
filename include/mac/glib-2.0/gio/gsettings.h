@@ -4,7 +4,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the licence, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,9 +12,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
- * Boston, MA 02111-1307, USA.
+ * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  *
  * Author: Ryan Lortie <desrt@desrt.ca>
  */
@@ -72,9 +70,9 @@ struct _GSettings
 GLIB_AVAILABLE_IN_ALL
 GType                   g_settings_get_type                             (void);
 
-GLIB_AVAILABLE_IN_ALL
+GLIB_DEPRECATED_IN_2_40_FOR(g_settings_schema_source_list_schemas)
 const gchar * const *   g_settings_list_schemas                         (void);
-GLIB_AVAILABLE_IN_ALL
+GLIB_DEPRECATED_IN_2_40_FOR(g_settings_schema_source_list_schemas)
 const gchar * const *   g_settings_list_relocatable_schemas             (void);
 GLIB_AVAILABLE_IN_ALL
 GSettings *             g_settings_new                                  (const gchar        *schema_id);
@@ -94,12 +92,12 @@ GSettings *             g_settings_new_full                             (GSettin
                                                                          const gchar        *path);
 GLIB_AVAILABLE_IN_ALL
 gchar **                g_settings_list_children                        (GSettings          *settings);
-GLIB_AVAILABLE_IN_ALL
+GLIB_DEPRECATED_IN_2_46_FOR(g_settings_schema_list_keys)
 gchar **                g_settings_list_keys                            (GSettings          *settings);
-GLIB_AVAILABLE_IN_ALL
+GLIB_DEPRECATED_IN_2_40_FOR(g_settings_schema_key_get_range)
 GVariant *              g_settings_get_range                            (GSettings          *settings,
                                                                          const gchar        *key);
-GLIB_AVAILABLE_IN_ALL
+GLIB_DEPRECATED_IN_2_40_FOR(g_settings_schema_key_range_check)
 gboolean                g_settings_range_check                          (GSettings          *settings,
                                                                          const gchar        *key,
                                                                          GVariant           *value);
@@ -110,6 +108,13 @@ gboolean                g_settings_set_value                            (GSettin
                                                                          GVariant           *value);
 GLIB_AVAILABLE_IN_ALL
 GVariant *              g_settings_get_value                            (GSettings          *settings,
+                                                                         const gchar        *key);
+
+GLIB_AVAILABLE_IN_2_40
+GVariant *              g_settings_get_user_value                       (GSettings          *settings,
+                                                                         const gchar        *key);
+GLIB_AVAILABLE_IN_2_40
+GVariant *              g_settings_get_default_value                    (GSettings          *settings,
                                                                          const gchar        *key);
 
 GLIB_AVAILABLE_IN_ALL
@@ -133,13 +138,27 @@ GLIB_AVAILABLE_IN_ALL
 gboolean                g_settings_set_int                              (GSettings          *settings,
                                                                          const gchar        *key,
                                                                          gint                value);
-GLIB_AVAILABLE_IN_ALL
+GLIB_AVAILABLE_IN_2_50
+gint64                  g_settings_get_int64                            (GSettings          *settings,
+                                                                         const gchar        *key);
+GLIB_AVAILABLE_IN_2_50
+gboolean                g_settings_set_int64                            (GSettings          *settings,
+                                                                         const gchar        *key,
+                                                                         gint64              value);
+GLIB_AVAILABLE_IN_2_32
 guint                   g_settings_get_uint                             (GSettings          *settings,
                                                                          const gchar        *key);
-GLIB_AVAILABLE_IN_ALL
+GLIB_AVAILABLE_IN_2_32
 gboolean                g_settings_set_uint                             (GSettings          *settings,
                                                                          const gchar        *key,
                                                                          guint               value);
+GLIB_AVAILABLE_IN_2_50
+guint64                 g_settings_get_uint64                           (GSettings          *settings,
+                                                                         const gchar        *key);
+GLIB_AVAILABLE_IN_2_50
+gboolean                g_settings_set_uint64                           (GSettings          *settings,
+                                                                         const gchar        *key,
+                                                                         guint64             value);
 GLIB_AVAILABLE_IN_ALL
 gchar *                 g_settings_get_string                           (GSettings          *settings,
                                                                          const gchar        *key);
@@ -259,13 +278,13 @@ typedef gboolean      (*GSettingsGetMapping)                            (GVarian
 
 /**
  * GSettingsBindFlags:
- * @G_SETTINGS_BIND_DEFAULT: Equivalent to <literal>G_SETTINGS_BIND_GET|G_SETTINGS_BIND_SET</literal>
+ * @G_SETTINGS_BIND_DEFAULT: Equivalent to `G_SETTINGS_BIND_GET|G_SETTINGS_BIND_SET`
  * @G_SETTINGS_BIND_GET: Update the #GObject property when the setting changes.
  *     It is an error to use this flag if the property is not writable.
  * @G_SETTINGS_BIND_SET: Update the setting when the #GObject property changes.
  *     It is an error to use this flag if the property is not readable.
  * @G_SETTINGS_BIND_NO_SENSITIVITY: Do not try to bind a "sensitivity" property to the writability of the setting
- * @G_SETTINGS_BIND_GET_NO_CHANGES: When set in addition to #G_SETTINGS_BIND_GET, set the #GObject property
+ * @G_SETTINGS_BIND_GET_NO_CHANGES: When set in addition to %G_SETTINGS_BIND_GET, set the #GObject property
  *     value initially from the setting, but do not listen for changes of the setting
  * @G_SETTINGS_BIND_INVERT_BOOLEAN: When passed to g_settings_bind(), uses a pair of mapping functions that invert
  *     the boolean value when mapping between the setting and the property.  The setting and property must both

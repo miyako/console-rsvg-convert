@@ -4,7 +4,7 @@
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
  * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * version 2.1 of the License, or (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -12,9 +12,7 @@
  * Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General
- * Public License along with this library; if not, write to the
- * Free Software Foundation, Inc., 59 Temple Place, Suite 330,
- * Boston, MA 02111-1307, USA.
+ * Public License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 #ifndef __G_TYPE_PLUGIN_H__
 #define __G_TYPE_PLUGIN_H__
@@ -69,7 +67,7 @@ typedef void  (*GTypePluginCompleteTypeInfo)	  (GTypePlugin     *plugin,
 /**
  * GTypePluginCompleteInterfaceInfo:
  * @plugin: the #GTypePlugin
- * @instance_type: the #GType of an instantiable type to which the interface
+ * @instance_type: the #GType of an instantiatable type to which the interface
  *  is added
  * @interface_type: the #GType of the interface whose info is completed
  * @info: the #GInterfaceInfo to fill in
@@ -83,9 +81,8 @@ typedef void  (*GTypePluginCompleteInterfaceInfo) (GTypePlugin     *plugin,
 /**
  * GTypePlugin:
  * 
- * The <structname>GTypePlugin</structname> typedef is used as a placeholder 
- * for objects that implement the <structname>GTypePlugin</structname> 
- * interface.
+ * The GTypePlugin typedef is used as a placeholder 
+ * for objects that implement the GTypePlugin interface.
  */
 /**
  * GTypePluginClass:
@@ -93,12 +90,10 @@ typedef void  (*GTypePluginCompleteInterfaceInfo) (GTypePlugin     *plugin,
  * @unuse_plugin: Decreases the use count of the plugin.
  * @complete_type_info: Fills in the #GTypeInfo and 
  *  #GTypeValueTable structs for the type. The structs are initialized
- *  with <literal>memset(s, 0, sizeof (s))</literal> before calling 
- *  this function.
+ *  with `memset(s, 0, sizeof (s))` before calling this function.
  * @complete_interface_info: Fills in missing parts of the #GInterfaceInfo 
- *  for the interface. The structs is initialized with 
- *  <literal>memset(s, 0, sizeof (s))</literal> before calling
- *  this function.
+ *  for the interface. The structs is initialized with
+ *  `memset(s, 0, sizeof (s))` before calling this function.
  * 
  * The #GTypePlugin interface is used by the type system in order to handle
  * the lifecycle of dynamically loaded types.
