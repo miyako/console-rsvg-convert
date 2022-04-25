@@ -24,6 +24,8 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <algorithm>
+#include <cctype>
 
  #define _CONSOLE_
 
