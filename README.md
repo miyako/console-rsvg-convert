@@ -87,3 +87,11 @@ meson build --default-library=both
 ```
 
 However, static ``gdk_pixbuf`` will not work.
+
+don't use homebrew cairo; instead build from source
+
+```
+--enable-xlib-xrender=no --without-x --enable-xlib=no --enable-xcb=no
+```
+
+source is [`2.37.0`](https://github.com/GNOME/librsvg/releases/tag/2.37.0)
