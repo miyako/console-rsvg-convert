@@ -87,3 +87,9 @@ meson build --default-library=both
 ```
 
 However, static ``gdk_pixbuf`` will not work.
+
+don't use homebrew cairo; instead build from source
+
+```
+--enable-xlib-xrender=no --without-x --enable-xlib=no
+```
