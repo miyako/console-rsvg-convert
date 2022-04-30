@@ -71,6 +71,13 @@ Windows port of ``getopt_long`` by [takamin](https://github.com/takamin/win-c)
 
 ## Build Information  
 
+```
+export LIBRSVG_CFLAGS=-I...
+export GDK_PIXBUF_CFLAGS=-I...
+export GDK_PIXBUF_QUERYLOADERS=...
+ln -s /usr/local/bin/glibtool ./libtool
+```
+
 added ``RSVG_EXPORT`` to the following:  
 
 ``rsvg_cleanup``  
@@ -86,8 +93,6 @@ You can create static library versions of ``glib`` with
 meson build --default-library=both
 ```
 
-However, static ``gdk_pixbuf`` will not work.
-
 don't use homebrew cairo; instead build from source
 
 ```
@@ -95,3 +100,11 @@ don't use homebrew cairo; instead build from source
 ```
 
 source is [`2.37.0`](https://github.com/GNOME/librsvg/releases/tag/2.37.0)
+
+```
+export LDFLAGS="-lpng -ltiff -ljpeg -lz"
+export LIBRARY_PATH=...
+meson build --default-library=static -Dbuiltin_loaders=all -Dman=false -Drelocatable=true
+cd build
+ninja -C build
+```
