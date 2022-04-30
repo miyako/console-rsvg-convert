@@ -71,6 +71,13 @@ Windows port of ``getopt_long`` by [takamin](https://github.com/takamin/win-c)
 
 ## Build Information  
 
+```
+export LIBRSVG_CFLAGS=-I...
+export LIBRSVG_LIBS=-L...
+export GDK_PIXBUF_CFLAGS=-I...
+export GDK_PIXBUF_LIBS=-L...
+```
+
 added ``RSVG_EXPORT`` to the following:  
 
 ``rsvg_cleanup``  
