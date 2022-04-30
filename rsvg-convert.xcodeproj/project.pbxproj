@@ -12,31 +12,51 @@
 		D1A3F5672045B866005E972D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A3F5662045B866005E972D /* CoreText.framework */; };
 		D1A3F5B32045BECB005E972D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A3F5B22045BECB005E972D /* Foundation.framework */; };
 		D1C9E71522CF328F0061B7CD /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C9E71422CF328F0061B7CD /* libbz2.tbd */; };
-		D1C9E71722CF32990061B7CD /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C9E71622CF32990061B7CD /* libiconv.tbd */; };
 		D1C9E71922CF32A30061B7CD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C9E71822CF32A30061B7CD /* libz.tbd */; };
-		D1CEC611234C660D009EA9F1 /* libgmodule-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC5F8234C660C009EA9F1 /* libgmodule-2.0.0.dylib */; };
-		D1CEC612234C660D009EA9F1 /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC5F9234C660C009EA9F1 /* libfreetype.6.dylib */; };
-		D1CEC614234C660D009EA9F1 /* librsvg-2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC5FB234C660C009EA9F1 /* librsvg-2.2.dylib */; };
-		D1CEC615234C660D009EA9F1 /* libgobject-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC5FC234C660C009EA9F1 /* libgobject-2.0.0.dylib */; };
-		D1CEC617234C660D009EA9F1 /* libjpeg.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC5FE234C660C009EA9F1 /* libjpeg.9.dylib */; };
-		D1CEC618234C660D009EA9F1 /* libpng16.16.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC5FF234C660C009EA9F1 /* libpng16.16.dylib */; };
-		D1CEC619234C660D009EA9F1 /* libglib-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC600234C660C009EA9F1 /* libglib-2.0.0.dylib */; };
-		D1CEC61A234C660D009EA9F1 /* libfontconfig.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC601234C660D009EA9F1 /* libfontconfig.1.dylib */; };
-		D1CEC61B234C660D009EA9F1 /* libgdk_pixbuf-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC602234C660D009EA9F1 /* libgdk_pixbuf-2.0.0.dylib */; };
-		D1CEC61C234C660D009EA9F1 /* libintl.8.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC603234C660D009EA9F1 /* libintl.8.dylib */; };
-		D1CEC61D234C660D009EA9F1 /* libpango-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC604234C660D009EA9F1 /* libpango-1.0.0.dylib */; };
-		D1CEC61E234C660D009EA9F1 /* libpangocairo-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC605234C660D009EA9F1 /* libpangocairo-1.0.0.dylib */; };
-		D1CEC61F234C660D009EA9F1 /* libpcre.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC606234C660D009EA9F1 /* libpcre.1.dylib */; };
-		D1CEC620234C660D009EA9F1 /* libcairo.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC607234C660D009EA9F1 /* libcairo.2.dylib */; };
-		D1CEC621234C660D009EA9F1 /* libgthread-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC608234C660D009EA9F1 /* libgthread-2.0.0.dylib */; };
-		D1CEC622234C660D009EA9F1 /* liblzma.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC609234C660D009EA9F1 /* liblzma.5.dylib */; };
-		D1CEC623234C660D009EA9F1 /* libgio-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC60A234C660D009EA9F1 /* libgio-2.0.0.dylib */; };
-		D1CEC624234C660D009EA9F1 /* libtiff.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC60B234C660D009EA9F1 /* libtiff.5.dylib */; };
-		D1CEC625234C660D009EA9F1 /* libpixman-1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC60C234C660D009EA9F1 /* libpixman-1.0.dylib */; };
-		D1CEC626234C660D009EA9F1 /* libpangoft2-1.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC60D234C660D009EA9F1 /* libpangoft2-1.0.0.dylib */; };
-		D1CEC627234C660D009EA9F1 /* libcroco-0.6.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC60E234C660D009EA9F1 /* libcroco-0.6.3.dylib */; };
-		D1CEC628234C660D009EA9F1 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC60F234C660D009EA9F1 /* libxml2.2.dylib */; };
-		D1CEC629234C660D009EA9F1 /* libharfbuzz.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D1CEC610234C660D009EA9F1 /* libharfbuzz.0.dylib */; };
+		D1F96E77281CD8B600760A22 /* librsvg-2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E76281CD8B600760A22 /* librsvg-2.a */; };
+		D1F96E86281CD91B00760A22 /* libgdk_pixbuf-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E78281CD91A00760A22 /* libgdk_pixbuf-2.0.a */; };
+		D1F96E87281CD91B00760A22 /* libstaticpixbufloader-tiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E79281CD91A00760A22 /* libstaticpixbufloader-tiff.a */; };
+		D1F96E88281CD91B00760A22 /* libstaticpixbufloader-ico.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E7A281CD91A00760A22 /* libstaticpixbufloader-ico.a */; };
+		D1F96E89281CD91B00760A22 /* libstaticpixbufloader-xpm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E7B281CD91A00760A22 /* libstaticpixbufloader-xpm.a */; };
+		D1F96E8A281CD91B00760A22 /* libstaticpixbufloader-icns.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E7C281CD91A00760A22 /* libstaticpixbufloader-icns.a */; };
+		D1F96E8B281CD91B00760A22 /* libstaticpixbufloader-xbm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E7D281CD91A00760A22 /* libstaticpixbufloader-xbm.a */; };
+		D1F96E8C281CD91B00760A22 /* libstaticpixbufloader-png.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E7E281CD91A00760A22 /* libstaticpixbufloader-png.a */; };
+		D1F96E8D281CD91B00760A22 /* libstaticpixbufloader-gif.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E7F281CD91A00760A22 /* libstaticpixbufloader-gif.a */; };
+		D1F96E8E281CD91B00760A22 /* libstaticpixbufloader-ani.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E80281CD91A00760A22 /* libstaticpixbufloader-ani.a */; };
+		D1F96E8F281CD91B00760A22 /* libstaticpixbufloader-tga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E81281CD91A00760A22 /* libstaticpixbufloader-tga.a */; };
+		D1F96E90281CD91B00760A22 /* libstaticpixbufloader-jpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E82281CD91A00760A22 /* libstaticpixbufloader-jpeg.a */; };
+		D1F96E91281CD91B00760A22 /* libstaticpixbufloader-pnm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E83281CD91A00760A22 /* libstaticpixbufloader-pnm.a */; };
+		D1F96E92281CD91B00760A22 /* libstaticpixbufloader-qtif.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E84281CD91A00760A22 /* libstaticpixbufloader-qtif.a */; };
+		D1F96E93281CD91B00760A22 /* libstaticpixbufloader-bmp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E85281CD91A00760A22 /* libstaticpixbufloader-bmp.a */; };
+		D1F96E99281CD98500760A22 /* libglib-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E94281CD98500760A22 /* libglib-2.0.a */; };
+		D1F96E9A281CD98500760A22 /* libgobject-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E95281CD98500760A22 /* libgobject-2.0.a */; };
+		D1F96E9B281CD98500760A22 /* libgthread-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E96281CD98500760A22 /* libgthread-2.0.a */; };
+		D1F96E9C281CD98500760A22 /* libgmodule-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E97281CD98500760A22 /* libgmodule-2.0.a */; };
+		D1F96E9D281CD98500760A22 /* libgio-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96E98281CD98500760A22 /* libgio-2.0.a */; };
+		D1F96EA1281CD9FE00760A22 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EA0281CD9FE00760A22 /* CoreServices.framework */; };
+		D1F96EA3281CDA3100760A22 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EA2281CDA3100760A22 /* libresolv.tbd */; };
+		D1F96EA5281CDA4200760A22 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EA4281CDA4200760A22 /* libffi.a */; };
+		D1F96EA7281CDA6200760A22 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EA6281CDA6200760A22 /* AppKit.framework */; };
+		D1F96EA9281CDAA100760A22 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EA8281CDAA100760A22 /* libxml2.tbd */; };
+		D1F96EAB281CDAC600760A22 /* libcroco-0.6.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EAA281CDAC600760A22 /* libcroco-0.6.a */; };
+		D1F96EB1281CDB2400760A22 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EAE281CDB2400760A22 /* libjpeg.a */; };
+		D1F96EB2281CDB2400760A22 /* libpng16.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EAF281CDB2400760A22 /* libpng16.a */; };
+		D1F96EB4281CDB5300760A22 /* libintl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EB3281CDB5300760A22 /* libintl.a */; };
+		D1F96EB6281CDB7300760A22 /* libcairo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EB5281CDB7300760A22 /* libcairo.a */; };
+		D1F96EB8281CDBA400760A22 /* libpixman-1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EB7281CDBA300760A22 /* libpixman-1.a */; };
+		D1F96EBA281CDBB600760A22 /* liblzma.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EB9281CDBB600760A22 /* liblzma.tbd */; };
+		D1F96EBC281CDC0000760A22 /* libfontconfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EBB281CDC0000760A22 /* libfontconfig.a */; };
+		D1F96EBD281CDC1300760A22 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EAD281CDB2400760A22 /* libfreetype.a */; };
+		D1F96EBF281CDC4700760A22 /* libtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EBE281CDC4700760A22 /* libtiff.a */; };
+		D1F96EC1281CDC8200760A22 /* libexpat.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EC0281CDC8200760A22 /* libexpat.tbd */; };
+		D1F96EC3281CDD0700760A22 /* libpcre.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EC2281CDD0700760A22 /* libpcre.tbd */; };
+		D1F96EC7281CDE4400760A22 /* libpango-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EC4281CDE4400760A22 /* libpango-1.0.a */; };
+		D1F96EC8281CDE4400760A22 /* libpangoft2-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EC5281CDE4400760A22 /* libpangoft2-1.0.a */; };
+		D1F96EC9281CDE4400760A22 /* libpangocairo-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96EC6281CDE4400760A22 /* libpangocairo-1.0.a */; };
+		D1F96ECB281CDF0600760A22 /* libfribidi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96ECA281CDF0600760A22 /* libfribidi.a */; };
+		D1F96ECD281CDF6900760A22 /* libharfbuzz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96ECC281CDF6900760A22 /* libharfbuzz.a */; };
+		D1F96ED5281CE32C00760A22 /* libgraphite2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96ED4281CE32C00760A22 /* libgraphite2.a */; };
+		D1F96ED7281D05EB00760A22 /* libiconv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F96ED6281D05EB00760A22 /* libiconv.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -88,6 +108,54 @@
 		D1CEC60E234C660D009EA9F1 /* libcroco-0.6.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libcroco-0.6.3.dylib"; path = "dylib/libcroco-0.6.3.dylib"; sourceTree = "<group>"; };
 		D1CEC60F234C660D009EA9F1 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = dylib/libxml2.2.dylib; sourceTree = "<group>"; };
 		D1CEC610234C660D009EA9F1 /* libharfbuzz.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libharfbuzz.0.dylib; path = dylib/libharfbuzz.0.dylib; sourceTree = "<group>"; };
+		D1F96E76281CD8B600760A22 /* librsvg-2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "librsvg-2.a"; path = "a/librsvg-2.a"; sourceTree = "<group>"; };
+		D1F96E78281CD91A00760A22 /* libgdk_pixbuf-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgdk_pixbuf-2.0.a"; path = "a/libgdk_pixbuf-2.0.a"; sourceTree = "<group>"; };
+		D1F96E79281CD91A00760A22 /* libstaticpixbufloader-tiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstaticpixbufloader-tiff.a"; path = "a/libstaticpixbufloader-tiff.a"; sourceTree = "<group>"; };
+		D1F96E7A281CD91A00760A22 /* libstaticpixbufloader-ico.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstaticpixbufloader-ico.a"; path = "a/libstaticpixbufloader-ico.a"; sourceTree = "<group>"; };
+		D1F96E7B281CD91A00760A22 /* libstaticpixbufloader-xpm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstaticpixbufloader-xpm.a"; path = "a/libstaticpixbufloader-xpm.a"; sourceTree = "<group>"; };
+		D1F96E7C281CD91A00760A22 /* libstaticpixbufloader-icns.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstaticpixbufloader-icns.a"; path = "a/libstaticpixbufloader-icns.a"; sourceTree = "<group>"; };
+		D1F96E7D281CD91A00760A22 /* libstaticpixbufloader-xbm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstaticpixbufloader-xbm.a"; path = "a/libstaticpixbufloader-xbm.a"; sourceTree = "<group>"; };
+		D1F96E7E281CD91A00760A22 /* libstaticpixbufloader-png.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstaticpixbufloader-png.a"; path = "a/libstaticpixbufloader-png.a"; sourceTree = "<group>"; };
+		D1F96E7F281CD91A00760A22 /* libstaticpixbufloader-gif.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstaticpixbufloader-gif.a"; path = "a/libstaticpixbufloader-gif.a"; sourceTree = "<group>"; };
+		D1F96E80281CD91A00760A22 /* libstaticpixbufloader-ani.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstaticpixbufloader-ani.a"; path = "a/libstaticpixbufloader-ani.a"; sourceTree = "<group>"; };
+		D1F96E81281CD91A00760A22 /* libstaticpixbufloader-tga.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstaticpixbufloader-tga.a"; path = "a/libstaticpixbufloader-tga.a"; sourceTree = "<group>"; };
+		D1F96E82281CD91A00760A22 /* libstaticpixbufloader-jpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstaticpixbufloader-jpeg.a"; path = "a/libstaticpixbufloader-jpeg.a"; sourceTree = "<group>"; };
+		D1F96E83281CD91A00760A22 /* libstaticpixbufloader-pnm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstaticpixbufloader-pnm.a"; path = "a/libstaticpixbufloader-pnm.a"; sourceTree = "<group>"; };
+		D1F96E84281CD91A00760A22 /* libstaticpixbufloader-qtif.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstaticpixbufloader-qtif.a"; path = "a/libstaticpixbufloader-qtif.a"; sourceTree = "<group>"; };
+		D1F96E85281CD91A00760A22 /* libstaticpixbufloader-bmp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libstaticpixbufloader-bmp.a"; path = "a/libstaticpixbufloader-bmp.a"; sourceTree = "<group>"; };
+		D1F96E94281CD98500760A22 /* libglib-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libglib-2.0.a"; path = "a/libglib-2.0.a"; sourceTree = "<group>"; };
+		D1F96E95281CD98500760A22 /* libgobject-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgobject-2.0.a"; path = "a/libgobject-2.0.a"; sourceTree = "<group>"; };
+		D1F96E96281CD98500760A22 /* libgthread-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgthread-2.0.a"; path = "a/libgthread-2.0.a"; sourceTree = "<group>"; };
+		D1F96E97281CD98500760A22 /* libgmodule-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgmodule-2.0.a"; path = "a/libgmodule-2.0.a"; sourceTree = "<group>"; };
+		D1F96E98281CD98500760A22 /* libgio-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgio-2.0.a"; path = "a/libgio-2.0.a"; sourceTree = "<group>"; };
+		D1F96E9E281CD9AF00760A22 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		D1F96EA0281CD9FE00760A22 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		D1F96EA2281CDA3100760A22 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		D1F96EA4281CDA4200760A22 /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libffi.a; path = a/libffi.a; sourceTree = "<group>"; };
+		D1F96EA6281CDA6200760A22 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		D1F96EA8281CDAA100760A22 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
+		D1F96EAA281CDAC600760A22 /* libcroco-0.6.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcroco-0.6.a"; path = "a/libcroco-0.6.a"; sourceTree = "<group>"; };
+		D1F96EAD281CDB2400760A22 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = a/libfreetype.a; sourceTree = "<group>"; };
+		D1F96EAE281CDB2400760A22 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = a/libjpeg.a; sourceTree = "<group>"; };
+		D1F96EAF281CDB2400760A22 /* libpng16.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng16.a; path = a/libpng16.a; sourceTree = "<group>"; };
+		D1F96EB3281CDB5300760A22 /* libintl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libintl.a; path = a/libintl.a; sourceTree = "<group>"; };
+		D1F96EB5281CDB7300760A22 /* libcairo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcairo.a; path = a/libcairo.a; sourceTree = "<group>"; };
+		D1F96EB7281CDBA300760A22 /* libpixman-1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpixman-1.a"; path = "a/libpixman-1.a"; sourceTree = "<group>"; };
+		D1F96EB9281CDBB600760A22 /* liblzma.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = liblzma.tbd; path = usr/lib/liblzma.tbd; sourceTree = SDKROOT; };
+		D1F96EBB281CDC0000760A22 /* libfontconfig.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfontconfig.a; path = a/libfontconfig.a; sourceTree = "<group>"; };
+		D1F96EBE281CDC4700760A22 /* libtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtiff.a; path = a/libtiff.a; sourceTree = "<group>"; };
+		D1F96EC0281CDC8200760A22 /* libexpat.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libexpat.tbd; path = usr/lib/libexpat.tbd; sourceTree = SDKROOT; };
+		D1F96EC2281CDD0700760A22 /* libpcre.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libpcre.tbd; path = usr/lib/libpcre.tbd; sourceTree = SDKROOT; };
+		D1F96EC4281CDE4400760A22 /* libpango-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpango-1.0.a"; path = "a/libpango-1.0.a"; sourceTree = "<group>"; };
+		D1F96EC5281CDE4400760A22 /* libpangoft2-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpangoft2-1.0.a"; path = "a/libpangoft2-1.0.a"; sourceTree = "<group>"; };
+		D1F96EC6281CDE4400760A22 /* libpangocairo-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpangocairo-1.0.a"; path = "a/libpangocairo-1.0.a"; sourceTree = "<group>"; };
+		D1F96ECA281CDF0600760A22 /* libfribidi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfribidi.a; path = a/libfribidi.a; sourceTree = "<group>"; };
+		D1F96ECC281CDF6900760A22 /* libharfbuzz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libharfbuzz.a; path = a/libharfbuzz.a; sourceTree = "<group>"; };
+		D1F96ECE281CDFBD00760A22 /* libharfbuzz-gobject.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libharfbuzz-gobject.a"; path = "a/libharfbuzz-gobject.a"; sourceTree = "<group>"; };
+		D1F96ED0281CDFFF00760A22 /* libharfbuzz-subset.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libharfbuzz-subset.a"; path = "a/libharfbuzz-subset.a"; sourceTree = "<group>"; };
+		D1F96ED2281CE07C00760A22 /* libgraphite2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgraphite2.3.dylib; path = dylib/libgraphite2.3.dylib; sourceTree = "<group>"; };
+		D1F96ED4281CE32C00760A22 /* libgraphite2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgraphite2.a; path = a/libgraphite2.a; sourceTree = "<group>"; };
+		D1F96ED6281D05EB00760A22 /* libiconv.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libiconv.a; path = a/libiconv.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,32 +163,52 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1CEC611234C660D009EA9F1 /* libgmodule-2.0.0.dylib in Frameworks */,
-				D1CEC612234C660D009EA9F1 /* libfreetype.6.dylib in Frameworks */,
-				D1CEC614234C660D009EA9F1 /* librsvg-2.2.dylib in Frameworks */,
-				D1CEC615234C660D009EA9F1 /* libgobject-2.0.0.dylib in Frameworks */,
-				D1CEC617234C660D009EA9F1 /* libjpeg.9.dylib in Frameworks */,
-				D1CEC618234C660D009EA9F1 /* libpng16.16.dylib in Frameworks */,
-				D1CEC619234C660D009EA9F1 /* libglib-2.0.0.dylib in Frameworks */,
-				D1CEC61A234C660D009EA9F1 /* libfontconfig.1.dylib in Frameworks */,
-				D1CEC61B234C660D009EA9F1 /* libgdk_pixbuf-2.0.0.dylib in Frameworks */,
-				D1CEC61C234C660D009EA9F1 /* libintl.8.dylib in Frameworks */,
-				D1CEC61D234C660D009EA9F1 /* libpango-1.0.0.dylib in Frameworks */,
-				D1CEC61E234C660D009EA9F1 /* libpangocairo-1.0.0.dylib in Frameworks */,
-				D1CEC61F234C660D009EA9F1 /* libpcre.1.dylib in Frameworks */,
-				D1CEC620234C660D009EA9F1 /* libcairo.2.dylib in Frameworks */,
-				D1CEC621234C660D009EA9F1 /* libgthread-2.0.0.dylib in Frameworks */,
-				D1CEC622234C660D009EA9F1 /* liblzma.5.dylib in Frameworks */,
-				D1CEC623234C660D009EA9F1 /* libgio-2.0.0.dylib in Frameworks */,
-				D1CEC624234C660D009EA9F1 /* libtiff.5.dylib in Frameworks */,
-				D1CEC625234C660D009EA9F1 /* libpixman-1.0.dylib in Frameworks */,
-				D1CEC626234C660D009EA9F1 /* libpangoft2-1.0.0.dylib in Frameworks */,
-				D1CEC627234C660D009EA9F1 /* libcroco-0.6.3.dylib in Frameworks */,
-				D1CEC628234C660D009EA9F1 /* libxml2.2.dylib in Frameworks */,
-				D1CEC629234C660D009EA9F1 /* libharfbuzz.0.dylib in Frameworks */,
+				D1F96ED7281D05EB00760A22 /* libiconv.a in Frameworks */,
+				D1F96ED5281CE32C00760A22 /* libgraphite2.a in Frameworks */,
+				D1F96ECD281CDF6900760A22 /* libharfbuzz.a in Frameworks */,
+				D1F96ECB281CDF0600760A22 /* libfribidi.a in Frameworks */,
+				D1F96EC7281CDE4400760A22 /* libpango-1.0.a in Frameworks */,
+				D1F96EC8281CDE4400760A22 /* libpangoft2-1.0.a in Frameworks */,
+				D1F96EC9281CDE4400760A22 /* libpangocairo-1.0.a in Frameworks */,
+				D1F96EBF281CDC4700760A22 /* libtiff.a in Frameworks */,
+				D1F96EBD281CDC1300760A22 /* libfreetype.a in Frameworks */,
+				D1F96EBC281CDC0000760A22 /* libfontconfig.a in Frameworks */,
+				D1F96EB8281CDBA400760A22 /* libpixman-1.a in Frameworks */,
+				D1F96EB6281CDB7300760A22 /* libcairo.a in Frameworks */,
+				D1F96EB4281CDB5300760A22 /* libintl.a in Frameworks */,
+				D1F96EB1281CDB2400760A22 /* libjpeg.a in Frameworks */,
+				D1F96EB2281CDB2400760A22 /* libpng16.a in Frameworks */,
+				D1F96EAB281CDAC600760A22 /* libcroco-0.6.a in Frameworks */,
+				D1F96E99281CD98500760A22 /* libglib-2.0.a in Frameworks */,
+				D1F96E9A281CD98500760A22 /* libgobject-2.0.a in Frameworks */,
+				D1F96E9B281CD98500760A22 /* libgthread-2.0.a in Frameworks */,
+				D1F96E9C281CD98500760A22 /* libgmodule-2.0.a in Frameworks */,
+				D1F96E9D281CD98500760A22 /* libgio-2.0.a in Frameworks */,
+				D1F96EA5281CDA4200760A22 /* libffi.a in Frameworks */,
+				D1F96E86281CD91B00760A22 /* libgdk_pixbuf-2.0.a in Frameworks */,
+				D1F96E87281CD91B00760A22 /* libstaticpixbufloader-tiff.a in Frameworks */,
+				D1F96E88281CD91B00760A22 /* libstaticpixbufloader-ico.a in Frameworks */,
+				D1F96E89281CD91B00760A22 /* libstaticpixbufloader-xpm.a in Frameworks */,
+				D1F96E8A281CD91B00760A22 /* libstaticpixbufloader-icns.a in Frameworks */,
+				D1F96E8B281CD91B00760A22 /* libstaticpixbufloader-xbm.a in Frameworks */,
+				D1F96E8C281CD91B00760A22 /* libstaticpixbufloader-png.a in Frameworks */,
+				D1F96E8D281CD91B00760A22 /* libstaticpixbufloader-gif.a in Frameworks */,
+				D1F96E8E281CD91B00760A22 /* libstaticpixbufloader-ani.a in Frameworks */,
+				D1F96E8F281CD91B00760A22 /* libstaticpixbufloader-tga.a in Frameworks */,
+				D1F96E90281CD91B00760A22 /* libstaticpixbufloader-jpeg.a in Frameworks */,
+				D1F96E91281CD91B00760A22 /* libstaticpixbufloader-pnm.a in Frameworks */,
+				D1F96E92281CD91B00760A22 /* libstaticpixbufloader-qtif.a in Frameworks */,
+				D1F96E93281CD91B00760A22 /* libstaticpixbufloader-bmp.a in Frameworks */,
+				D1F96E77281CD8B600760A22 /* librsvg-2.a in Frameworks */,
+				D1F96EC3281CDD0700760A22 /* libpcre.tbd in Frameworks */,
+				D1F96EA9281CDAA100760A22 /* libxml2.tbd in Frameworks */,
+				D1F96EBA281CDBB600760A22 /* liblzma.tbd in Frameworks */,
+				D1F96EC1281CDC8200760A22 /* libexpat.tbd in Frameworks */,
+				D1F96EA3281CDA3100760A22 /* libresolv.tbd in Frameworks */,
 				D1C9E71922CF32A30061B7CD /* libz.tbd in Frameworks */,
-				D1C9E71722CF32990061B7CD /* libiconv.tbd in Frameworks */,
 				D1C9E71522CF328F0061B7CD /* libbz2.tbd in Frameworks */,
+				D1F96EA7281CDA6200760A22 /* AppKit.framework in Frameworks */,
+				D1F96EA1281CD9FE00760A22 /* CoreServices.framework in Frameworks */,
 				D1A3F5B32045BECB005E972D /* Foundation.framework in Frameworks */,
 				D1A3F5652045B85E005E972D /* CoreGraphics.framework in Frameworks */,
 				D1A3F5672045B866005E972D /* CoreText.framework in Frameworks */,
@@ -193,6 +281,54 @@
 		D1A3F52520454C70005E972D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D1F96ED6281D05EB00760A22 /* libiconv.a */,
+				D1F96ED4281CE32C00760A22 /* libgraphite2.a */,
+				D1F96ED2281CE07C00760A22 /* libgraphite2.3.dylib */,
+				D1F96ED0281CDFFF00760A22 /* libharfbuzz-subset.a */,
+				D1F96ECE281CDFBD00760A22 /* libharfbuzz-gobject.a */,
+				D1F96ECC281CDF6900760A22 /* libharfbuzz.a */,
+				D1F96ECA281CDF0600760A22 /* libfribidi.a */,
+				D1F96EC4281CDE4400760A22 /* libpango-1.0.a */,
+				D1F96EC6281CDE4400760A22 /* libpangocairo-1.0.a */,
+				D1F96EC5281CDE4400760A22 /* libpangoft2-1.0.a */,
+				D1F96EC2281CDD0700760A22 /* libpcre.tbd */,
+				D1F96EC0281CDC8200760A22 /* libexpat.tbd */,
+				D1F96EBE281CDC4700760A22 /* libtiff.a */,
+				D1F96EBB281CDC0000760A22 /* libfontconfig.a */,
+				D1F96EB9281CDBB600760A22 /* liblzma.tbd */,
+				D1F96EB7281CDBA300760A22 /* libpixman-1.a */,
+				D1F96EB5281CDB7300760A22 /* libcairo.a */,
+				D1F96EB3281CDB5300760A22 /* libintl.a */,
+				D1F96EAD281CDB2400760A22 /* libfreetype.a */,
+				D1F96EAE281CDB2400760A22 /* libjpeg.a */,
+				D1F96EAF281CDB2400760A22 /* libpng16.a */,
+				D1F96EAA281CDAC600760A22 /* libcroco-0.6.a */,
+				D1F96EA8281CDAA100760A22 /* libxml2.tbd */,
+				D1F96EA6281CDA6200760A22 /* AppKit.framework */,
+				D1F96EA4281CDA4200760A22 /* libffi.a */,
+				D1F96EA2281CDA3100760A22 /* libresolv.tbd */,
+				D1F96EA0281CD9FE00760A22 /* CoreServices.framework */,
+				D1F96E9E281CD9AF00760A22 /* CoreFoundation.framework */,
+				D1F96E98281CD98500760A22 /* libgio-2.0.a */,
+				D1F96E94281CD98500760A22 /* libglib-2.0.a */,
+				D1F96E97281CD98500760A22 /* libgmodule-2.0.a */,
+				D1F96E95281CD98500760A22 /* libgobject-2.0.a */,
+				D1F96E96281CD98500760A22 /* libgthread-2.0.a */,
+				D1F96E78281CD91A00760A22 /* libgdk_pixbuf-2.0.a */,
+				D1F96E80281CD91A00760A22 /* libstaticpixbufloader-ani.a */,
+				D1F96E85281CD91A00760A22 /* libstaticpixbufloader-bmp.a */,
+				D1F96E7F281CD91A00760A22 /* libstaticpixbufloader-gif.a */,
+				D1F96E7C281CD91A00760A22 /* libstaticpixbufloader-icns.a */,
+				D1F96E7A281CD91A00760A22 /* libstaticpixbufloader-ico.a */,
+				D1F96E82281CD91A00760A22 /* libstaticpixbufloader-jpeg.a */,
+				D1F96E7E281CD91A00760A22 /* libstaticpixbufloader-png.a */,
+				D1F96E83281CD91A00760A22 /* libstaticpixbufloader-pnm.a */,
+				D1F96E84281CD91A00760A22 /* libstaticpixbufloader-qtif.a */,
+				D1F96E81281CD91A00760A22 /* libstaticpixbufloader-tga.a */,
+				D1F96E79281CD91A00760A22 /* libstaticpixbufloader-tiff.a */,
+				D1F96E7D281CD91A00760A22 /* libstaticpixbufloader-xbm.a */,
+				D1F96E7B281CD91A00760A22 /* libstaticpixbufloader-xpm.a */,
+				D1F96E76281CD8B600760A22 /* librsvg-2.a */,
 				D1C9E71822CF32A30061B7CD /* libz.tbd */,
 				D1C9E71622CF32990061B7CD /* libiconv.tbd */,
 				D1C9E71422CF328F0061B7CD /* libbz2.tbd */,
