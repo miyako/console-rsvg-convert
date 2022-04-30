@@ -95,7 +95,7 @@ don't use homebrew cairo; instead build from source
 source is [`2.37.0`](https://github.com/GNOME/librsvg/releases/tag/2.37.0)
 
 ```
-export LDFLAGS="-lpng -ltiff -ljpeg"
+export LDFLAGS="-lpng -ltiff -ljpeg -lz"
 export LIBRARY_PATH=...
 meson build --default-library=static -Dbuiltin_loaders=all -Dman=false -Drelocatable=true
 cd build
