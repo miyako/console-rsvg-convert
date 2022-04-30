@@ -99,5 +99,5 @@ export LDFLAGS="-lpng -ltiff -ljpeg"
 export LIBRARY_PATH=...
 meson build --default-library=static -Dbuiltin_loaders=all -Dman=false -Drelocatable=true
 cd build
-meson compile
+ninja -C build
 ```
